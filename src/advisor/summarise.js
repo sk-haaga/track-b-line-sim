@@ -24,9 +24,11 @@ export function ranges(nums) {
 }
 
 /**
- * summariseRun(result, { scenario, levers, initialFinishedGoods }) → { facts: [{ id, topic, text }], byTopic }
+ * summariseRun(result, { scenario, levers, initialFinishedGoods, config, version }) → { facts: [{ id, topic, text }], factIds }
+ *   config   the line's configuration (for the settings fact)
+ *   version  'v1' (first version) or 'v2' (adds demand during the outage, the timing of late units and the load)
  */
-export function summariseRun(result, { scenario = {}, levers = {}, initialFinishedGoods = 0 } = {}) {
+export function summariseRun(result, { scenario = {}, levers = {}, initialFinishedGoods = 0, config = null, version = 'v1' } = {}) {
   const { perShift, kpis, events } = result;
   const shifts = perShift.length;
   const facts = [];
@@ -41,6 +43,13 @@ export function summariseRun(result, { scenario = {}, levers = {}, initialFinish
   // 2. Starting conditions and current settings
   add('setup', `Starting finished-goods stock ${initialFinishedGoods}; the line starts empty. Current lever changes: ${Object.keys(levers).length ? JSON.stringify(levers) : 'none (default line)'}. `
     + `Machine breakdowns ${scenario.breakdowns ? 'on' : 'off'}.`);
+
+  // 2b. Line settings (so the model knows the current values of every lever)
+  if (config) {
+    add('settings', `Line settings: cycle times ${config.machines.map((m) => `${m.id} ${m.cycleTime} min`).join(', ')}; `
+      + `reject rate ${config.machines.filter((m) => m.rejectRate).map((m) => `${m.id} ${pct(m.rejectRate)}`).join(', ') || 'none'}; `
+      + `buffers ${config.buffers.map((b) => `${b.id} ${b.capacity}`).join(', ')}; source releases one part every ${config.source.interval} min.`);
+  }
 
   // 3. Demand
   const orders = perShift.map((r) => r.orders);
@@ -67,7 +76,23 @@ export function summariseRun(result, { scenario = {}, levers = {}, initialFinish
   if (os && oe) {
     const s0 = Math.floor(os.tick / TICKS_PER_SHIFT) + 1, s1 = Math.floor((oe.tick - 1) / TICKS_PER_SHIFT) + 1;
     const prod = perShift.filter((r) => r.shift >= s0 && r.shift <= s1 + 1).map((r) => `shift ${r.shift}: ${r.produced}`);
-    add('outage', `Supplier outage from tick ${os.tick} to ${oe.tick} (${oe.tick - os.tick} min, shifts ${s0}–${s1}): no parts released. Good parts produced ${prod.join(', ')}.`);
+    const ordersDuring = perShift.filter((r) => r.shift >= s0 && r.shift <= s1).map((r) => r.orders);
+    add('outage', `Supplier outage from tick ${os.tick} to ${oe.tick} (${oe.tick - os.tick} min, shifts ${s0}–${s1}): no parts released. Good parts produced ${prod.join(', ')}.`
+      + (version === 'v2' ? ` Orders in the outage shifts: ${ordersDuring.join(', ')} (average over all shifts ${r1(avgOrders)}).` : ''));
+  }
+
+  // v2: where the late units fall, and how loaded the line is on average
+  if (version === 'v2') {
+    const late = (r) => r.orders - r.shippedOnTime;
+    const os2 = os && oe ? [Math.floor(os.tick / TICKS_PER_SHIFT) + 1, Math.floor((oe.tick - 1) / TICKS_PER_SHIFT) + 1] : null;
+    const first = perShift.filter((r) => r.shift <= 5).reduce((s, r) => s + late(r), 0);
+    const inOut = os2 ? perShift.filter((r) => r.shift >= os2[0] && r.shift <= os2[1] + 3).reduce((s, r) => s + late(r), 0) : 0;
+    const total = perShift.reduce((s, r) => s + late(r), 0);
+    add('timing', `Late units by period: ${first} in shifts 1–5 (the line and the stock start empty)`
+      + (os2 ? `, ${inOut} in the outage shifts and the 3 shifts after (${os2[0]}–${os2[1] + 3})` : '')
+      + `, ${total - first - inOut} elsewhere; ${total} in total.`);
+    add('load', `Average orders ${r1(avgOrders)} per shift vs average output ${r1(kpis.goodPerShift)} good parts per shift: the line runs at ${pct(avgOrders / Math.max(0.1, kpis.goodPerShift))} of its output`
+      + (avgOrders > kpis.goodPerShift ? ', so it cannot catch up: capacity is below demand.' : ', so capacity is enough on average; late orders come from timing, not from average capacity.'));
   }
 
   // 6. Per machine: utilisation, starved / blocked / down, failures

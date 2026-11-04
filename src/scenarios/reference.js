@@ -18,6 +18,8 @@ export const REFERENCE_SEEDS = [1, 2];                            // official se
 
 export function demandFor(kind) {
   if (kind === 'flat34') return Array(60).fill(34);
+  const flat = /^flat(\d+)$/.exec(kind);                         // e.g. 'flat28' for the advisor evaluation
+  if (flat) return Array(60).fill(Number(flat[1]));
   if (kind === 'profile') return readDemand(DEMAND_PROFILE_PATH);
   throw new Error(`unknown demand kind: ${kind}`);
 }

@@ -102,11 +102,36 @@ npm run advise -- --all --provider mock              # offline baseline for ever
 
 **How validated:** `test/advisor.test.js` (fact sheet content and size, JSON parsing, rejection of invented facts and out-of-limit levers, the exact request to the endpoint with a fake server, the revise loop, token logging).
 
+### 11. Advisor evaluation and prompt v2 (`EVAL-01` to `EVAL-05`)
+
+**What:** a test set of **10 planted-fault cases** (`src/advisor/evalCases.js`), each with a known cause: big orders on an empty line, the outage, M3 slowed to 15 min, a 25% reject rate, a slow source, breakdowns at M3, long breakdowns at M1, a healthy line (nothing to find), everything combined, and the reference "both" case where the outage falls in quiet shifts. `npm run evaluate` runs the advisor on every case and scores it automatically (`src/advisor/evaluate.js`):
+
+| Metric | Meaning |
+|---|---|
+| Top cause right / cause found | the first-ranked (or any) root cause matches the planted cause |
+| Wrong causes per case | causes named that are not true for the case |
+| Valid citations, valid proposals | cited facts exist; proposals pass the lever checks |
+| Fixes the root cause | a proposal uses a lever that removes the cause (stock alone only hides it) |
+| Solved | a proposal was verified by the simulation (healthy case: no proposal) |
+| Regret vs oracle | gap to the best verified gain a brute-force lever search finds (no AI) |
+| Rounds, tokens, seconds per case | cost and speed, for the business case |
+
+**Prompt v2** (`--prompt v2`, now the default in `config/advisor.json`) is the improvement from the first real run: causes ranked by late units and labelled with a category, an empty start counted as a cause, blocked or starved machines never listed as causes, a root-cause lever preferred over stock, and "no problem" when nothing was late. The facts gain the orders during the outage, the timing of late units, and the load (orders vs output). Both versions now also get a **settings fact** with the current lever values (needed for the planted faults).
+
+```bash
+npm run evaluate -- --provider mock                    # offline baseline (included in results/)
+npm run evaluate -- --model gpt-4o --prompt v1         # real AI, first prompt
+npm run evaluate -- --model gpt-4o --prompt v2         # real AI, improved prompt
+```
+`results/advisor-eval/summary.md` compares every run; details per case are in the `.json` files, and every AI call is in `eval-log.jsonl`.
+
+**Baseline (rule-based mock):** top cause right 40%, fixes the root cause 70%, never touches the reject rate or the source. The AI runs show whether, and by how much, the language model is better.
+
 ### How to run everything
 
 ```bash
 npm install
-npm test                 # all unit tests (116)
+npm test                 # all unit tests (123)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
 npm run scenarios        # results tables, 9 scenarios x 9 options, about 75 s, writes results/
@@ -115,7 +140,7 @@ npm start                # UI at http://localhost:3000
 
 ### Not done yet
 
-Costs and service level in the UI; production control (the line always runs flat out); supplier-side countermeasures; the advisor evaluation (planted-fault test set, model comparison).
+Costs and service level in the UI; production control (the line always runs flat out); supplier-side countermeasures; running the advisor evaluation with the real AI and comparing models.
 
 ---
 

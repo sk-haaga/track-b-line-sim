@@ -4,6 +4,7 @@
 //   npm run advise -- --scenario quarter-60 --model gpt-4o
 //   npm run advise -- --scenario both --provider mock      (offline, rule-based baseline, no API key needed)
 //   npm run advise -- --all                                (every scenario)
+//   npm run advise -- --scenario both --prompt v2          (prompt version, default from config/advisor.json)
 //
 // Writes results/advisor/<scenario>-<provider>.md and appends every round to results/advisor/advisor-log.jsonl.
 import fs from 'node:fs';
@@ -21,6 +22,7 @@ const opt = (name) => { const i = args.indexOf(`--${name}`); return i >= 0 ? arg
 
 const provider = opt('provider') ?? cfg.provider;
 const model = opt('model') ?? cfg.model;
+const promptVersion = opt('prompt') ?? cfg.promptVersion ?? 'v1';
 const ids = args.includes('--all') ? ALL_SCENARIOS.map((s) => s.id) : [opt('scenario') ?? 'both'];
 const outDir = path.join(root, 'results', 'advisor');
 const logFile = path.join(outDir, 'advisor-log.jsonl');
@@ -31,7 +33,7 @@ for (const id of ids) {
   if (!scenario) throw new Error(`unknown scenario ${id}; choose one of ${ALL_SCENARIOS.map((s) => s.id).join(', ')}`);
   const r = await runAdvisor({
     scenario, rates, provider, model, temperature: cfg.temperature, maxTokens: cfg.maxTokens, maxRounds: cfg.maxRounds,
-    timeoutMs: cfg.timeoutMs, logFile,
+    timeoutMs: cfg.timeoutMs, promptVersion, logFile,
   });
   const md = reportMarkdown(r);
   fs.mkdirSync(outDir, { recursive: true });

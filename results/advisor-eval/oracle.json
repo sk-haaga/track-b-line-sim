@@ -1,0 +1,60 @@
+{
+  "E01-start-peak": {
+    "gain": 43.75,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  },
+  "E02-outage": {
+    "gain": 25,
+    "levers": {
+      "initialFinishedGoods": 40
+    }
+  },
+  "E03-slow-m3": {
+    "gain": 65.8,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  },
+  "E04-high-reject": {
+    "gain": 56.3,
+    "levers": {
+      "initialFinishedGoods": 40
+    }
+  },
+  "E05-slow-source": {
+    "gain": 81.8,
+    "levers": {
+      "sourceInterval": 11
+    }
+  },
+  "E06-m3-breakdowns": {
+    "gain": 58.9,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  },
+  "E07-m1-breakdowns": {
+    "gain": 74.55000000000001,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  },
+  "E08-healthy": {
+    "gain": 0,
+    "levers": null
+  },
+  "E09-combined": {
+    "gain": 75.9,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  },
+  "E10-outage-in-quiet-period": {
+    "gain": 52.800000000000004,
+    "levers": {
+      "initialFinishedGoods": 60
+    }
+  }
+}

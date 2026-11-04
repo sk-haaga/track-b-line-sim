@@ -1,0 +1,704 @@
+{
+  "provider": "mock",
+  "model": "mock-rules",
+  "promptVersion": "v1",
+  "summary": {
+    "cases": 10,
+    "topCauseHit": 0.4,
+    "anyCauseHit": 0.8,
+    "falseCausesPerCase": 0.8,
+    "citationValid": 1,
+    "validProposals": 1,
+    "rootFix": 0.7,
+    "solved": 1,
+    "meanRegret": 5.359999999999999,
+    "roundsPerCase": 1,
+    "tokensPerCase": 0,
+    "secondsPerCase": 0
+  },
+  "results": [
+    {
+      "case": "E01-start-peak",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 38.55,
+      "oracleGain": 43.75,
+      "regret": 5.200000000000003,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 38.55
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 6.600000000000006
+        }
+      ]
+    },
+    {
+      "case": "E02-outage",
+      "topCauseHit": false,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "demand_peak"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 25,
+      "oracleGain": 25,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. Supplier outage stopped the whole line. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "Supplier outage stopped the whole line",
+            "category": "outage",
+            "facts": [
+              "F6"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F11"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 25
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 16.1
+        }
+      ]
+    },
+    {
+      "case": "E03-slow-m3",
+      "topCauseHit": false,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "demand_peak"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 65.35000000000001,
+      "oracleGain": 65.8,
+      "regret": 0.44999999999998863,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 65.35000000000001
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 14
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 63.800000000000004
+        }
+      ]
+    },
+    {
+      "case": "E04-high-reject",
+      "topCauseHit": false,
+      "anyCauseHit": false,
+      "falseCauses": [
+        "demand_peak",
+        "bottleneck_capacity"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": false,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 56.3,
+      "oracleGain": 56.3,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 56.3
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 0.8500000000000008
+        }
+      ]
+    },
+    {
+      "case": "E05-slow-source",
+      "topCauseHit": false,
+      "anyCauseHit": false,
+      "falseCauses": [
+        "demand_peak",
+        "bottleneck_capacity"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": false,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 59.30000000000001,
+      "oracleGain": 81.8,
+      "regret": 22.499999999999986,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 59.30000000000001
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 0
+        }
+      ]
+    },
+    {
+      "case": "E06-m3-breakdowns",
+      "topCauseHit": false,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "demand_peak"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 57.45,
+      "oracleGain": 58.9,
+      "regret": 1.4499999999999957,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. Machine breakdowns cut capacity. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "Machine breakdowns cut capacity",
+            "category": "breakdowns",
+            "facts": [
+              "F6",
+              "F7",
+              "F8",
+              "F9"
+            ],
+            "scoredAs": [
+              "breakdowns"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 57.45
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 41.05
+        }
+      ]
+    },
+    {
+      "case": "E07-m1-breakdowns",
+      "topCauseHit": false,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "demand_peak"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": false,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 70.7,
+      "oracleGain": 74.55000000000001,
+      "regret": 3.8500000000000085,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. Machine breakdowns cut capacity. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "Machine breakdowns cut capacity",
+            "category": "breakdowns",
+            "facts": [
+              "F6",
+              "F7",
+              "F8",
+              "F9"
+            ],
+            "scoredAs": [
+              "breakdowns"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 70.7
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 3.849999999999998
+        }
+      ]
+    },
+    {
+      "case": "E08-healthy",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 0,
+      "slGain": 0,
+      "oracleGain": 0,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "All orders were shipped on time; no change is needed.",
+        "rootCauses": [
+          {
+            "cause": "no problem",
+            "category": "none",
+            "facts": [
+              "F1"
+            ],
+            "scoredAs": [
+              "none"
+            ]
+          }
+        ]
+      },
+      "tried": []
+    },
+    {
+      "case": "E09-combined",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 60.95,
+      "oracleGain": 75.9,
+      "regret": 14.950000000000003,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. Supplier outage stopped the whole line. Machine breakdowns cut capacity. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "Supplier outage stopped the whole line",
+            "category": "outage",
+            "facts": [
+              "F6"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          },
+          {
+            "cause": "Machine breakdowns cut capacity",
+            "category": "breakdowns",
+            "facts": [
+              "F7",
+              "F8",
+              "F9",
+              "F10"
+            ],
+            "scoredAs": [
+              "breakdowns"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F11"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 60.95
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 20.75
+        }
+      ]
+    },
+    {
+      "case": "E10-outage-in-quiet-period",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 2,
+      "slGain": 47.599999999999994,
+      "oracleGain": 52.800000000000004,
+      "regret": 5.20000000000001,
+      "rounds": 1,
+      "tokens": 0,
+      "seconds": 0,
+      "answer": {
+        "diagnosis": "Orders were late (F5). Large orders at the start hit an empty line and empty stock. Supplier outage stopped the whole line. M3 limits the output. Blocked and starved machines around M3 are consequences of that constraint.",
+        "rootCauses": [
+          {
+            "cause": "Large orders at the start hit an empty line and empty stock",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F5"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          },
+          {
+            "cause": "Supplier outage stopped the whole line",
+            "category": "outage",
+            "facts": [
+              "F6"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          },
+          {
+            "cause": "M3 limits the output",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F11"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 47.599999999999994
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 12.7
+        }
+      ]
+    }
+  ]
+}

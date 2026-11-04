@@ -14,7 +14,8 @@
     "check": "node src/headless/run.check.mjs",
     "reference": "node scripts/reference-check.mjs",
     "scenarios": "node scripts/run-scenarios.mjs",
-    "advise": "node scripts/advise.mjs"
+    "advise": "node scripts/advise.mjs",
+    "evaluate": "node scripts/evaluate-advisor.mjs"
   },
   "dependencies": {
     "fastify": "^4.28.0",

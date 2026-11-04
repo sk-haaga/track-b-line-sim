@@ -10,6 +10,13 @@ import { priceLevers } from '../economics/pricing.js';
 import { applyLevers } from './levers.js';
 import { SHIFTS, demandFor, configFor } from './reference.js';
 
+// The configuration a scenario starts from: the default line, the scenario's outage and breakdowns, and any planted
+// fault (scenario.planted, same format as levers; used by the advisor evaluation, src/advisor/evalCases.js).
+export function scenarioConfig(scenario, baseConfig = DEFAULT_CONFIG) {
+  const cfg = configFor(scenario, baseConfig);
+  return scenario.planted ? applyLevers(cfg, scenario.planted).config : cfg;
+}
+
 /**
  * runScenario({ scenario, levers, seeds, rates, baseConfig, fgValue, keepEvents })
  *   scenario   { id, demand: 'flat34' | 'profile', outage, shifts?, breakdowns? }
@@ -20,9 +27,9 @@ export async function runScenario({
   marginalFgValue = MARGINAL_FG_VALUE, keepEvents = false,
 }) {
   if (!rates) throw new Error('runScenario needs rates (loadRateCard())');
-  const scenarioConfig = configFor(scenario, baseConfig);
-  const { config, initialFinishedGoods } = applyLevers(scenarioConfig, levers);
-  const pricing = priceLevers(scenarioConfig, levers, rates);
+  const startConfig = scenarioConfig(scenario, baseConfig);
+  const { config, initialFinishedGoods } = applyLevers(startConfig, levers);
+  const pricing = priceLevers(startConfig, levers, rates);
   const demand = demandFor(scenario.demand);
   const shifts = scenario.shifts ?? SHIFTS;
 

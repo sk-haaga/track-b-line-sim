@@ -184,12 +184,13 @@ Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be availab
 | ADV-03 | The advisor runs once per shift at shift handover, with up to 2 revision rounds | At most 3 AI calls per shift | Ours, invented: usage pattern | ADV, BIZ | Ours |
 | ADV-04 | Tokens per AI call | Planning value ~3,000 in and ~1,000 out; replaced by the measured average from our log | Ours | BIZ | To measure |
 | ADV-05 | Price per token | Public list price of the chosen model at the time of the pitch | Ours: the organisers' endpoint gives no price | BIZ | Ours |
-| ADV-06 | A cheap model for development, a more capable model for final runs | Model name is a config value | Organiser tip; which models the endpoint offers is to be confirmed | ADV | To confirm |
+| ADV-06 | A cheap model for development, a more capable model for final runs | Model name is a config value; `gpt-4o` works, `gpt-4o-mini` is not offered by the endpoint | Organiser tip; other model names to be confirmed with the organisers | ADV | To confirm |
 | ADV-07 | Low temperature and fixed, versioned prompts; every proposal is still verified by the simulation | Temperature 0.2 | Ours: reduces variation, but the AI output is never trusted without a re-run | ADV, EVAL | Ours |
 | ADV-08 | Acceptable advisor response time, including the simulation re-runs | Under 60 s | Ours, invented: the plant manager reads it at shift handover | ADV, EVAL | Ours |
 | ADV-09 | IT upkeep of the advisor | 4 h per month × EUR 80 per hour | Ours, invented (low confidence) | BIZ | Ours |
 | ADV-10 | Plant manager's time saved by the advisor | 20 min per shift × EUR 70 per hour | Ours, invented (low confidence) | BIZ | Ours |
 | ADV-11 | The advisor's AI cost appears only in the business documents, not in the scenario profits | – | Organiser rule | BIZ | Given |
+| ADV-12 | Two prompt versions: v1 (first version) and v2 (ranking, categories, root-cause levers first; extra facts on outage demand, timing of late units and load). v2 is the default | `config/advisor.json` | Ours: v2 fixes the weaknesses of the first real run (missed the empty start, listed consequences as causes) | ADV, EVAL | Ours |
 
 ## 9. Business case and annualising
 
@@ -208,6 +209,16 @@ Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be availab
 | SCN-01 | Each reference scenario is also run with machine breakdowns (`<id>-bd`); the four reference scenarios themselves stay unchanged | 20 shifts | Ours: brief asks for extra scenarios for own features | SIM, EVAL, BIZ | Ours |
 | SCN-02 | "quarter-60": the full 60-shift demand profile = one quarter (240 shifts per year), the reference outage in shift 11, breakdowns on | 60 shifts | Ours, derived from TIME-02 and SUP-02 (4 outages per year = 1 per quarter) | SIM, BIZ | Ours |
 | SCN-03 | The outage in quarter-60 falls in shift 11, the same position as in the reference scenarios | Ticks 4,800–5,760 | Ours, invented: keeps it comparable; outage timing is not known | SIM | Ours |
+
+## 11. Advisor evaluation
+
+| ID | Assumption | Value | Source and reasoning | Used in | Status |
+|---|---|---|---|---|---|
+| EVAL-01 | The advisor is evaluated on 10 planted-fault cases with a known cause (`src/advisor/evalCases.js`) | 10 cases, 20 shifts each | Ours: real plant data with labelled causes does not exist; planted faults give a known right answer | EVAL | Ours |
+| EVAL-02 | Planted fault sizes: M3 15 min, reject rate 25%, source every 14 min, repair times ×2 (all stations) and ×4 (M1 only), healthy line at demand 28 | – | Ours, invented: large enough to cause late orders in every faulty case (checked: service level 15–75%) and none in the healthy case (100%) | EVAL | Ours |
+| EVAL-03 | Root causes without an explicit category (prompt v1) are classified by keywords | `categorise()` in `src/advisor/evaluate.js` | Ours: simple and transparent; may misclassify unusual wording, so the per-case table shows how each cause was scored | EVAL | Ours |
+| EVAL-04 | The oracle is the best officially verified service-level gain over a fixed grid of 14 lever changes (stock, M3 cycle, reject rate, source interval, BUF2, extra M3, one combination), seeds 1–2 | – | Ours: a brute-force upper reference for what the levers can achieve, without AI | EVAL | Ours |
+| EVAL-05 | Finished-goods stock counts as fixing the root cause only where the cause is the empty start or the outage | – | Ours: stock hides capacity, quality and supply problems within 20 shifts but does not remove them | EVAL | Ours |
 
 ---
 
@@ -249,3 +260,4 @@ We test each value below one at a time (low / base / high) and show whether the 
 | 2026-11-04 | First version | |
 | 2026-11-04 | LEV-02 generalised to every machine; added LEV-08, COST-11, COST-12, SIM-07; BIZ-02 and BIZ-04 made precise (scenario runner) | |
 | 2026-11-04 | Breakdowns implemented: MAC-09, MAC-10, measured availability; own scenarios SCN-01 to SCN-03; COST-13, BIZ-05; TIME-04 note | |
+| 2026-11-04 | Advisor evaluation EVAL-01 to EVAL-05; prompt v2 (ADV-12); ADV-06: gpt-4o works, gpt-4o-mini not offered | |

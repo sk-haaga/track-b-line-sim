@@ -14,8 +14,8 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { chat } from './llm.js';
 import { summariseRun, factSheet } from './summarise.js';
-import { SYSTEM_PROMPT, PROMPT_VERSION, userPrompt, feedbackPrompt } from './prompt.js';
-import { runScenario } from '../scenarios/run.js';
+import { systemPrompt, PROMPT_VERSION, userPrompt, feedbackPrompt } from './prompt.js';
+import { runScenario, scenarioConfig } from '../scenarios/run.js';
 import { officialCheck, strictCheck, summarise } from '../scenarios/verify.js';
 import { validateLevers, describeLevers } from '../scenarios/levers.js';
 import { DEFAULT_CONFIG } from '../simulation/config.js';
@@ -61,16 +61,17 @@ export function checkAnswer(answer, factIds, baseConfig = DEFAULT_CONFIG) {
 
 export async function runAdvisor({
   scenario, rates, provider = 'organiser', model, temperature = 0.2, maxTokens = 1200, maxRounds = 2, timeoutMs = 60000,
-  logFile = null, env, fetchImpl, now = () => new Date().toISOString(),
+  promptVersion = PROMPT_VERSION, logFile = null, env, fetchImpl, now = () => new Date().toISOString(),
 }) {
+  const lineConfig = scenarioConfig(scenario);
   // 1. The scenario as it is
   const base = await runScenario({ scenario, seeds: STRICT, rates, keepEvents: true });
   const seed1 = base.runs.find((r) => r.seed === 1);
-  const { facts, factIds } = summariseRun({ perShift: seed1.perShift, kpis: seed1.kpis, events: seed1.events }, { scenario });
+  const { facts, factIds } = summariseRun({ perShift: seed1.perShift, kpis: seed1.kpis, events: seed1.events }, { scenario, config: lineConfig, version: promptVersion });
   const factText = factSheet(facts);
   const baseSummary = summarise(pick(base.runs, OFFICIAL));
 
-  const messages = [{ role: 'system', content: SYSTEM_PROMPT }, { role: 'user', content: userPrompt({ scenario, factText }) }];
+  const messages = [{ role: 'system', content: systemPrompt(promptVersion) }, { role: 'user', content: userPrompt({ scenario, factText }) }];
   const rounds = [];
   const verified = [];
   const tried = new Set();
@@ -83,7 +84,7 @@ export async function runAdvisor({
     // 3. Check in code
     let checked;
     try {
-      checked = checkAnswer(parseAnswer(call.content), factIds);
+      checked = checkAnswer(parseAnswer(call.content), factIds, lineConfig);
     } catch (err) {
       checked = { answer: null, proposals: [], errors: [`answer is not valid JSON: ${err.message}`] };
     }
@@ -100,7 +101,7 @@ export async function runAdvisor({
       const strict = strictCheck(pick(base.runs, STRICT), pick(opt.runs, STRICT), official);
       const s = summarise(pick(opt.runs, OFFICIAL));
       const r = {
-        ...p, description: describeLevers(p.levers, DEFAULT_CONFIG), pass: official.pass, evidence: official.evidence,
+        ...p, description: describeLevers(p.levers, lineConfig), pass: official.pass, evidence: official.evidence,
         slGainPoints: official.slGainPoints, goodChange: official.goodChange, scrapChange: official.scrapChange, wipChange: official.wipChange,
         reasons: official.reasons, strictPass: strict.pass, strictReasons: strict.reasons,
         serviceLevel: s.serviceLevel, avgWip: s.avgWip,
@@ -113,7 +114,7 @@ export async function runAdvisor({
 
     // 7. Log the round
     const entry = {
-      time: now(), scenario: scenario.id, round, provider: call.provider, model: call.model, promptVersion: PROMPT_VERSION,
+      time: now(), scenario: scenario.id, round, provider: call.provider, model: call.model, promptVersion,
       tokens: call.usage, seconds: +call.seconds.toFixed(2), answerErrors: checked.errors,
       diagnosis: checked.answer?.diagnosis ?? null, rootCauses: checked.answer?.rootCauses ?? [],
       proposals: results.map((r) => ({
@@ -136,7 +137,7 @@ export async function runAdvisor({
   const tokens = rounds.reduce((a, r) => a + (r.tokens.totalTokens ?? 0), 0);
   const seconds = rounds.reduce((a, r) => a + r.seconds, 0);
   const best = [...verified].sort((a, b) => (b.strictPass - a.strictPass) || (b.slGainPoints - a.slGainPoints))[0] ?? null;
-  return { scenario: scenario.id, facts, baseline: baseSummary, rounds, verified, best, tokens, seconds };
+  return { scenario: scenario.id, promptVersion, facts, baseline: baseSummary, rounds, verified, best, tokens, seconds };
 }
 
 // Markdown report for the plant manager and the jury.
@@ -145,10 +146,10 @@ export function reportMarkdown(r) {
   const pct = (x) => `${(100 * x).toFixed(1)}%`;
   const lines = [
     `# Shift advisor report: ${r.scenario}`, '',
-    `Model: ${r.rounds[0]?.model} (${r.rounds[0]?.provider}), prompt ${PROMPT_VERSION}; ${r.rounds.length} round(s); ${r.tokens} tokens; ${r.seconds.toFixed(1)} s for the model calls.`,
+    `Model: ${r.rounds[0]?.model} (${r.rounds[0]?.provider}), prompt ${r.promptVersion ?? PROMPT_VERSION}; ${r.rounds.length} round(s); ${r.tokens} tokens; ${r.seconds.toFixed(1)} s for the model calls.`,
     `Without changes: service level ${pct(r.baseline.serviceLevel)}, ${r.baseline.goodPerShift.toFixed(1)} good parts per shift (seeds 1–2).`, '',
     '## Diagnosis', '', last?.diagnosis ?? '(no valid answer)', '',
-    ...(last?.rootCauses?.length ? ['Root causes:', ...last.rootCauses.map((c) => `- ${c.cause} (${(c.facts ?? []).join(', ')})`), ''] : []),
+    ...(last?.rootCauses?.length ? ['Root causes:', ...last.rootCauses.map((c) => `- ${c.cause}${c.category ? ` [${c.category}]` : ''} (${(c.facts ?? []).join(', ')})`), ''] : []),
     '## Proposals and how they were verified', '',
     '| Round | Proposal | Cited facts | Δ SL (points) | Good parts | Scrap rate | WIP | Official check | Strict check | One-time cost (EUR) | Δ profit (EUR) |',
     '|---|---|---|---|---|---|---|---|---|---|---|',

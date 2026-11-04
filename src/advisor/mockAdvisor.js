@@ -22,24 +22,27 @@ export function mockChat(messages) {
   const breakdowns = has('machine', /breakdowns \(/);
   const constraint = facts.find((f) => f.topic === 'constraint');
   const cid = constraint ? /^(M\d+)/.exec(constraint.text)?.[1] : 'M3';
+  const settings = facts.find((f) => f.topic === 'settings')?.text ?? '';
+  const ct = Number(new RegExp(`${cid} (\\d+) min`).exec(settings)?.[1] ?? 13);
 
   const rootCauses = [];
-  if (early) rootCauses.push({ cause: 'Large orders at the start hit an empty line and empty stock', facts: [...cite(facts, 'demand'), ...cite(facts, 'shortfall')] });
-  if (outage) rootCauses.push({ cause: 'Supplier outage stopped the whole line', facts: cite(facts, 'outage') });
-  if (breakdowns) rootCauses.push({ cause: 'Machine breakdowns cut capacity', facts: cite(facts, 'machine') });
-  rootCauses.push({ cause: `${cid} limits the output`, facts: cite(facts, 'constraint') });
+  if (!shortfall) rootCauses.push({ cause: 'no problem', category: 'none', facts: cite(facts, 'kpis') });
+  if (shortfall && early) rootCauses.push({ cause: 'Large orders at the start hit an empty line and empty stock', category: 'demand_peak', facts: [...cite(facts, 'demand'), ...cite(facts, 'shortfall')] });
+  if (shortfall && outage) rootCauses.push({ cause: 'Supplier outage stopped the whole line', category: 'outage', facts: cite(facts, 'outage') });
+  if (shortfall && breakdowns) rootCauses.push({ cause: 'Machine breakdowns cut capacity', category: 'breakdowns', facts: cite(facts, 'machine') });
+  if (shortfall) rootCauses.push({ cause: `${cid} limits the output`, category: 'bottleneck_capacity', facts: cite(facts, 'constraint') });
 
   let proposals;
   if (!shortfall) proposals = [];
   else if (!revising) {
     proposals = [
       { levers: { initialFinishedGoods: 40 }, rationale: 'A finished-goods buffer covers big orders and lost production.', facts: [...cite(facts, 'shortfall'), ...cite(facts, 'setup')], expectedEffect: 'fewer late orders' },
-      { levers: { cycleTime: { [cid]: 12 } }, rationale: `A faster ${cid} raises the line's output.`, facts: cite(facts, 'constraint'), expectedEffect: 'more output, smaller backlog' },
+      { levers: { cycleTime: { [cid]: ct - 1 } }, rationale: `A faster ${cid} raises the line's output.`, facts: cite(facts, 'constraint'), expectedEffect: 'more output, smaller backlog' },
     ];
   } else {
     proposals = [
       { levers: { initialFinishedGoods: 60 }, rationale: 'A larger finished-goods buffer.', facts: cite(facts, 'shortfall'), expectedEffect: 'fewer late orders' },
-      { levers: { cycleTime: { [cid]: 12 }, initialFinishedGoods: 30 }, rationale: 'Combine more output with a buffer.', facts: [...cite(facts, 'constraint'), ...cite(facts, 'shortfall')], expectedEffect: 'fewer late orders' },
+      { levers: { cycleTime: { [cid]: ct - 1 }, initialFinishedGoods: 30 }, rationale: 'Combine more output with a buffer.', facts: [...cite(facts, 'constraint'), ...cite(facts, 'shortfall')], expectedEffect: 'fewer late orders' },
     ];
   }
 
