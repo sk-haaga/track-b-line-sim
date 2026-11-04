@@ -1271,6 +1271,7 @@ function connectSSE() {
     // finished — let the final transfers glide out so no dots linger on the line.
     particleSimPaused = shouldFreezeParticles(state);
 
+    syncDisruptionControls(state);
     updatePipeline(state, metrics);
     updateMetricsDashboard(metrics, state);
     updateSuggestionBanner(metrics);
@@ -1282,6 +1283,48 @@ function connectSSE() {
     setTimeout(connectSSE, 2000);
   });
 }
+
+// ── Disruption controls (team extension): breakdowns, outage, seed ───────────
+
+const OUTAGE_TICKS = 960;   // reference outage: 2 shifts (assumption SUP-01)
+
+function syncDisruptionControls(state) {
+  const chk = document.getElementById('chk-breakdowns');
+  if (chk && state.breakdowns) chk.checked = !!state.breakdowns.enabled;
+  const seed = document.getElementById('inp-seed');
+  if (seed && document.activeElement !== seed && state.seed !== undefined) seed.value = state.seed;
+  const status = document.getElementById('outage-status');
+  const o = state.source?.outage;
+  if (status) {
+    let text = 'No outage', active = false;
+    if (o && state.source.inOutage) { text = `Outage running: ticks ${o.startTick}–${o.endTick}`; active = true; }
+    else if (o && state.tick <= o.startTick) text = `Outage planned: ticks ${o.startTick}–${o.endTick}`;
+    else if (o) text = `Outage over (ticks ${o.startTick}–${o.endTick})`;
+    status.textContent = text;
+    status.classList.toggle('active', active);
+  }
+}
+
+document.getElementById('chk-breakdowns')?.addEventListener('change', (e) => {
+  postControl({ breakdowns: { enabled: e.target.checked } });
+  showToast(e.target.checked ? 'Machine breakdowns on' : 'Machine breakdowns off');
+});
+document.getElementById('btn-outage')?.addEventListener('click', () => {
+  const now = lastState?.tick ?? 0;
+  postControl({ outage: { startTick: now, endTick: now + OUTAGE_TICKS } });
+  showToast(`Supplier outage: no parts for ${OUTAGE_TICKS} ticks`);
+});
+document.getElementById('btn-outage-clear')?.addEventListener('click', () => {
+  postControl({ outage: null });
+  showToast('Outage ended');
+});
+document.getElementById('btn-seed')?.addEventListener('click', async () => {
+  const v = parseInt(document.getElementById('inp-seed').value, 10);
+  if (!Number.isFinite(v) || v < 0) { showToast('Seed must be a whole number ≥ 0'); return; }
+  await postControl({ seed: v });
+  await applyReset('reset');
+  showToast(`Seed ${v} applied, run reset`);
+});
 
 // ── Machine detail panel: close handlers ─────────────────────────────────────
 

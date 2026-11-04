@@ -75,6 +75,12 @@ Off by default, so the four reference scenarios are unchanged (`MAC-07`). The UI
 
 **Why:** the first annual view repeats a 20-shift run from an empty line with free stock twelve times a year, which overstates both the problem and the value of stock. And because the line always runs flat out, it ends every run with stock that the EUR 103 rule counts as profit; the EUR 45 column shows which options only look good because of that.
 
+### 9. Disruption controls in the UI
+
+**What:** a new **Disruptions** row in the browser UI: a **Machine breakdowns** switch, **Start supplier outage (2 shifts)** (no parts for the next 960 ticks, the reference outage length) and **End outage**, a status line (planned / running / over), and a **Seed** field with **Apply seed & reset**. The controls always show the engine's current settings. *Reset* keeps them; *Reset to Defaults* switches breakdowns and the outage off.
+
+**Why:** the plant manager (and the demo) can trigger the plant's two disruptions and repeat a run exactly, without the browser console.
+
 ### How to run everything
 
 ```bash
@@ -88,7 +94,7 @@ npm start                # UI at http://localhost:3000
 
 ### Not done yet
 
-UI controls for seed, outage, breakdowns and costs (today only through the API or the browser console); production control (the line always runs flat out); supplier-side countermeasures; the AI shift advisor.
+Costs and service level in the UI; production control (the line always runs flat out); supplier-side countermeasures; the AI shift advisor.
 
 ---
 

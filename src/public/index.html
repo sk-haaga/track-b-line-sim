@@ -146,6 +146,17 @@
       </div>
     </div>
 
+    <!-- Disruptions and seed (team extension) -->
+    <div class="controls-row" id="disruption-row">
+      <span class="section-label">Disruptions <span class="info-icon" data-tip="Machine breakdowns from failure_rates.csv, the reference supplier outage (960 ticks = 2 shifts) and the random seed. Same seed + same settings = same run.">i</span></span>
+      <label class="toggle-label"><input type="checkbox" id="chk-breakdowns" /> Machine breakdowns</label>
+      <button id="btn-outage" type="button" title="Supplier delivers nothing for the next 960 ticks (2 shifts)">Start supplier outage (2 shifts)</button>
+      <button id="btn-outage-clear" type="button">End outage</button>
+      <span id="outage-status" class="disruption-status">No outage</span>
+      <label class="toggle-label">Seed <input type="number" id="inp-seed" min="0" step="1" value="1" /></label>
+      <button id="btn-seed" type="button" title="Store the seed and restart the run with it">Apply seed &amp; reset</button>
+    </div>
+
     <!-- Per-machine cycle times -->
     <div class="controls-row" id="machine-sliders">
       <span class="section-label">Machine Cycle Times <span class="info-icon" data-tip="Ticks a machine needs for one complete processing cycle.">i</span></span>
