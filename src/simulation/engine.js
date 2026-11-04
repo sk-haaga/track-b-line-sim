@@ -16,11 +16,20 @@
  *   - Buffer              → Store / Queue object
  *   - BLOCKED logic       → "BackPressure" / cannot-enter condition
  *   - STARVED logic       → "NoPart" / cannot-start condition
+ *
+ * Team extensions (see README, "Changes by our team"):
+ *   - Seeded randomness: config.seed (default 1, seed 0 is valid). Every random
+ *     process draws from its own named stream (src/simulation/random.js), so a
+ *     run is fully reproducible and reset() replays it exactly.
+ *   - Supplier outage: config.source.outage = { startTick, endTick }. On the
+ *     engine ticks startTick < n <= endTick the source is skipped: its counter
+ *     does not advance and no part (and no material) is released.
  */
 
 import EventEmitter from 'events';
 import { Part, Source, Buffer, Machine, Sink, ScrapSink, MachineState } from './entities.js';
 import { DEFAULT_CONFIG } from './config.js';
+import { createRandom, normaliseSeed } from './random.js';
 
 // Maximum machines allowed per station (original + 3 parallel).
 const MAX_MACHINES_PER_STATION = 4;
@@ -34,10 +43,23 @@ const SPAWN_SUFFIXES = ['b', 'c', 'd'];   // M3 → M3b → M3c → M3d
 // the banner/marker on long after the constraint is gone.
 const UTIL_WINDOW_TICKS = 300;
 
+// Validates an outage setting. Returns null (no outage) or a clean
+// { startTick, endTick } object; throws on invalid input so the API can answer 400.
+export function normaliseOutage(outage) {
+  if (outage === null || outage === undefined || outage === false) return null;
+  const startTick = Number(outage.startTick);
+  const endTick   = Number(outage.endTick);
+  if (!Number.isFinite(startTick) || !Number.isFinite(endTick) || startTick < 0 || endTick <= startTick) {
+    throw new Error('outage must be { startTick >= 0, endTick > startTick } or null');
+  }
+  return { startTick: Math.trunc(startTick), endTick: Math.trunc(endTick) };
+}
+
 export class SimulationEngine extends EventEmitter {
   constructor(config = DEFAULT_CONFIG) {
     super();
     this._config = JSON.parse(JSON.stringify(config)); // deep clone so mutations don't bleed
+    this._config.source.outage = normaliseOutage(this._config.source.outage);
     this._reset();
 
     this._running     = false;
@@ -97,6 +119,7 @@ export class SimulationEngine extends EventEmitter {
     this.pause();
     this._nextPartId = 1;
     this._config = JSON.parse(JSON.stringify(config));
+    this._config.source.outage = normaliseOutage(this._config.source.outage);
     this._reset();
   }
 
@@ -117,6 +140,19 @@ export class SimulationEngine extends EventEmitter {
     if (params.materialStock !== undefined) {
       this.source.materialStock = params.materialStock;
       this._config.source.materialStock = params.materialStock;
+    }
+
+    // Supplier outage: takes effect immediately (null clears it).
+    if (params.outage !== undefined) {
+      const outage = normaliseOutage(params.outage);
+      this.source.outage = outage;
+      this._config.source.outage = outage;
+    }
+
+    // Seed: stored now, takes effect at the next reset() so a running run is
+    // never re-randomised half way.
+    if (params.seed !== undefined) {
+      this._config.seed = normaliseSeed(Number(params.seed));
     }
 
     if (params.machineId !== undefined) {
@@ -238,6 +274,7 @@ export class SimulationEngine extends EventEmitter {
     const windowBase = this._history[this._history.length - 1 - ticksBack];
     return {
       tick:     this.tick,
+      seed:     this._random.seed,
       ticksPerSecond: this._config.ticksPerSecond,
       running:  this._running,
       speed:    this._speed,
@@ -248,6 +285,8 @@ export class SimulationEngine extends EventEmitter {
         totalGenerated: this.source.totalGenerated,
         lastEmitted:   this.source.lastEmitted,
         ticksSinceLast: this.source.ticksSinceLast,
+        outage:        this.source.outage,
+        inOutage:      this._inOutage(this.tick),
       },
       machines: this.machines.map(m => ({
         id:              m.id,
@@ -307,6 +346,9 @@ export class SimulationEngine extends EventEmitter {
     this._lastFlowChangeTick = 0;
 
     const cfg = this._config;
+
+    // Fresh random streams from the seed: a reset replays the run exactly.
+    this._random   = createRandom(cfg.seed);
 
     this.source    = new Source(cfg.source);
     this.buffers   = cfg.buffers.map(b => new Buffer(b));
@@ -483,8 +525,10 @@ export class SimulationEngine extends EventEmitter {
 
     machine.partsProcessed++;
 
-    // Quality gate: randomly reject parts based on rejectRate
-    if (machine.rejectRate > 0 && Math.random() < machine.rejectRate) {
+    // Quality gate: randomly reject parts based on rejectRate. Each machine has
+    // its own seeded stream, so parallel gates and other random processes do
+    // not shift each other's sequences.
+    if (machine.rejectRate > 0 && this._random.stream(`reject:${machine.id}`)() < machine.rejectRate) {
       this.scrapSink.partsReceived++;
       machine.currentPart = null;
       machine.state       = MachineState.IDLE;
@@ -522,7 +566,18 @@ export class SimulationEngine extends EventEmitter {
 
   // ── Private: source tick ──────────────────────────────────────────────────
 
+  // True on the engine ticks startTick < n <= endTick of the configured outage.
+  // (Same window as the headless helper's outage, which counts ticks from 0.)
+  _inOutage(n) {
+    const o = this.source.outage;
+    return o != null && n > o.startTick && n <= o.endTick;
+  }
+
   _tickSource() {
+    // Supplier outage: skip the source entirely. The counter does not advance,
+    // no part is released and no material is booked.
+    if (this._inOutage(this.tick)) return;
+
     // Material starvation check: -1 means infinite stock; 0 means depleted
     if (this.source.materialStock === 0) return; // stock depleted, no more parts
 

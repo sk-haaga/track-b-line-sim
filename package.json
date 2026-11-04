@@ -10,7 +10,9 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "check": "node src/headless/run.check.mjs",
+    "reference": "node scripts/reference-check.mjs"
   },
   "dependencies": {
     "fastify": "^4.28.0",

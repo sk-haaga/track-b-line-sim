@@ -8,6 +8,10 @@ export const DEFAULT_CONFIG = {
   // Simulation clock: ticks per second of wall-clock time (affects animation speed)
   ticksPerSecond: 10,
 
+  // Seed of all random processes (reject gate, later breakdowns). Same seed →
+  // same run. Seed 0 is valid. Assumption SIM-01.
+  seed: 1,
+
   // Source node: generates one part every `interval` ticks.
   // With the cycle times below, M3 Assembly is the bottleneck of the default
   // line: the feed into M3 (after the M2 rejects) runs about 6% above its
@@ -15,6 +19,7 @@ export const DEFAULT_CONFIG = {
   source: {
     interval: 11,         // ticks between part generations
     materialStock: 200,   // how many parts can be produced before material runs out (-1 = infinite)
+    outage: null,         // supplier outage { startTick, endTick }: source skipped on ticks startTick < n <= endTick
   },
 
   // Machines: each declares its station and the buffers it pulls from / pushes to.

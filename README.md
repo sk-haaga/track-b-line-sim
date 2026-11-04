@@ -1,4 +1,51 @@
-# Machine simulation: starter for the production line case
+# Machine simulation: production line case (Track B)
+
+Extended from the organisers' `machine_sim` starter. What we changed is listed under **Changes by our team** below; the original starter documentation follows after it. All assumptions are in [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) and are referred to by their IDs (for example `SIM-02`).
+
+## Changes by our team
+
+### 1. Seeded randomness (`SIM-01`, `SIM-02`)
+
+**What:** the reject gate of M2 no longer uses `Math.random()`. All randomness comes from `src/simulation/random.js`: a seeded generator (mulberry32) with one named stream per random process (for example `reject:M2`). The seed is `config.seed` (default `1`; seed `0` is valid and not treated as "no seed"). `reset()` replays a run exactly. `runHeadless({ seed })` now has an effect.
+
+**Why:** without a seed every run differs, so comparing a countermeasure with the baseline mixes the effect of the change with random noise. The brief's own example: unseeded, comparing the line with itself passes the 2-point rule in about 1 of 6 tries. Separate streams mean that adding a new random process later (machine breakdowns) does not change the reject sequence, so two configurations run with the same seed are compared fairly.
+
+**How validated:** `test/seeding.test.js` (same seed → identical run; seeds 0, 1, 2 differ; reset replays; streams are independent; `Math.random` is never called). The spread over seeds 1–30 matches the spread the data README reports for the unseeded starter (see `results/reference-check.md`).
+
+### 2. Supplier outage in the engine (`SUP-01`)
+
+**What:** `config.source.outage = { startTick, endTick }` (or `null`). On the engine ticks `startTick < n <= endTick` the source is skipped: its counter does not advance, no part is released and no material is booked. The state reports `source.outage` and `source.inOutage`. The outage can be set at run time through `POST /api/control` with `params: { outage: { startTick, endTick } }` or cleared with `outage: null`; invalid values answer `400`.
+
+**Why:** in the starter the outage existed only inside the headless helper, so neither the engine nor the UI could show the plant's main disruption.
+
+**How validated:** `test/outage.test.js` runs the reference outage through the engine and through the helper's own `outage` option, for flat demand and the demand profile, seeds 1 and 2: per-shift rows, KPIs and the event log are **identical**. Further tests check the exact tick window, the frozen counter, set and clear at run time, and input validation.
+
+### 3. Reference check (`SIM-05`)
+
+**What:** `npm run reference` runs the four reference scenarios (`src/scenarios/reference.js`) with seeds 1 and 2, compares the average service level with the reference values (±2 points, ±5 with the outage), adds the mean and spread over seeds 1–30, and writes `results/reference-check.md`.
+
+**Result:** all four scenarios pass (baseline 99.8%, supplier outage 75.0%, demand swing 56.3%, both 47.2% against 100 / 76 / 57 / 48).
+
+**Also changed:** `src/headless/run.check.mjs` now gives each of its 20 runs its own seed (1–20). Otherwise all runs would use the same default seed and be identical.
+
+### How to run everything
+
+```bash
+npm install
+npm test                 # all unit tests (79)
+npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
+npm run reference        # four reference scenarios, writes results/reference-check.md
+npm start                # UI at http://localhost:3000
+```
+
+### Not done yet
+
+UI controls for seed and outage, machine breakdowns, costs inside the tool, the scenario runner with countermeasures, and the AI shift advisor.
+
+---
+
+# Original starter documentation
+
 
 A browser-based simulation of a production line: **Source → M1 (machining) → M2 (quality check) → M3 (assembly) → M4 (packaging) → Sink**. It is a discrete-event simulation in Node.js: **1 tick = 1 minute**, 1 shift = 480 ticks. The UI shows the line live (SVG over Server-Sent Events).
 
@@ -63,11 +110,11 @@ The outage setting for your own engine implementation means: on the engine ticks
 
 ## Good to know
 
-- The reject gate of M2 uses `Math.random()` once (`src/simulation/engine.js`, in the machine step). Runs are therefore random until you seed it.
+- ~~The reject gate of M2 uses `Math.random()`~~ Changed by our team: the reject gate uses a seeded stream (`config.seed`), see above.
 - Material stock: `materialStock: -1` is infinite, `0` is depleted. The default configuration has 200, so the line stops after about 5 shifts: use `-1` for longer runs.
 - The history buffer keeps at most 100,000 ticks (about 208 shifts).
 - Each browser session (cookie `sid`) has its own engine.
-- `POST /api/control` ignores unknown actions and parameters (for example `seed` or `outage`) but still answers `ok`.
+- `POST /api/control` ignores unknown actions and parameters but still answers `ok`. Changed by our team: it now accepts `seed` (applies at the next reset) and `outage` (`{ startTick, endTick }` or `null`), and answers `400` for an invalid outage.
 - `npm audit` reports advisories in fastify 4 and @fastify/static 7. The simulation runs only locally; upgrading is optional.
 
 ## Source files

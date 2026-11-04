@@ -182,9 +182,12 @@ app.post('/api/control', async (req, reply) => {
       return { ok: false, error: err.message };
     }
     const { speed: _omit, ...rest } = params;
-    if (Object.keys(rest).length > 0) engine.updateConfig(rest);
+    if (Object.keys(rest).length > 0) {
+      try { engine.updateConfig(rest); } catch (err) { reply.code(400); return { ok: false, error: err.message }; }
+    }
   } else if (Object.keys(params).length > 0) {
-    engine.updateConfig(params);
+    // seed (applies at the next reset) and outage { startTick, endTick } | null are accepted here too
+    try { engine.updateConfig(params); } catch (err) { reply.code(400); return { ok: false, error: err.message }; }
   }
 
   return { ok: true, tick: engine.tick };

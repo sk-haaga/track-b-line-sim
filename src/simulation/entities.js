@@ -36,6 +36,7 @@ export class Source {
     this.ticksSinceLast = 0;                   // countdown to next emission
     this.totalGenerated = 0;
     this.lastEmitted   = false;               // true on the tick a part was emitted (for animation)
+    this.outage        = cfg.outage ?? null;   // { startTick, endTick } or null: supplier outage window
   }
 }
 

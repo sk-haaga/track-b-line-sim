@@ -1,5 +1,7 @@
 // Acceptance test for runHeadless. Run from the repository root: node src/headless/run.check.mjs [path/to/demand_profile.csv] (default: demand_profile.csv in the repository root)
 // The simulation is random (see Track B README), so every number is an average over RUNS runs and checked against a range.
+// Team change: the engine is now seeded, so run i uses seed i + 1 (seeds 1..RUNS). Without this, all RUNS runs would use
+// the helper's default seed 0 and be identical.
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import fs from 'node:fs';
@@ -15,7 +17,7 @@ const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
 const many = async (opts) => {
   opts = { demand, ...opts };
   const rs = [];
-  for (let i = 0; i < RUNS; i++) rs.push(await runHeadless({ shifts: SHIFTS, ...opts }));
+  for (let i = 0; i < RUNS; i++) rs.push(await runHeadless({ shifts: SHIFTS, seed: i + 1, ...opts }));
   return rs;
 };
 const inRange = (name, v, lo, hi) => {
