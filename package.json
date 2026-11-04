@@ -12,7 +12,8 @@
     "dev": "node --watch src/server.js",
     "test": "node --test",
     "check": "node src/headless/run.check.mjs",
-    "reference": "node scripts/reference-check.mjs"
+    "reference": "node scripts/reference-check.mjs",
+    "scenarios": "node scripts/run-scenarios.mjs"
   },
   "dependencies": {
     "fastify": "^4.28.0",

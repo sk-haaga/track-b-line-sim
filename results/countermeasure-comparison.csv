@@ -1,0 +1,33 @@
+scenario,option,label,one_time_cost_eur,service_level,sl_gain_points,good_per_shift,scrap_rate,avg_wip,cost_per_good_unit_eur,total_profit_eur,profit_gain_eur,payback_shifts,official_check,strict_check
+baseline,fg20,Finished-goods stock 20,0,1.0000,0.15,36.75,0.1022,12.88,109.68,47447.51,-1506.00,,not verified,no
+baseline,fg40,Finished-goods stock 40,0,1.0000,0.15,36.75,0.1022,12.88,111.86,45847.51,-3106.00,,not verified,no
+baseline,fg60,Finished-goods stock 60,0,1.0000,0.15,36.75,0.1022,12.88,114.03,44247.51,-4706.00,,not verified,no
+baseline,m3-ct12,M3 cycle time 13 -> 12 min,30000,1.0000,0.15,38.90,0.1003,3.12,105.14,50696.06,1742.55,292.0,not verified,no
+baseline,m3-ct12-fg30,M3 12 min + stock 30,30000,1.0000,0.15,38.90,0.1003,3.12,108.22,48296.06,-657.45,not reached,not verified,no
+baseline,reject-5,M2 reject rate 10% -> 5%,40000,1.0000,0.15,36.80,0.0499,14.46,105.89,50236.07,1282.56,470.8,not verified,no
+baseline,buf2-12,Buffer before M3 6 -> 12 slots,900,0.9985,0.00,36.75,0.1015,16.48,108.07,48543.80,-409.71,not reached,not verified,no
+baseline,extra-m3,Extra machine at M3,95000,1.0000,0.15,39.13,0.1003,1.86,123.84,36057.60,-12895.91,not reached,not verified,no
+supplier-outage,fg20,Finished-goods stock 20,0,0.9685,21.85,33.63,0.1060,9.47,112.66,43927.92,12906.50,,verified,yes
+supplier-outage,fg40,Finished-goods stock 40,0,1.0000,25.00,33.63,0.1060,9.47,114.91,44348.92,13327.50,,verified,yes
+supplier-outage,fg60,Finished-goods stock 60,0,1.0000,25.00,33.63,0.1060,9.47,117.29,42748.92,11727.50,,verified,yes
+supplier-outage,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.9110,16.10,34.90,0.1051,2.51,108.76,42897.85,11876.43,49.2,verified,yes
+supplier-outage,m3-ct12-fg30,M3 12 min + stock 30,30000,1.0000,25.00,34.90,0.1051,2.51,111.85,46184.85,15163.43,38.8,verified,yes
+supplier-outage,reject-5,M2 reject rate 10% -> 5%,40000,0.8040,5.40,33.85,0.0532,11.88,109.24,35935.24,4913.82,150.1,verified,yes
+supplier-outage,buf2-12,Buffer before M3 6 -> 12 slots,900,0.8205,7.05,33.90,0.1046,10.54,110.94,35838.65,4817.24,3.7,verified,yes
+supplier-outage,extra-m3,Extra machine at M3,95000,0.9145,16.45,35.02,0.1051,1.67,129.91,28298.83,-2722.59,not reached,verified,no
+demand-swing,fg20,Finished-goods stock 20,0,0.7550,19.25,36.75,0.1022,12.88,109.16,29854.51,9913.00,,verified,yes
+demand-swing,fg40,Finished-goods stock 40,0,0.9480,38.55,36.75,0.1022,12.88,110.69,39630.51,19689.00,,verified,yes
+demand-swing,fg60,Finished-goods stock 60,0,1.0000,43.75,36.75,0.1022,12.88,112.69,41085.51,21144.00,,verified,yes
+demand-swing,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.6285,6.60,38.90,0.1003,3.12,105.13,25617.06,5675.54,100.2,verified,yes
+demand-swing,m3-ct12-fg30,M3 12 min + stock 30,30000,0.9255,36.30,38.90,0.1003,3.12,107.19,40763.06,20821.54,28.4,verified,yes
+demand-swing,reject-5,M2 reject rate 10% -> 5%,40000,0.5720,0.95,36.80,0.0499,14.46,106.19,21728.07,1786.56,363.1,not verified,no
+demand-swing,buf2-12,Buffer before M3 6 -> 12 slots,900,0.5625,0.00,36.75,0.1015,16.48,108.46,19531.80,-409.71,not reached,not verified,no
+demand-swing,extra-m3,Extra machine at M3,95000,0.6350,7.25,39.13,0.1003,1.86,123.81,11356.60,-8584.91,not reached,verified,no
+both,fg20,Finished-goods stock 20,0,0.7525,28.05,33.63,0.1060,9.47,111.97,28214.92,15103.00,,verified,yes
+both,fg40,Finished-goods stock 40,0,0.9480,47.60,33.63,0.1060,9.47,113.63,38131.92,25020.00,,verified,yes
+both,fg60,Finished-goods stock 60,0,1.0000,52.80,33.63,0.1060,9.47,115.81,39586.92,26475.00,,verified,yes
+both,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.5990,12.70,34.90,0.1051,2.51,108.51,21766.85,8654.93,66.9,verified,yes
+both,m3-ct12-fg30,M3 12 min + stock 30,30000,0.9255,45.35,34.90,0.1051,2.51,110.69,38651.85,25539.93,23.2,verified,yes
+both,reject-5,M2 reject rate 10% -> 5%,40000,0.5030,3.10,33.85,0.0532,11.88,109.08,16098.24,2986.32,235.1,verified,no
+both,buf2-12,Buffer before M3 6 -> 12 slots,900,0.5050,3.30,33.90,0.1046,10.54,110.88,14962.65,1850.73,9.7,verified,yes
+both,extra-m3,Extra machine at M3,95000,0.6075,13.55,35.02,0.1051,1.67,129.63,7451.83,-5660.09,not reached,verified,no

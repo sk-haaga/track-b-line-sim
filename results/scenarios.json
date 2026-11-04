@@ -1,0 +1,2716 @@
+{
+  "seeds": {
+    "official": [
+      1,
+      2
+    ],
+    "strict": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "business": {
+    "_note": "Business-case settings used by npm run scenarios. IDs refer to docs/ASSUMPTIONS.md.",
+    "fgValuePerUnit": 103,
+    "periodShifts": 20,
+    "shiftsPerYear": 240,
+    "annualMix": {
+      "both": 4,
+      "demand-swing": 8
+    },
+    "_annualMix_note": "BIZ-01: a year is 12 periods of 20 shifts; 4 periods with a supplier outage behave like 'both', the other 8 like 'demand-swing' (SUP-02: 4 outages per year).",
+    "officialSeeds": [
+      1,
+      2
+    ],
+    "strictSeeds": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  "scenarios": {
+    "baseline": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.9984999999999999,
+          "goodPerShift": 36.75,
+          "scrapRate": 0.10219087635054022,
+          "avgWip": 12.885,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 107.515,
+          "costPerGoodUnitExFg": 102.86500000000001,
+          "totalProfit": 48953.509999999995,
+          "lostSales": 90
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.9994999999999999,
+          "goodPerShift": 36.775000000000006,
+          "scrapRate": 0.09877692136797935,
+          "avgWip": 13.321000000000002,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 107.378,
+          "costPerGoodUnitExFg": 102.65799999999999,
+          "totalProfit": 49105.114,
+          "lostSales": 36
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.68,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 47447.509999999995,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.548,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 47542.714,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": -1562.4000000000015,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points",
+                "seeds 1–10: profit -1562 EUR"
+              ]
+            }
+          },
+          "profitGain": -1506,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.86000000000001,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 45847.509999999995,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.726,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 45942.714,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": -3162.4000000000015,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points",
+                "seeds 1–10: profit -3162 EUR"
+              ]
+            }
+          },
+          "profitGain": -3106,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.035,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 44247.509999999995,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.899,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 44342.714,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": -4762.4000000000015,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points",
+                "seeds 1–10: profit -4762 EUR"
+              ]
+            }
+          },
+          "profitGain": -4706,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 38.9,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 3.115,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 105.14,
+            "costPerGoodUnitExFg": 98.715,
+            "totalProfit": 50696.055,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.095,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 3.4199999999999995,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 105.00399999999999,
+            "costPerGoodUnitExFg": 98.25000000000001,
+            "totalProfit": 50799.205,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0.05850340136054418,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.7582460225067909,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": 1694.0910000000003,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points"
+              ]
+            }
+          },
+          "profitGain": 1742.5450000000055,
+          "paybackShifts": 291.9644095384765
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 38.9,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 3.115,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.225,
+            "costPerGoodUnitExFg": 98.715,
+            "totalProfit": 48296.055,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.095,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 3.4199999999999995,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.07399999999998,
+            "costPerGoodUnitExFg": 98.25000000000001,
+            "totalProfit": 48399.205,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0.05850340136054418,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.7582460225067909,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": -705.9089999999997,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points",
+                "seeds 1–10: profit -706 EUR"
+              ]
+            }
+          },
+          "profitGain": -657.4549999999945,
+          "paybackShifts": "not reached"
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.8,
+            "scrapRate": 0.04987453148844605,
+            "avgWip": 14.46,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 105.885,
+            "costPerGoodUnitExFg": 101.07,
+            "totalProfit": 50236.065,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.800000000000004,
+            "scrapRate": 0.04698720105272611,
+            "avgWip": 14.609999999999996,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 105.75800000000001,
+            "costPerGoodUnitExFg": 100.951,
+            "totalProfit": 50330.03300000001,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0.0013605442176869975,
+              "scrapChange": -0.5119473159485984,
+              "wipChange": 0.12223515715948786,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": 1224.919000000009,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points"
+              ]
+            }
+          },
+          "profitGain": 1282.5550000000076,
+          "paybackShifts": 470.8037895781675
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9984999999999999,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10146324144751857,
+            "avgWip": 16.475,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.07,
+            "costPerGoodUnitExFg": 103.41999999999999,
+            "totalProfit": 48543.8,
+            "lostSales": 90
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9994999999999999,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09881112627669805,
+            "avgWip": 17.274,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.99799999999998,
+            "costPerGoodUnitExFg": 103.28,
+            "totalProfit": 48647.534999999996,
+            "lostSales": 36
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0,
+              "goodChange": 0,
+              "scrapChange": -0.007120350945280858,
+              "wipChange": 0.27861854870003894,
+              "reasons": [
+                "service level +0.0 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0,
+              "profitGain": -457.5790000000052,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.0 points",
+                "seeds 1–10: profit -458 EUR"
+              ]
+            }
+          },
+          "profitGain": -409.70999999999185,
+          "paybackShifts": "not reached"
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.125,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 1.86,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.83500000000001,
+            "costPerGoodUnitExFg": 117.33500000000001,
+            "totalProfit": 36057.6,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.214999999999996,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 1.863,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.96099999999998,
+            "costPerGoodUnitExFg": 117.08,
+            "totalProfit": 35927.275,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.15000000000000568,
+              "goodChange": 0.06462585034013606,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.8556461001164145,
+              "reasons": [
+                "service level +0.2 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.050000000000005596,
+              "profitGain": -13177.839,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.1 points",
+                "seeds 1–10: profit -13178 EUR"
+              ]
+            }
+          },
+          "profitGain": -12895.909999999996,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": null
+    },
+    "supplier-outage": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.75,
+          "goodPerShift": 33.625,
+          "scrapRate": 0.10600495798916965,
+          "avgWip": 9.469999999999999,
+          "backlogEnd": 7.5,
+          "costPerGoodUnit": 111.12,
+          "costPerGoodUnitExFg": 108.33500000000001,
+          "totalProfit": 31021.42,
+          "lostSales": 15300
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.762,
+          "goodPerShift": 33.675,
+          "scrapRate": 0.098173502207094,
+          "avgWip": 9.969999999999999,
+          "backlogEnd": 6.5,
+          "costPerGoodUnit": 110.727,
+          "costPerGoodUnitExFg": 107.90299999999998,
+          "totalProfit": 32084.551,
+          "lostSales": 14571
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9684999999999999,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.66,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 43927.92,
+            "lostSales": 1935
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9711000000000001,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.295,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 44335.251000000004,
+            "lostSales": 1764
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 21.84999999999999,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 20.910000000000007,
+              "profitGain": 12250.700000000004,
+              "reasons": []
+            }
+          },
+          "profitGain": 12906.5,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.91,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 44348.92,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.556,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 44577.651,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 25,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 23.799999999999997,
+              "profitGain": 12493.099999999999,
+              "reasons": []
+            }
+          },
+          "profitGain": 13327.5,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 117.28999999999999,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 42748.92,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 116.93199999999999,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 42977.651,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 25,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 23.799999999999997,
+              "profitGain": 10893.099999999999,
+              "reasons": []
+            }
+          },
+          "profitGain": 11727.5,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.911,
+            "goodPerShift": 34.9,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 2.5149999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.75999999999999,
+            "costPerGoodUnitExFg": 105.25,
+            "totalProfit": 42897.85,
+            "lostSales": 5445
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9355,
+            "goodPerShift": 35.154999999999994,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 2.9219999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.31499999999998,
+            "costPerGoodUnitExFg": 104.526,
+            "totalProfit": 44688.795,
+            "lostSales": 3942
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 16.1,
+              "goodChange": 0.03791821561338286,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.7344244984160507,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 17.349999999999998,
+              "profitGain": 12604.243999999999,
+              "reasons": []
+            }
+          },
+          "profitGain": 11876.43,
+          "paybackShifts": 49.22499349819878
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.9,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 2.5149999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.85,
+            "costPerGoodUnitExFg": 105.25,
+            "totalProfit": 46184.85,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 35.154999999999994,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 2.9219999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.479,
+            "costPerGoodUnitExFg": 104.526,
+            "totalProfit": 46405.994999999995,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 25,
+              "goodChange": 0.03791821561338286,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.7344244984160507,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 23.799999999999997,
+              "profitGain": 14321.443999999996,
+              "reasons": []
+            }
+          },
+          "profitGain": 15163.43,
+          "paybackShifts": 38.76988329618963
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.804,
+            "goodPerShift": 33.85,
+            "scrapRate": 0.05323451518199922,
+            "avgWip": 11.875,
+            "backlogEnd": 3,
+            "costPerGoodUnit": 109.24000000000001,
+            "costPerGoodUnitExFg": 106.355,
+            "totalProfit": 35935.240000000005,
+            "lostSales": 11970
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7963000000000002,
+            "goodPerShift": 33.815000000000005,
+            "scrapRate": 0.04781342928429474,
+            "avgWip": 12.111,
+            "backlogEnd": 3.7,
+            "costPerGoodUnit": 109.077,
+            "costPerGoodUnitExFg": 106.201,
+            "totalProfit": 35499.609,
+            "lostSales": 12465
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.400000000000005,
+              "goodChange": 0.006691449814126436,
+              "scrapChange": -0.49781108174734523,
+              "wipChange": 0.25395987328405506,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 3.430000000000022,
+              "profitGain": 3415.0579999999973,
+              "reasons": []
+            }
+          },
+          "profitGain": 4913.820000000007,
+          "paybackShifts": 150.08010525618027
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8205,
+            "goodPerShift": 33.900000000000006,
+            "scrapRate": 0.10460387220950601,
+            "avgWip": 10.54,
+            "backlogEnd": 2,
+            "costPerGoodUnit": 110.945,
+            "costPerGoodUnitExFg": 108.135,
+            "totalProfit": 35838.655,
+            "lostSales": 10980
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8373000000000002,
+            "goodPerShift": 33.965,
+            "scrapRate": 0.09830098815251156,
+            "avgWip": 11.498,
+            "backlogEnd": 1,
+            "costPerGoodUnit": 110.602,
+            "costPerGoodUnitExFg": 107.753,
+            "totalProfit": 37174.402,
+            "lostSales": 9945
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 7.050000000000001,
+              "goodChange": 0.008178438661710205,
+              "scrapChange": -0.013217172161011396,
+              "wipChange": 0.11298838437170015,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 7.5300000000000145,
+              "profitGain": 5089.851000000002,
+              "reasons": []
+            }
+          },
+          "profitGain": 4817.235000000001,
+          "paybackShifts": 3.7293255514740156
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9145000000000001,
+            "goodPerShift": 35.025,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 1.67,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.905,
+            "costPerGoodUnitExFg": 126.34,
+            "totalProfit": 28298.83,
+            "lostSales": 5220
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9399000000000001,
+            "goodPerShift": 35.25,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 1.6749999999999996,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.444,
+            "costPerGoodUnitExFg": 125.547,
+            "totalProfit": 30054.979,
+            "lostSales": 3672
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 16.45000000000001,
+              "goodChange": 0.04163568773234196,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.8236536430834214,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 17.790000000000006,
+              "profitGain": -2029.5720000000001,
+              "reasons": [
+                "seeds 1–10: profit -2030 EUR"
+              ]
+            }
+          },
+          "profitGain": -2722.5899999999965,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "m3-ct12-fg30"
+    },
+    "demand-swing": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.5625,
+          "goodPerShift": 36.75,
+          "scrapRate": 0.10219087635054022,
+          "avgWip": 12.885,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 107.9,
+          "costPerGoodUnitExFg": 102.86500000000001,
+          "totalProfit": 19941.510000000002,
+          "lostSales": 24660
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.5668,
+          "goodPerShift": 36.775000000000006,
+          "scrapRate": 0.09877692136797935,
+          "avgWip": 13.321000000000002,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 107.73000000000002,
+          "costPerGoodUnitExFg": 102.65799999999999,
+          "totalProfit": 20314.714,
+          "lostSales": 24408
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.755,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.16499999999999,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 29854.510000000002,
+            "lostSales": 13815
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7639,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.999,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 30496.114,
+            "lostSales": 13293
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 19.25,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 19.710000000000004,
+              "profitGain": 10181.400000000001,
+              "reasons": []
+            }
+          },
+          "profitGain": 9913,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.948,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.685,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 39630.509999999995,
+            "lostSales": 2925
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9536999999999999,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.53,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 40054.714,
+            "lostSales": 2610
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 38.55,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 38.68999999999999,
+              "profitGain": 19740,
+              "reasons": []
+            }
+          },
+          "profitGain": 19688.999999999993,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10219087635054022,
+            "avgWip": 12.885,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.685,
+            "costPerGoodUnitExFg": 102.86500000000001,
+            "totalProfit": 41085.509999999995,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09877692136797935,
+            "avgWip": 13.321000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.548,
+            "costPerGoodUnitExFg": 102.65799999999999,
+            "totalProfit": 41180.714,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 43.75,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 43.32,
+              "profitGain": 20866,
+              "reasons": []
+            }
+          },
+          "profitGain": 21143.999999999993,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.6285000000000001,
+            "goodPerShift": 38.9,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 3.115,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 105.13499999999999,
+            "costPerGoodUnitExFg": 98.715,
+            "totalProfit": 25617.055,
+            "lostSales": 20925
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6473000000000001,
+            "goodPerShift": 39.095,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 3.4199999999999995,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 104.90500000000002,
+            "costPerGoodUnitExFg": 98.25000000000001,
+            "totalProfit": 26855.405,
+            "lostSales": 19863
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 6.600000000000006,
+              "goodChange": 0.05850340136054418,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.7582460225067909,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 8.050000000000013,
+              "profitGain": 6540.690999999999,
+              "reasons": []
+            }
+          },
+          "profitGain": 5675.544999999998,
+          "paybackShifts": 100.19964779823802
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9255,
+            "goodPerShift": 38.9,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 3.115,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.185,
+            "costPerGoodUnitExFg": 98.715,
+            "totalProfit": 40763.055,
+            "lostSales": 4185
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9372999999999998,
+            "goodPerShift": 39.095,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 3.4199999999999995,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.00100000000002,
+            "costPerGoodUnitExFg": 98.25000000000001,
+            "totalProfit": 41543.005000000005,
+            "lostSales": 3537
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 36.3,
+              "goodChange": 0.05850340136054418,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.7582460225067909,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 37.04999999999998,
+              "profitGain": 21228.291000000005,
+              "reasons": []
+            }
+          },
+          "profitGain": 20821.545,
+          "paybackShifts": 28.390211149829582
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.572,
+            "goodPerShift": 36.8,
+            "scrapRate": 0.04987453148844605,
+            "avgWip": 14.46,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 106.195,
+            "costPerGoodUnitExFg": 101.07,
+            "totalProfit": 21728.065000000002,
+            "lostSales": 24120
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.5715,
+            "goodPerShift": 36.800000000000004,
+            "scrapRate": 0.04698720105272611,
+            "avgWip": 14.609999999999996,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 106.07300000000001,
+            "costPerGoodUnitExFg": 100.951,
+            "totalProfit": 21792.633,
+            "lostSales": 24147
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.9499999999999953,
+              "goodChange": 0.0013605442176869975,
+              "scrapChange": -0.5119473159485984,
+              "wipChange": 0.12223515715948786,
+              "reasons": [
+                "service level +0.9 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.47000000000000375,
+              "profitGain": 1477.9190000000017,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.5 points"
+              ]
+            }
+          },
+          "profitGain": 1786.5550000000003,
+          "paybackShifts": 363.104635408905
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.5625,
+            "goodPerShift": 36.75,
+            "scrapRate": 0.10146324144751857,
+            "avgWip": 16.475,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.46000000000001,
+            "costPerGoodUnitExFg": 103.41999999999999,
+            "totalProfit": 19531.8,
+            "lostSales": 24660
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.5668,
+            "goodPerShift": 36.775000000000006,
+            "scrapRate": 0.09881112627669805,
+            "avgWip": 17.274,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.353,
+            "costPerGoodUnitExFg": 103.28,
+            "totalProfit": 19857.135,
+            "lostSales": 24408
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0,
+              "goodChange": 0,
+              "scrapChange": -0.007120350945280858,
+              "wipChange": 0.27861854870003894,
+              "reasons": [
+                "service level +0.0 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0,
+              "profitGain": -457.57900000000154,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.0 points",
+                "seeds 1–10: profit -458 EUR"
+              ]
+            }
+          },
+          "profitGain": -409.71000000000276,
+          "paybackShifts": "not reached"
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.635,
+            "goodPerShift": 39.125,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 1.86,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.805,
+            "costPerGoodUnitExFg": 117.33500000000001,
+            "totalProfit": 11356.6,
+            "lostSales": 20565
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6614000000000001,
+            "goodPerShift": 39.214999999999996,
+            "scrapRate": 0.0985091743119266,
+            "avgWip": 1.863,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.80999999999999,
+            "costPerGoodUnitExFg": 117.08,
+            "totalProfit": 12816.675,
+            "lostSales": 19071
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 7.250000000000001,
+              "goodChange": 0.06462585034013606,
+              "scrapChange": -0.018072451467755293,
+              "wipChange": -0.8556461001164145,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 9.460000000000013,
+              "profitGain": -7498.039000000001,
+              "reasons": [
+                "seeds 1–10: profit -7498 EUR"
+              ]
+            }
+          },
+          "profitGain": -8584.910000000002,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "fg60"
+    },
+    "both": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.472,
+          "goodPerShift": 33.625,
+          "scrapRate": 0.10600495798916965,
+          "avgWip": 9.469999999999999,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 110.945,
+          "costPerGoodUnitExFg": 108.33500000000001,
+          "totalProfit": 13111.92,
+          "lostSales": 29745
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.47989999999999994,
+          "goodPerShift": 33.675,
+          "scrapRate": 0.098173502207094,
+          "avgWip": 9.969999999999999,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 110.542,
+          "costPerGoodUnitExFg": 107.90299999999998,
+          "totalProfit": 13828.251,
+          "lostSales": 29295
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.7525,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.975,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 28214.92,
+            "lostSales": 13950
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7614999999999998,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.58999999999999,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 28980.651,
+            "lostSales": 13437
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 28.049999999999997,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 28.15999999999999,
+              "profitGain": 15152.400000000001,
+              "reasons": []
+            }
+          },
+          "profitGain": 15102.999999999998,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.948,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.625,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 38131.92,
+            "lostSales": 2925
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9536999999999999,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.249,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 38689.651,
+            "lostSales": 2610
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 47.599999999999994,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 47.379999999999995,
+              "profitGain": 24861.399999999998,
+              "reasons": []
+            }
+          },
+          "profitGain": 25020,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.625,
+            "scrapRate": 0.10600495798916965,
+            "avgWip": 9.469999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.81,
+            "costPerGoodUnitExFg": 108.33500000000001,
+            "totalProfit": 39586.92,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 33.675,
+            "scrapRate": 0.098173502207094,
+            "avgWip": 9.969999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.45199999999997,
+            "costPerGoodUnitExFg": 107.90299999999998,
+            "totalProfit": 39815.651,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 52.800000000000004,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 52.01,
+              "profitGain": 25987.399999999998,
+              "reasons": []
+            }
+          },
+          "profitGain": 26475,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.599,
+            "goodPerShift": 34.9,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 2.5149999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.51,
+            "costPerGoodUnitExFg": 105.25,
+            "totalProfit": 21766.85,
+            "lostSales": 22590
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6287,
+            "goodPerShift": 35.154999999999994,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 2.9219999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.022,
+            "costPerGoodUnitExFg": 104.526,
+            "totalProfit": 23762.394999999997,
+            "lostSales": 20916
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 12.7,
+              "goodChange": 0.03791821561338286,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.7344244984160507,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 14.88000000000001,
+              "profitGain": 9934.143999999997,
+              "reasons": []
+            }
+          },
+          "profitGain": 8654.929999999998,
+          "paybackShifts": 66.90880218747179
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9255,
+            "goodPerShift": 34.9,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 2.5149999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.695,
+            "costPerGoodUnitExFg": 105.25,
+            "totalProfit": 38651.85,
+            "lostSales": 4185
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9372999999999998,
+            "goodPerShift": 35.154999999999994,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 2.9219999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.28599999999999,
+            "costPerGoodUnitExFg": 104.526,
+            "totalProfit": 39549.795,
+            "lostSales": 3537
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 45.35,
+              "goodChange": 0.03791821561338286,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.7344244984160507,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 45.73999999999999,
+              "profitGain": 25721.543999999998,
+              "reasons": []
+            }
+          },
+          "profitGain": 25539.93,
+          "paybackShifts": 23.208650018586262
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.503,
+            "goodPerShift": 33.85,
+            "scrapRate": 0.05323451518199922,
+            "avgWip": 11.875,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.08000000000001,
+            "costPerGoodUnitExFg": 106.355,
+            "totalProfit": 16098.24,
+            "lostSales": 27990
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.49929999999999997,
+            "goodPerShift": 33.815000000000005,
+            "scrapRate": 0.04781342928429474,
+            "avgWip": 12.111,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.90800000000002,
+            "costPerGoodUnitExFg": 106.201,
+            "totalProfit": 16001.509,
+            "lostSales": 28206
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 3.1000000000000028,
+              "goodChange": 0.006691449814126436,
+              "scrapChange": -0.49781108174734523,
+              "wipChange": 0.25395987328405506,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 1.9400000000000028,
+              "profitGain": 2173.258,
+              "reasons": [
+                "seeds 1–10: service level +1.9 points"
+              ]
+            }
+          },
+          "profitGain": 2986.3199999999997,
+          "paybackShifts": 235.08760931573835
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.505,
+            "goodPerShift": 33.900000000000006,
+            "scrapRate": 0.10460387220950601,
+            "avgWip": 10.54,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.875,
+            "costPerGoodUnitExFg": 108.135,
+            "totalProfit": 14962.654999999999,
+            "lostSales": 27900
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.5163,
+            "goodPerShift": 33.965,
+            "scrapRate": 0.09830098815251156,
+            "avgWip": 11.498,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.53,
+            "costPerGoodUnitExFg": 107.753,
+            "totalProfit": 15826.601999999999,
+            "lostSales": 27261
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 3.300000000000003,
+              "goodChange": 0.008178438661710205,
+              "scrapChange": -0.013217172161011396,
+              "wipChange": 0.11298838437170015,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 3.640000000000004,
+              "profitGain": 1998.3509999999987,
+              "reasons": []
+            }
+          },
+          "profitGain": 1850.7349999999988,
+          "paybackShifts": 9.676847068184145
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.6074999999999999,
+            "goodPerShift": 35.025,
+            "scrapRate": 0.10509554140127389,
+            "avgWip": 1.67,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.635,
+            "costPerGoodUnitExFg": 126.34,
+            "totalProfit": 7451.83,
+            "lostSales": 22095
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6455,
+            "goodPerShift": 35.25,
+            "scrapRate": 0.09936305732484076,
+            "avgWip": 1.6749999999999996,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.10099999999997,
+            "costPerGoodUnitExFg": 125.547,
+            "totalProfit": 9839.579,
+            "lostSales": 19971
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 13.549999999999995,
+              "goodChange": 0.04163568773234196,
+              "scrapChange": -0.00857900050286959,
+              "wipChange": -0.8236536430834214,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 16.560000000000002,
+              "profitGain": -3988.6720000000005,
+              "reasons": [
+                "seeds 1–10: profit -3989 EUR"
+              ]
+            }
+          },
+          "profitGain": -5660.09,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "fg60"
+    }
+  },
+  "annual": {
+    "fg20": {
+      "oneTime": 0,
+      "annualProfitGain": 139716,
+      "paybackYears": null
+    },
+    "fg40": {
+      "oneTime": 0,
+      "annualProfitGain": 257591.99999999994,
+      "paybackYears": null
+    },
+    "fg60": {
+      "oneTime": 0,
+      "annualProfitGain": 275051.99999999994,
+      "paybackYears": null
+    },
+    "m3-ct12": {
+      "oneTime": 30000,
+      "annualProfitGain": 80024.07999999999,
+      "paybackYears": 0.3581059917339588
+    },
+    "m3-ct12-fg30": {
+      "oneTime": 30000,
+      "annualProfitGain": 268732.07999999996,
+      "paybackYears": 0.11009898339002698
+    },
+    "reject-5": {
+      "oneTime": 40000,
+      "annualProfitGain": 26237.72,
+      "paybackYears": 1.2805031865321796
+    },
+    "buf2-12": {
+      "oneTime": 900,
+      "annualProfitGain": 4125.259999999973,
+      "paybackYears": 0.212376349769691
+    },
+    "extra-m3": {
+      "oneTime": 95000,
+      "annualProfitGain": -91319.64000000001,
+      "paybackYears": "not reached"
+    }
+  }
+}

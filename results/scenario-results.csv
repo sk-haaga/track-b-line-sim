@@ -1,0 +1,9 @@
+scenario,variant,countermeasure,seeds,good_per_shift,service_level,avg_wip,scrap_rate,cost_per_good_unit_eur,cost_per_good_unit_excl_fg_eur,total_profit_eur,verified
+baseline,without,none,1 2,36.75,0.9985,12.88,0.1022,107.52,102.87,48953.51,–
+baseline,with,none (no verified countermeasure),1 2,36.75,0.9985,12.88,0.1022,107.52,102.87,48953.51,–
+supplier-outage,without,none,1 2,33.63,0.7500,9.47,0.1060,111.12,108.34,31021.42,–
+supplier-outage,with,M3 12 min + stock 30,1 2,34.90,1.0000,2.51,0.1051,111.85,105.25,46184.85,verified; strict: yes
+demand-swing,without,none,1 2,36.75,0.5625,12.88,0.1022,107.90,102.87,19941.51,–
+demand-swing,with,Finished-goods stock 60,1 2,36.75,1.0000,12.88,0.1022,112.69,102.87,41085.51,verified; strict: yes
+both,without,none,1 2,33.63,0.4720,9.47,0.1060,110.94,108.34,13111.92,–
+both,with,Finished-goods stock 60,1 2,33.63,1.0000,9.47,0.1060,115.81,108.34,39586.92,verified; strict: yes

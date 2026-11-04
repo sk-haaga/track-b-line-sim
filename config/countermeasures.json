@@ -1,0 +1,72 @@
+{
+  "_note": "Countermeasure catalogue and the recommended countermeasure per reference scenario. npm run scenarios re-runs everything from this file without the LLM. Lever format: src/scenarios/levers.js.",
+  "options": {
+    "fg20": {
+      "label": "Finished-goods stock 20",
+      "levers": {
+        "initialFinishedGoods": 20
+      }
+    },
+    "fg40": {
+      "label": "Finished-goods stock 40",
+      "levers": {
+        "initialFinishedGoods": 40
+      }
+    },
+    "fg60": {
+      "label": "Finished-goods stock 60",
+      "levers": {
+        "initialFinishedGoods": 60
+      }
+    },
+    "m3-ct12": {
+      "label": "M3 cycle time 13 -> 12 min",
+      "levers": {
+        "cycleTime": {
+          "M3": 12
+        }
+      }
+    },
+    "m3-ct12-fg30": {
+      "label": "M3 12 min + stock 30",
+      "levers": {
+        "cycleTime": {
+          "M3": 12
+        },
+        "initialFinishedGoods": 30
+      }
+    },
+    "reject-5": {
+      "label": "M2 reject rate 10% -> 5%",
+      "levers": {
+        "rejectRate": {
+          "M2": 0.05
+        }
+      }
+    },
+    "buf2-12": {
+      "label": "Buffer before M3 6 -> 12 slots",
+      "levers": {
+        "bufferCapacity": {
+          "BUF2": 12
+        }
+      }
+    },
+    "extra-m3": {
+      "label": "Extra machine at M3",
+      "levers": {
+        "parallelMachines": {
+          "S3": 1
+        }
+      }
+    }
+  },
+  "recommended": {
+    "baseline": null,
+    "supplier-outage": "m3-ct12-fg30",
+    "demand-swing": "fg60",
+    "both": "fg60"
+  },
+  "_recommended_note": "null = no countermeasure (both rows of the results table are identical).",
+  "_recommended_status": "provisional, chosen by rule BIZ-04 (highest profit among the options that pass the strict check); to be confirmed by the business team."
+}

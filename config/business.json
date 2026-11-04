@@ -1,0 +1,10 @@
+{
+  "_note": "Business-case settings used by npm run scenarios. IDs refer to docs/ASSUMPTIONS.md.",
+  "fgValuePerUnit": 103,
+  "periodShifts": 20,
+  "shiftsPerYear": 240,
+  "annualMix": { "both": 4, "demand-swing": 8 },
+  "_annualMix_note": "BIZ-01: a year is 12 periods of 20 shifts; 4 periods with a supplier outage behave like 'both', the other 8 like 'demand-swing' (SUP-02: 4 outages per year).",
+  "officialSeeds": [1, 2],
+  "strictSeeds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}

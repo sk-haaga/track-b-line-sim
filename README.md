@@ -28,19 +28,47 @@ Extended from the organisers' `machine_sim` starter. What we changed is listed u
 
 **Also changed:** `src/headless/run.check.mjs` now gives each of its 20 runs its own seed (1–20). Otherwise all runs would use the same default seed and be identical.
 
+### 4. Cost model inside the tool (`COST-*`)
+
+**What:** `src/economics/rateCard.js` reads `data/rate_card.csv`; `src/economics/cost.js` turns any `runHeadless` result into revenue, machine, material, WIP and finished-goods holding, amortised one-time costs, lost sales, stock values, **cost per good unit** and **total profit**, following the cost rules of the data README. Cost per good unit is reported twice: without finished-goods holding (the organiser's baseline check) and with it (to compare stock options like with like, `COST-10`).
+
+**Why:** the brief asks for cost and service level next to parts; nothing in the starter computed costs.
+
+**How validated:** `test/cost.test.js`. The default line costs **EUR 102.9 per good unit** (seeds 1 and 2: 102.6 and 103.2) against the organiser's EUR 102.8. Each formula is checked on a hand-made example, and total profit equals the sum of its parts.
+
+### 5. Countermeasures, pricing and verification
+
+**What:**
+- `src/scenarios/levers.js`: one format for countermeasures (starting stock, cycle time, reject rate, buffer capacity, source interval, extra machines), with the limits `LEV-01` to `LEV-08`. The advisor will use the same format.
+- `src/economics/pricing.js`: the one-time cost of a countermeasure is derived from its lever changes and the rate card (for example M3 13 → 12 min = EUR 30,000). The advisor never prices; this code does.
+- `src/scenarios/verify.js`: the official check of the brief (`SIM-03`: +2 points service level, average of seeds 1 and 2; good parts and scrap rate not worse by more than 10%; 2–3 points = weak evidence) and our stricter check (`SIM-04`: also seeds 1–10 and profit must not fall).
+- `src/scenarios/run.js`: `runScenario()` runs a scenario with a countermeasure over several seeds and adds the costs.
+
+**How validated:** `test/levers.test.js` and `test/verify.test.js` (limits, prices, rule edges such as exactly 2.0 vs 1.9 points, and "the line compared with itself never passes").
+
+### 6. Scenario runner and results tables
+
+**What:** `npm run scenarios` reads `config/countermeasures.json` (a catalogue of options and the recommended option per scenario) and `config/business.json`, runs the four reference scenarios without and with every option (seeds 1–10, about 20 seconds, no LLM) and writes:
+- `results/scenario-results.md` / `.csv`: every scenario twice, without and with its recommended countermeasure: throughput, service level, WIP, scrap, cost per good unit and total profit (the table the brief asks for);
+- `results/countermeasure-comparison.md` / `.csv`: every option in every scenario: effect, one-time cost, profit change, payback, official and strict check, the best option by rule `BIZ-04`, and an annual view (`BIZ-01`);
+- `results/scenarios.json`: all numbers, for the business spreadsheet and the advisor.
+
+The recommended options in `config/countermeasures.json` are **provisional** (best by rule `BIZ-04`) until the business team confirms them.
+
 ### How to run everything
 
 ```bash
 npm install
-npm test                 # all unit tests (79)
+npm test                 # all unit tests (98)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
+npm run scenarios        # results tables with costs and countermeasures, writes results/
 npm start                # UI at http://localhost:3000
 ```
 
 ### Not done yet
 
-UI controls for seed and outage, machine breakdowns, costs inside the tool, the scenario runner with countermeasures, and the AI shift advisor.
+UI controls for seed, outage and costs; machine breakdowns; supplier-side countermeasures; warm-start scenarios; the AI shift advisor.
 
 ---
 
