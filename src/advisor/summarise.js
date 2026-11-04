@@ -26,7 +26,9 @@ export function ranges(nums) {
 /**
  * summariseRun(result, { scenario, levers, initialFinishedGoods, config, version }) → { facts: [{ id, topic, text }], factIds }
  *   config   the line's configuration (for the settings fact)
- *   version  'v1' (first version) or 'v2' (adds demand during the outage, the timing of late units and the load)
+ *   version  'v1' (first version), 'v2' (adds demand during the outage, the timing of late units and the load) or
+ *            'v3' (v2 + a constraint fact that compares machine capacity with the supply instead of assuming the busiest
+ *            machine is the limit)
  */
 export function summariseRun(result, { scenario = {}, levers = {}, initialFinishedGoods = 0, config = null, version = 'v1' } = {}) {
   const { perShift, kpis, events } = result;
@@ -78,11 +80,11 @@ export function summariseRun(result, { scenario = {}, levers = {}, initialFinish
     const prod = perShift.filter((r) => r.shift >= s0 && r.shift <= s1 + 1).map((r) => `shift ${r.shift}: ${r.produced}`);
     const ordersDuring = perShift.filter((r) => r.shift >= s0 && r.shift <= s1).map((r) => r.orders);
     add('outage', `Supplier outage from tick ${os.tick} to ${oe.tick} (${oe.tick - os.tick} min, shifts ${s0}–${s1}): no parts released. Good parts produced ${prod.join(', ')}.`
-      + (version === 'v2' ? ` Orders in the outage shifts: ${ordersDuring.join(', ')} (average over all shifts ${r1(avgOrders)}).` : ''));
+      + (version !== 'v1' ? ` Orders in the outage shifts: ${ordersDuring.join(', ')} (average over all shifts ${r1(avgOrders)}).` : ''));
   }
 
   // v2: where the late units fall, and how loaded the line is on average
-  if (version === 'v2') {
+  if (version === 'v2' || version === 'v3') {
     const late = (r) => r.orders - r.shippedOnTime;
     const os2 = os && oe ? [Math.floor(os.tick / TICKS_PER_SHIFT) + 1, Math.floor((oe.tick - 1) / TICKS_PER_SHIFT) + 1] : null;
     const first = perShift.filter((r) => r.shift <= 5).reduce((s, r) => s + late(r), 0);
@@ -112,8 +114,25 @@ export function summariseRun(result, { scenario = {}, levers = {}, initialFinish
   // 7. Constraint
   const ms = Object.entries(kpis.machines);
   const [cid, c] = ms.reduce((a, b) => (b[1].utilisation > a[1].utilisation ? b : a));
-  add('constraint', `${cid} is the busiest machine (${pct(c.utilisation)} busy, ${pct(c.blocked)} blocked): it limits the line's output. `
-    + `Machines before it are often blocked and machines after it are often starved, which is a consequence of the constraint, not a separate problem.`);
+  if (version === 'v3' && config) {
+    // v3: compare the busiest station's capacity with what the supply can deliver, instead of assuming that the
+    // busiest machine is the limit (v1/v2 blamed M3 even when it was waiting for parts).
+    const station = config.machines.find((m) => m.id === cid);
+    const parallel = config.machines.filter((m) => m.stationId === station.stationId).length;
+    const capacity = (TICKS_PER_SHIFT / station.cycleTime) * parallel;
+    const reject = config.machines.reduce((a, m) => a + (m.rejectRate ?? 0), 0);
+    const supply = (TICKS_PER_SHIFT / config.source.interval) * (1 - reject);
+    if (supply < capacity * 0.98) {
+      add('constraint', `No machine limits the line: the supply does. The source (one part every ${config.source.interval} min) and the reject gate (${pct(reject)} rejected) deliver at most ${r1(supply)} good parts per shift, `
+        + `below the ${r1(capacity)} parts per shift that ${cid}, the busiest machine, could handle; ${cid} is starved ${pct(c.starved)} of the time.`);
+    } else {
+      add('constraint', `${cid} is the constraint: it can handle ${r1(capacity)} parts per shift while the supply could deliver ${r1(supply)} good parts per shift; it is busy ${pct(c.utilisation)}, blocked ${pct(c.blocked)}, starved ${pct(c.starved)}`
+        + (c.down ? `, down for repair ${pct(c.down)}` : '') + '. Machines before it are often blocked and machines after it are often starved: consequences of the constraint, not separate problems.');
+    }
+  } else {
+    add('constraint', `${cid} is the busiest machine (${pct(c.utilisation)} busy, ${pct(c.blocked)} blocked): it limits the line's output. `
+      + `Machines before it are often blocked and machines after it are often starved, which is a consequence of the constraint, not a separate problem.`);
+  }
 
   return { facts, factIds: new Set(facts.map((f) => f.id)) };
 }

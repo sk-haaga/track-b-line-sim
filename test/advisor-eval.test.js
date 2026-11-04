@@ -65,3 +65,15 @@ test('prompt v2 adds categories and ranking; facts v2 add timing and load', asyn
   assert.ok(v2.some((f) => f.topic === 'outage' && /Orders in the outage shifts: 29, 2/.test(f.text)));
   assert.ok(v2.some((f) => f.topic === 'settings'));
 });
+
+test('facts v3: the constraint fact blames the supply when the source or rejects limit the line', async () => {
+  const fact = async (id) => {
+    const sc = EVAL_CASES.find((c) => c.id === id).scenario;
+    const run = (await runScenario({ scenario: sc, seeds: [1], rates, keepEvents: true })).runs[0];
+    return summariseRun(run, { scenario: sc, config: scenarioConfig(sc), version: 'v3' }).facts.find((f) => f.topic === 'constraint').text;
+  };
+  assert.match(await fact('E05-slow-source'), /supply does/);
+  assert.match(await fact('E04-high-reject'), /supply does/);
+  assert.match(await fact('E03-slow-m3'), /^M3 is the constraint/);
+  assert.match(systemPrompt('v3'), /prompt v3/);
+});

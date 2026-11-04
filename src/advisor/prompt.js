@@ -5,7 +5,7 @@
 import { LEVER_LIMITS } from '../scenarios/levers.js';
 
 export const PROMPT_VERSION = 'v1';   // default; see PROMPT_VERSIONS
-export const PROMPT_VERSIONS = ['v1', 'v2'];
+export const PROMPT_VERSIONS = ['v1', 'v2', 'v3'];
 export const CAUSE_CATEGORIES = ['demand_peak', 'no_stock', 'outage', 'bottleneck_capacity', 'quality_scrap', 'supply_rate', 'breakdowns', 'none'];
 
 const V1 = `You are the shift advisor of a 4-station production line that makes metal TV stand-and-frame sets:
@@ -49,8 +49,18 @@ Additional rules (prompt v2):
 - If nothing was late, return rootCauses [{"cause": "no problem", "category": "none", "facts": [<kpi fact>]}] and no proposals.
 Root cause format: {"cause": "<short>", "category": "<category>", "facts": ["F.."]}`;
 
+// v3 = v2 + lessons from the v2 evaluation: the constraint fact now says whether a machine or the supply limits the line;
+// machine failures get the category breakdowns even at the bottleneck; protect the constraint against upstream stops.
+const V3_RULES = `
+Additional rules (prompt v3):
+- Trust the constraint fact: if it says the supply limits the line, the root cause is the supply (supply_rate, or quality_scrap
+  if a high reject rate is what reduces it), not the busiest machine.
+- If machine failures cause the losses, use the category breakdowns, also when the failing machine is the bottleneck.
+- If an upstream machine breaks down and starves the constraint, consider a larger buffer in front of the constraint (BUF2 for M3).`;
+
 export function systemPrompt(version = PROMPT_VERSION) {
   if (!PROMPT_VERSIONS.includes(version)) throw new Error(`unknown prompt version ${version}`);
+  if (version === 'v3') return `${V1}\n${V2_RULES}\n${V3_RULES}`;
   return version === 'v2' ? `${V1}\n${V2_RULES}` : V1;
 }
 export const SYSTEM_PROMPT = systemPrompt('v1');

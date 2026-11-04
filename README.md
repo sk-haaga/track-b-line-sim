@@ -2,6 +2,24 @@
 
 Extended from the organisers' `machine_sim` starter. What we changed is listed under **Changes by our team** below; the original starter documentation follows after it. All assumptions are in [`docs/ASSUMPTIONS.md`](docs/ASSUMPTIONS.md) and are referred to by their IDs (for example `SIM-02`).
 
+![Architecture](docs/architecture.svg)
+
+## Deliverables at a glance
+
+| Deliverable (Track B brief) | Where |
+|---|---|
+| Extended simulation, what was added and why, how validated, how to run | this README, sections 1–9 |
+| Architecture figure (also a pitch slide) | `docs/architecture.svg` / `docs/architecture.png` |
+| AI shift advisor | `src/advisor/`, `npm run advise` (section 10) |
+| Log of how its proposals were verified | `results/advisor/advisor-log.jsonl`, reports in `results/advisor/` |
+| How the advisor was evaluated and improved | section 11, `results/advisor-eval/summary.md` |
+| Scenario results table with seeds, without and with the recommended countermeasure | `results/scenario-results.md` / `.csv` |
+| Chosen countermeasure per scenario (re-run without the LLM) | `config/countermeasures.json`, `npm run scenarios` |
+| Cost model and KPIs (spreadsheet) | `docs/business/cost-model.xlsx` |
+| Countermeasure comparison with one-time cost and payback | `results/countermeasure-comparison.md`, sheet *Comparison* |
+| Decision memo for the plant manager | `docs/DECISION_MEMO.md` |
+| Assumptions table | `docs/ASSUMPTIONS.md` |
+
 ## Changes by our team
 
 ### 1. Seeded randomness (`SIM-01`, `SIM-02`)
@@ -127,14 +145,37 @@ npm run evaluate -- --model gpt-4o --prompt v2         # real AI, improved promp
 
 **Baseline (rule-based mock):** top cause right 40%, fixes the root cause 70%, never touches the reject rate or the source. The AI runs show whether, and by how much, the language model is better.
 
+### 12. Facts and prompt v3
+
+The v2 evaluation showed one weakness in our own summary: the constraint fact always called the busiest machine the limit, even when it was waiting for parts (slow source, high reject rate). **Facts v3** compare the busiest station's capacity with what the source and the reject gate can deliver, and say "the supply limits the line" when that is true. **Prompt v3** adds three rules: trust that fact, label machine failures as breakdowns even at the bottleneck, and consider a buffer in front of the constraint when an upstream machine breaks down. v3 is now the default (`config/advisor.json`); compare it with `npm run evaluate -- --model gpt-4o --prompt v3`.
+
+### 13. Business documents
+
+- `npm run export-business` writes `results/business-inputs.csv`: the raw quantities of the runs the business case uses (seeds 1–2).
+- `docs/business/cost-model.xlsx` (built by `scripts/build_cost_model.py`) recomputes every cost from those quantities and the rate card with **formulas**: machine, material, WIP and finished-goods holding, amortised one-time costs, lost sales, revenue and stock values; KPIs (service level, cost per good unit, total profit, OEE per machine); the comparison of three options with one-time cost and payback; a sensitivity sheet for the lost-sales penalty; and the AI running cost. A check column shows that the workbook reproduces the code's profit exactly (difference 0 in every row).
+- `docs/DECISION_MEMO.md`: one page for the plant manager; every number points to a results file.
+
+### Limits of our results
+
+- **Horizon and start:** 20-shift scenarios start from an empty line and empty stock (organiser rule); the 60-shift quarter dilutes this but still starts empty.
+- **No production control:** the line always runs flat out, so finished stock piles up when demand is low; options that overproduce look better when end stock is valued at EUR 103 (shown at EUR 45 as well).
+- **Starting stock is given, not built:** in reality building 60 sets takes about 11 shifts (about 29 with breakdowns).
+- **Outage frequency** (4 per year) and the **lost-sales penalty** are assumptions; the penalty is tested from EUR 45 to 135, the outage frequency is not.
+- **Breakdowns** follow the AI4I data set with organiser repair times; real repair times may differ.
+- **Advisor evaluation:** 10 planted-fault cases, one run each; the results can vary somewhat between runs, and the keyword scoring of prompt v1 may misclassify unusual wording.
+- **Not modelled:** product variants and changeovers, shift breaks, overtime, supplier lead times (no raw-material stock).
+
 ### How to run everything
 
 ```bash
 npm install
-npm test                 # all unit tests (123)
+npm test                 # all unit tests (124)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
 npm run scenarios        # results tables, 9 scenarios x 9 options, about 75 s, writes results/
+npm run export-business  # raw quantities for the cost model spreadsheet
+npm run advise -- --scenario both                   # AI shift advisor (needs .env), or --provider mock
+npm run evaluate -- --model gpt-4o --prompt v3      # advisor evaluation on the planted-fault test set
 npm start                # UI at http://localhost:3000
 ```
 

@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" font-family="Segoe UI, Helvetica, Arial, sans-serif">
+  <title>Architecture: line simulation, cost model and AI shift advisor</title>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#475569" stroke-width="1.6"/>
+    </marker>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1L9 5L1 9" fill="none" stroke="#0F6E56" stroke-width="1.6"/>
+    </marker>
+    <style>
+      .t { font-size: 17px; font-weight: 600; fill: #0f172a; }
+      .s { font-size: 13px; fill: #334155; }
+      .h { font-size: 15px; font-weight: 600; fill: #475569; letter-spacing: .5px; }
+      .ln { stroke: #475569; stroke-width: 1.6; fill: none; }
+      .gl { stroke: #0F6E56; stroke-width: 1.8; fill: none; }
+    </style>
+  </defs>
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <text x="40" y="48" font-size="26" font-weight="700" fill="#0f172a">The AI explains, the simulation decides</text>
+  <text x="40" y="74" font-size="15" fill="#475569">Smart Tech Components · Track B · line simulation, cost model and AI shift advisor</text>
+
+  <!-- Inputs -->
+  <text x="40" y="118" class="h">INPUTS</text>
+  <rect x="40" y="130" width="230" height="150" rx="10" fill="#F1EFE8" stroke="#888780"/>
+  <text x="56" y="158" class="t">Data package</text>
+  <text x="56" y="184" class="s">demand_profile.csv</text>
+  <text x="56" y="204" class="s">rate_card.csv (all prices)</text>
+  <text x="56" y="224" class="s">failure_rates.csv</text>
+  <text x="56" y="250" class="s">config/countermeasures.json</text>
+  <text x="56" y="268" class="s">docs/ASSUMPTIONS.md</text>
+
+  <!-- Simulation -->
+  <text x="320" y="118" class="h">SIMULATION</text>
+  <rect x="320" y="130" width="290" height="150" rx="10" fill="#E6F1FB" stroke="#185FA5"/>
+  <text x="336" y="158" class="t">Line engine (Node.js)</text>
+  <text x="336" y="184" class="s">Source → M1 → M2 → M3 → M4 → stock</text>
+  <text x="336" y="204" class="s">+ seeded random streams (repeatable)</text>
+  <text x="336" y="224" class="s">+ supplier outage in the engine</text>
+  <text x="336" y="244" class="s">+ machine breakdowns (DOWN state)</text>
+  <text x="336" y="264" class="s">+ orders, service level, event log</text>
+
+  <!-- Scenario runner + cost -->
+  <rect x="660" y="130" width="250" height="150" rx="10" fill="#E6F1FB" stroke="#185FA5"/>
+  <text x="676" y="158" class="t">Scenario runner</text>
+  <text x="676" y="184" class="s">9 scenarios × 9 options</text>
+  <text x="676" y="204" class="s">seeds 1–2 official, 1–10 strict</text>
+  <text x="676" y="230" class="t">Cost model</text>
+  <text x="676" y="254" class="s">cost per good unit, profit,</text>
+  <text x="676" y="272" class="s">one-time cost, payback</text>
+
+  <!-- Outputs -->
+  <text x="960" y="118" class="h">OUTPUTS</text>
+  <rect x="960" y="130" width="200" height="150" rx="10" fill="#F1EFE8" stroke="#888780"/>
+  <text x="976" y="158" class="t">Results</text>
+  <text x="976" y="184" class="s">scenario-results</text>
+  <text x="976" y="204" class="s">countermeasure-</text>
+  <text x="976" y="222" class="s">comparison + payback</text>
+  <text x="976" y="248" class="s">cost model (xlsx)</text>
+  <text x="976" y="268" class="s">decision memo</text>
+
+  <line x1="272" y1="205" x2="316" y2="205" class="ln" marker-end="url(#a)"/>
+  <line x1="612" y1="205" x2="656" y2="205" class="ln" marker-end="url(#a)"/>
+  <line x1="912" y1="205" x2="956" y2="205" class="ln" marker-end="url(#a)"/>
+
+  <!-- Advisor loop -->
+  <text x="1000" y="338" class="h">AI SHIFT ADVISOR</text>
+  <rect x="30" y="350" width="1140" height="230" rx="14" fill="#E1F5EE" stroke="#0F6E56" stroke-dasharray="6 4"/>
+
+  <rect x="50" y="378" width="190" height="104" rx="10" fill="#ffffff" stroke="#0F6E56"/>
+  <text x="66" y="406" class="t">1 Summarise</text>
+  <text x="66" y="430" class="s">~1,000 log events</text>
+  <text x="66" y="450" class="s">→ ~12 numbered facts</text>
+  <text x="66" y="470" class="s">(F1, F2, …) in code</text>
+
+  <rect x="275" y="378" width="190" height="104" rx="10" fill="#ffffff" stroke="#0F6E56"/>
+  <text x="291" y="406" class="t">2 Explain</text>
+  <text x="291" y="430" class="s">LLM (gpt-4o) writes the</text>
+  <text x="291" y="450" class="s">diagnosis + ≤ 3 proposals,</text>
+  <text x="291" y="470" class="s">citing fact IDs</text>
+
+  <rect x="500" y="378" width="190" height="104" rx="10" fill="#ffffff" stroke="#0F6E56"/>
+  <text x="516" y="406" class="t">3 Check in code</text>
+  <text x="516" y="430" class="s">JSON, allowed levers,</text>
+  <text x="516" y="450" class="s">limits, cited facts exist</text>
+  <text x="516" y="470" class="s">(no invented facts)</text>
+
+  <rect x="725" y="378" width="190" height="104" rx="10" fill="#ffffff" stroke="#0F6E56"/>
+  <text x="741" y="406" class="t">4 Verify</text>
+  <text x="741" y="430" class="s">re-run the simulation:</text>
+  <text x="741" y="450" class="s">+2 points service level,</text>
+  <text x="741" y="470" class="s">output / scrap ≤ 10% worse</text>
+
+  <rect x="950" y="378" width="200" height="104" rx="10" fill="#ffffff" stroke="#0F6E56"/>
+  <text x="966" y="406" class="t">5 Price + log</text>
+  <text x="966" y="430" class="s">cost model prices it;</text>
+  <text x="966" y="450" class="s">report + log with</text>
+  <text x="966" y="470" class="s">tokens and seconds</text>
+
+  <line x1="242" y1="430" x2="271" y2="430" class="gl" marker-end="url(#g)"/>
+  <line x1="467" y1="430" x2="496" y2="430" class="gl" marker-end="url(#g)"/>
+  <line x1="692" y1="430" x2="721" y2="430" class="gl" marker-end="url(#g)"/>
+  <line x1="917" y1="430" x2="946" y2="430" class="gl" marker-end="url(#g)"/>
+  <path d="M820 484 L820 540 L370 540 L370 486" class="gl" marker-end="url(#g)"/>
+  <text x="410" y="562" class="s">not verified → simulation results go back to the model, which revises (≤ 3 rounds)</text>
+
+  <!-- links between layers -->
+  <path d="M465 282 L465 330 L145 330 L145 374" class="ln" marker-end="url(#a)"/>
+  <text x="182" y="324" class="s">run + event log</text>
+  <path d="M820 374 L820 300 L785 300 L785 284" class="ln" marker-end="url(#a)"/>
+  <text x="826" y="320" class="s">runScenario</text>
+
+  <!-- Users -->
+  <rect x="40" y="600" width="540" height="56" rx="10" fill="#FAEEDA" stroke="#854F0B"/>
+  <text x="56" y="626" class="t">Plant manager</text>
+  <text x="56" y="646" class="s">browser UI: live line, breakdowns, outage, seed · reads the advisor report · decides</text>
+  <rect x="620" y="600" width="540" height="56" rx="10" fill="#FAEEDA" stroke="#854F0B"/>
+  <text x="636" y="626" class="t">Evaluation</text>
+  <text x="636" y="646" class="s">10 planted-fault cases · mock baseline · prompt v1 → v2 → v3 · brute-force oracle</text>
+</svg>

@@ -182,15 +182,15 @@ Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be availab
 | ADV-01 | The advisor only recommends; the plant manager decides. No change is applied automatically | – | Ours: trust and safety | ADV | Ours |
 | ADV-02 | The advisor sees summarised facts (per machine and shift), not the raw event log, and never sees future orders | – | Ours: the raw log is too noisy (~1,000 events per run); see also DEM-03 | ADV | Ours |
 | ADV-03 | The advisor runs once per shift at shift handover, with up to 2 revision rounds | At most 3 AI calls per shift | Ours, invented: usage pattern | ADV, BIZ | Ours |
-| ADV-04 | Tokens per AI call | Planning value ~3,000 in and ~1,000 out; replaced by the measured average from our log | Ours | BIZ | To measure |
-| ADV-05 | Price per token | Public list price of the chosen model at the time of the pitch | Ours: the organisers' endpoint gives no price | BIZ | Ours |
+| ADV-04 | Tokens per AI call | Measured: 1,661 in and 417 out per call (gpt-4o, prompt v2, 10 calls); 1.0 calls per diagnosis | Ours, measured (`results/advisor-eval/eval-log.jsonl`) | BIZ | Ours |
+| ADV-05 | Price per token | gpt-4o list price USD 2.50 per 1M input and USD 10 per 1M output tokens (checked 4 Nov 2026), 1 USD = 1 EUR for simplicity; result about EUR 0.008 per diagnosis, EUR 2 per year | Ours: the organisers' endpoint gives no price | BIZ | Ours |
 | ADV-06 | A cheap model for development, a more capable model for final runs | Model name is a config value; `gpt-4o` works, `gpt-4o-mini` is not offered by the endpoint | Organiser tip; other model names to be confirmed with the organisers | ADV | To confirm |
 | ADV-07 | Low temperature and fixed, versioned prompts; every proposal is still verified by the simulation | Temperature 0.2 | Ours: reduces variation, but the AI output is never trusted without a re-run | ADV, EVAL | Ours |
 | ADV-08 | Acceptable advisor response time, including the simulation re-runs | Under 60 s | Ours, invented: the plant manager reads it at shift handover | ADV, EVAL | Ours |
 | ADV-09 | IT upkeep of the advisor | 4 h per month × EUR 80 per hour | Ours, invented (low confidence) | BIZ | Ours |
 | ADV-10 | Plant manager's time saved by the advisor | 20 min per shift × EUR 70 per hour | Ours, invented (low confidence) | BIZ | Ours |
 | ADV-11 | The advisor's AI cost appears only in the business documents, not in the scenario profits | – | Organiser rule | BIZ | Given |
-| ADV-12 | Two prompt versions: v1 (first version) and v2 (ranking, categories, root-cause levers first; extra facts on outage demand, timing of late units and load). v2 is the default | `config/advisor.json` | Ours: v2 fixes the weaknesses of the first real run (missed the empty start, listed consequences as causes) | ADV, EVAL | Ours |
+| ADV-12 | Three prompt versions: v1 (first version), v2 (ranking, categories, root-cause levers first; extra facts on outage demand, timing of late units and load) and v3 (v2 + a constraint fact that compares machine capacity with the supply). v3 is the default | `config/advisor.json` | Ours: v2 fixes the weaknesses of the first real run (missed the empty start, listed consequences as causes) | ADV, EVAL | Ours |
 
 ## 9. Business case and annualising
 
@@ -261,3 +261,4 @@ We test each value below one at a time (low / base / high) and show whether the 
 | 2026-11-04 | LEV-02 generalised to every machine; added LEV-08, COST-11, COST-12, SIM-07; BIZ-02 and BIZ-04 made precise (scenario runner) | |
 | 2026-11-04 | Breakdowns implemented: MAC-09, MAC-10, measured availability; own scenarios SCN-01 to SCN-03; COST-13, BIZ-05; TIME-04 note | |
 | 2026-11-04 | Advisor evaluation EVAL-01 to EVAL-05; prompt v2 (ADV-12); ADV-06: gpt-4o works, gpt-4o-mini not offered | |
+| 2026-11-04 | Facts/prompt v3 (ADV-12); ADV-04 measured tokens; ADV-05 list price; business documents | |

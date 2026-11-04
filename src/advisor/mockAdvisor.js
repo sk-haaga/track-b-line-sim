@@ -21,7 +21,7 @@ export function mockChat(messages) {
   const early = has('shortfall', /in shifts 1[–,\s:]/);
   const breakdowns = has('machine', /breakdowns \(/);
   const constraint = facts.find((f) => f.topic === 'constraint');
-  const cid = constraint ? /^(M\d+)/.exec(constraint.text)?.[1] : 'M3';
+  const cid = (constraint ? /^(M\d+)/.exec(constraint.text)?.[1] : null) ?? 'M3';
   const settings = facts.find((f) => f.topic === 'settings')?.text ?? '';
   const ct = Number(new RegExp(`${cid} (\\d+) min`).exec(settings)?.[1] ?? 13);
 
