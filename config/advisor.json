@@ -1,7 +1,7 @@
 {
   "_note": "AI shift advisor settings (assumptions ADV-03, ADV-06, ADV-07). The model name is a config value; LLM_MODEL in .env is used when model is null. provider: organiser (hackathon endpoint) or mock (offline rule-based baseline).",
   "provider": "organiser",
-  "model": "gpt-4o-mini",
+  "model": "gpt-4o",
   "temperature": 0.2,
   "maxTokens": 1200,
   "maxRounds": 3,
