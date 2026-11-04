@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI shift advisor – Production line</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="advisor.css" />
+</head>
+<body>
+<div id="adv-app">
+  <header class="adv-header">
+    <div>
+      <h1>AI shift advisor</h1>
+      <p class="adv-sub">The AI explains, the simulation decides: every proposal is re-simulated before it counts.</p>
+    </div>
+    <a href="index.html" class="adv-back">← Line simulation</a>
+  </header>
+
+  <section class="adv-controls">
+    <label>Scenario <select id="sel-scenario"></select></label>
+    <label>AI <select id="sel-provider">
+      <option value="organiser">gpt-4o (real AI, needs .env)</option>
+      <option value="mock">Offline rules (no API key)</option>
+    </select></label>
+    <label>Prompt <select id="sel-prompt"></select></label>
+    <button id="btn-run" type="button">▶ Run advisor</button>
+    <span id="run-status" class="adv-status"></span>
+  </section>
+  <p id="scenario-desc" class="adv-desc"></p>
+
+  <main class="adv-grid">
+    <div class="adv-left">
+      <div class="adv-kpis">
+        <div class="adv-kpi"><div class="k-label">On time without changes</div><div class="k-value" id="k-base">–</div><div class="k-unit" id="k-base-sub">service level, seeds 1–2</div></div>
+        <div class="adv-kpi"><div class="k-label">With the recommended fix</div><div class="k-value good" id="k-best">–</div><div class="k-unit" id="k-best-sub">verified by simulation</div></div>
+        <div class="adv-kpi"><div class="k-label">Good parts per shift</div><div class="k-value" id="k-good">–</div><div class="k-unit">without changes</div></div>
+        <div class="adv-kpi"><div class="k-label">AI cost of this run</div><div class="k-value" id="k-tokens">–</div><div class="k-unit" id="k-tokens-sub">tokens · seconds</div></div>
+      </div>
+
+      <div class="adv-card">
+        <h2>Diagnosis</h2>
+        <p id="diagnosis" class="adv-diagnosis">Choose a scenario and press <b>Run advisor</b>.</p>
+        <div id="causes" class="adv-causes"></div>
+      </div>
+
+      <div class="adv-card">
+        <h2>Proposals and how they were verified</h2>
+        <div class="adv-table-wrap">
+          <table class="adv-table">
+            <thead><tr><th>Round</th><th>Proposal</th><th>Δ on time</th><th>Good parts</th><th>Scrap rate</th><th>Check</th><th>Strict</th><th>One-time cost</th><th>Δ profit</th></tr></thead>
+            <tbody id="proposals"><tr><td colspan="9" class="adv-empty">No run yet.</td></tr></tbody>
+          </table>
+        </div>
+        <p class="adv-note">Check = official rule (+2 points on-time delivery, good parts and scrap rate not more than 10% worse, seeds 1–2). Strict = also seeds 1–10 and profit must not fall. Costs come from the rate card, never from the AI.</p>
+      </div>
+
+      <div class="adv-card">
+        <h2>Facts given to the AI</h2>
+        <ul id="facts" class="adv-facts"><li class="adv-empty">No run yet.</li></ul>
+      </div>
+    </div>
+
+    <aside class="adv-chat">
+      <h2>Ask the advisor</h2>
+      <p class="adv-note">Answers use only this run’s facts and simulation results, with fact numbers you can click.</p>
+      <div id="chat-log" class="chat-log"><div class="chat-msg system">Run the advisor first, then ask a question about the result.</div></div>
+      <div id="chat-suggest" class="chat-suggest"></div>
+      <form id="chat-form" class="chat-form">
+        <input id="chat-input" type="text" maxlength="500" placeholder="e.g. Why not buy a second M3?" autocomplete="off" disabled />
+        <button id="chat-send" type="submit" disabled>Send</button>
+      </form>
+      <p id="chat-error" class="chat-error" hidden></p>
+    </aside>
+  </main>
+</div>
+<script src="advisor-page.js" type="module"></script>
+</body>
+</html>

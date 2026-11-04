@@ -11,6 +11,7 @@ Extended from the organisers' `machine_sim` starter. What we changed is listed u
 | Extended simulation, what was added and why, how validated, how to run | this README, sections 1–9 |
 | Architecture figure (also a pitch slide) | `docs/architecture.svg` / `docs/architecture.png` |
 | AI shift advisor | `src/advisor/`, `npm run advise` (section 10) |
+| Advisor dashboard and chat in the browser | `http://localhost:3000/advisor.html` (section 14) |
 | Log of how its proposals were verified | `results/advisor/advisor-log.jsonl`, reports in `results/advisor/` |
 | How the advisor was evaluated and improved | section 11, `results/advisor-eval/summary.md` |
 | Scenario results table with seeds, without and with the recommended countermeasure | `results/scenario-results.md` / `.csv` |
@@ -155,6 +156,17 @@ The v2 evaluation showed one weakness in our own summary: the constraint fact al
 - `docs/business/cost-model.xlsx` (built by `scripts/build_cost_model.py`) recomputes every cost from those quantities and the rate card with **formulas**: machine, material, WIP and finished-goods holding, amortised one-time costs, lost sales, revenue and stock values; KPIs (service level, cost per good unit, total profit, OEE per machine); the comparison of three options with one-time cost and payback; a sensitivity sheet for the lost-sales penalty; and the AI running cost. A check column shows that the workbook reproduces the code's profit exactly (difference 0 in every row).
 - `docs/DECISION_MEMO.md`: one page for the plant manager; every number points to a results file.
 
+### 14. Shift advisor page (dashboard and chat)
+
+**What:** a second page of the browser UI, `http://localhost:3000/advisor.html` (button **AI shift advisor →** on the simulation page). Pick a scenario (reference, our own, or one of the 10 planted faults), the AI (gpt-4o, or offline rules without an API key) and the prompt version, then **Run advisor**:
+- **KPI cards:** on-time delivery without changes and with the recommended, verified fix; good parts per shift; tokens and seconds of the AI.
+- **Diagnosis** with ranked root causes; every fact number (F4, …) is clickable and highlights the fact.
+- **Proposals table:** each proposal with its simulated effect, the official and the strict check, one-time cost and profit change.
+- **Facts** the AI was given.
+- **Chat ("Ask the advisor"):** follow-up questions about that run. The AI answers only from the run's facts and simulation results (`src/advisor/chat.js`); answers that cite a fact that does not exist are flagged. It cannot change the line.
+
+Server routes: `GET /api/advisor/options`, `POST /api/advisor/run`, `POST /api/advisor/chat`. Runs and chat answers are logged in `results/advisor/ui-advisor-log.jsonl` and `ui-chat-log.jsonl` (tokens, seconds). Tested in `test/advisor-chat.test.js`.
+
 ### Limits of our results
 
 - **Horizon and start:** 20-shift scenarios start from an empty line and empty stock (organiser rule); the 60-shift quarter dilutes this but still starts empty.
@@ -169,7 +181,7 @@ The v2 evaluation showed one weakness in our own summary: the constraint fact al
 
 ```bash
 npm install
-npm test                 # all unit tests (124)
+npm test                 # all unit tests (127)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
 npm run scenarios        # results tables, 9 scenarios x 9 options, about 75 s, writes results/

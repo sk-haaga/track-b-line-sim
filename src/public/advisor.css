@@ -1,0 +1,71 @@
+/* advisor.css — the AI shift advisor page (team extension). Uses the variables of style.css. */
+#adv-app { max-width: 1440px; margin: 0 auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+.adv-header { display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; }
+.adv-header h1 { font-size: 26px; }
+.adv-sub { color: var(--text-dim); font-size: 14px; }
+.adv-back { color: var(--text); text-decoration: none; border: 1px solid var(--border); padding: 6px 12px; border-radius: 6px; font-size: 14px; }
+.adv-back:hover { border-color: var(--accent); }
+
+.adv-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.adv-controls label { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-dim); }
+.adv-controls select { background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 14px; max-width: 360px; }
+#btn-run { background: var(--processing); color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-weight: 700; cursor: pointer; font-size: 14px; }
+#btn-run:disabled { opacity: .6; cursor: wait; }
+.adv-status { font-size: 13px; color: var(--text-dim); }
+.adv-status.error { color: #fca5a5; }
+.adv-desc { color: var(--text-dim); font-size: 14px; min-height: 20px; }
+
+.adv-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(320px, 1fr); gap: 16px; align-items: start; }
+.adv-left { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.adv-kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.adv-kpi { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.k-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .04em; }
+.k-value { font-size: 30px; font-weight: 700; margin-top: 4px; }
+.k-value.good { color: var(--processing); }
+.k-unit { font-size: 12px; color: var(--text-dim); }
+
+.adv-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+.adv-card h2, .adv-chat h2 { font-size: 16px; }
+.adv-diagnosis { font-size: 15px; line-height: 1.6; }
+.adv-causes { display: flex; flex-direction: column; gap: 6px; }
+.cause { display: flex; gap: 8px; align-items: baseline; font-size: 14px; }
+.cause-cat { font-size: 11px; background: var(--surface2); border: 1px solid var(--border); border-radius: 999px; padding: 1px 8px; color: var(--text-dim); white-space: nowrap; }
+.fact-ref { display: inline-block; font-size: 11px; font-weight: 700; color: #c7d2fe; background: #312e81; border-radius: 4px; padding: 0 5px; margin: 0 1px; cursor: pointer; border: none; }
+.fact-ref:hover { background: var(--accent); color: #fff; }
+.fact-ref.unknown { background: #7f1d1d; color: #fca5a5; cursor: help; }
+
+.adv-table-wrap { overflow-x: auto; }
+.adv-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.adv-table th { text-align: left; color: var(--text-dim); font-weight: 600; border-bottom: 1px solid var(--border); padding: 6px 8px; white-space: nowrap; }
+.adv-table td { border-bottom: 1px solid var(--border); padding: 8px; vertical-align: top; }
+.adv-table tr.best td { background: rgba(34, 197, 94, .08); }
+.badge { display: inline-block; font-size: 11px; font-weight: 700; border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
+.badge.ok { background: #166534; color: #86efac; }
+.badge.weak { background: #713f12; color: #fde68a; }
+.badge.no { background: #7f1d1d; color: #fca5a5; }
+.badge.rej { background: var(--surface2); color: var(--text-dim); }
+.adv-note { font-size: 12px; color: var(--text-dim); }
+.adv-empty { color: var(--text-dim); font-size: 13px; }
+.adv-facts { list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 13px; line-height: 1.5; }
+.adv-facts li { padding: 6px 8px; border-radius: 6px; border: 1px solid transparent; }
+.adv-facts li.flash { border-color: var(--accent); background: rgba(99, 102, 241, .12); }
+.fact-id { font-weight: 700; color: #c7d2fe; margin-right: 6px; }
+.fact-topic { font-size: 11px; color: var(--text-dim); margin-right: 6px; }
+
+.adv-chat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 10px; position: sticky; top: 16px; max-height: calc(100vh - 32px); }
+.chat-log { flex: 1; min-height: 260px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-right: 4px; }
+.chat-msg { font-size: 14px; line-height: 1.5; padding: 10px 12px; border-radius: 10px; max-width: 95%; white-space: pre-wrap; }
+.chat-msg.user { align-self: flex-end; background: var(--accent); color: #fff; }
+.chat-msg.assistant { align-self: flex-start; background: var(--surface2); }
+.chat-msg.system { align-self: center; color: var(--text-dim); font-size: 13px; background: transparent; }
+.chat-meta { display: block; font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+.chat-suggest { display: flex; flex-wrap: wrap; gap: 6px; }
+.chat-suggest button { background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 4px 10px; font-size: 12px; cursor: pointer; }
+.chat-suggest button:hover { border-color: var(--accent); }
+.chat-form { display: flex; gap: 8px; }
+#chat-input { flex: 1; background: var(--surface2); color: var(--text); border: 1px solid var(--border); border-radius: 6px; padding: 8px 10px; font-size: 14px; }
+#chat-send { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 8px 14px; font-weight: 600; cursor: pointer; }
+#chat-send:disabled, #chat-input:disabled { opacity: .5; cursor: not-allowed; }
+.chat-error { color: #fca5a5; font-size: 13px; }
+
+@media (max-width: 1000px) { .adv-grid { grid-template-columns: 1fr; } .adv-kpis { grid-template-columns: repeat(2, 1fr); } .adv-chat { position: static; max-height: none; } }

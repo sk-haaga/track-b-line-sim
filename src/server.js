@@ -28,6 +28,12 @@ import { DEFAULT_CONFIG }   from './simulation/config.js';
 import { PRESETS, getPreset }   from './simulation/presets.js';
 import { calculateMetrics } from './metrics/collector.js';
 import * as controls from './controls.js';
+import fs from 'fs';
+import { runAdvisor } from './advisor/advisor.js';
+import { askAdvisor } from './advisor/chat.js';
+import { EVAL_CASES } from './advisor/evalCases.js';
+import { ALL_SCENARIOS } from './scenarios/own.js';
+import { loadRateCard } from './economics/rateCard.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PORT      = parseInt(process.env.PORT ?? '3000', 10);
@@ -191,6 +197,76 @@ app.post('/api/control', async (req, reply) => {
   }
 
   return { ok: true, tick: engine.tick };
+});
+
+// ── Shift advisor page (team extension): /advisor.html ────────────────────
+// Runs the AI shift advisor on a scenario and answers follow-up questions about the last run (kept per session).
+const ADVISOR_CFG = JSON.parse(fs.readFileSync(join(__dirname, '..', 'config', 'advisor.json'), 'utf8'));
+const ADVISOR_LOG = join(__dirname, '..', 'results', 'advisor', 'ui-advisor-log.jsonl');
+const CHAT_LOG    = join(__dirname, '..', 'results', 'advisor', 'ui-chat-log.jsonl');
+const RATES = loadRateCard();
+const REFERENCE_TEXT = {
+  baseline: 'reference: flat demand of 34 per shift, no outage (20 shifts)',
+  'supplier-outage': 'reference: flat demand of 34 per shift, supplier outage in shifts 11–12',
+  'demand-swing': 'reference: real demand profile (first 20 shifts), no outage',
+  both: 'reference: real demand profile plus the supplier outage in shifts 11–12',
+};
+const ADVISOR_SCENARIOS = [
+  ...ALL_SCENARIOS.map((s) => ({ id: s.id, group: s.own ? 'Our own scenarios' : 'Reference scenarios', description: s.description ?? REFERENCE_TEXT[s.id] ?? s.id, scenario: s })),
+  ...EVAL_CASES.map((c) => ({ id: c.id, group: 'Planted faults (evaluation)', description: c.description, scenario: c.scenario })),
+];
+const advisorRuns = new Map();   // sid → last advisor run (for the chat)
+
+app.get('/api/advisor/options', async () => ({
+  scenarios: ADVISOR_SCENARIOS.map(({ id, group, description }) => ({ id, group, description })),
+  providers: ['organiser', 'mock'], defaultProvider: ADVISOR_CFG.provider, model: ADVISOR_CFG.model,
+  prompts: ['v1', 'v2', 'v3'], defaultPrompt: ADVISOR_CFG.promptVersion ?? 'v3',
+}));
+
+app.post('/api/advisor/run', async (req, reply) => {
+  const { scenarioId, provider = ADVISOR_CFG.provider, promptVersion = ADVISOR_CFG.promptVersion ?? 'v3' } = req.body ?? {};
+  const entry = ADVISOR_SCENARIOS.find((s) => s.id === scenarioId);
+  if (!entry) { reply.code(400); return { ok: false, error: `unknown scenario ${scenarioId}` }; }
+  if (!['organiser', 'mock'].includes(provider) || !['v1', 'v2', 'v3'].includes(promptVersion)) { reply.code(400); return { ok: false, error: 'invalid provider or prompt' }; }
+  try {
+    const run = await runAdvisor({
+      scenario: entry.scenario, rates: RATES, provider, model: ADVISOR_CFG.model, promptVersion, temperature: ADVISOR_CFG.temperature,
+      maxTokens: ADVISOR_CFG.maxTokens, maxRounds: ADVISOR_CFG.maxRounds, timeoutMs: ADVISOR_CFG.timeoutMs, logFile: ADVISOR_LOG,
+    });
+    advisorRuns.set(req.sid, { run, provider });
+    const last = [...run.rounds].reverse().find((r) => r.checked?.answer);
+    return {
+      ok: true, scenario: entry.id, description: entry.description, provider, model: run.rounds[0]?.model, promptVersion,
+      baseline: run.baseline, facts: run.facts, diagnosis: last?.checked.answer.diagnosis ?? null, rootCauses: last?.checked.answer.rootCauses ?? [],
+      rounds: run.rounds.map((rd) => ({
+        round: rd.round, tokens: rd.tokens, seconds: rd.seconds, answerErrors: rd.answerErrors,
+        proposals: rd.results.map((p) => ({
+          levers: p.levers, description: p.description ?? JSON.stringify(p.levers), rationale: p.rationale, facts: p.facts, errors: p.errors,
+          pass: p.pass ?? false, evidence: p.evidence ?? null, slGainPoints: p.slGainPoints ?? null, goodChange: p.goodChange ?? null,
+          scrapChange: p.scrapChange ?? null, strictPass: p.strictPass ?? null, oneTimeCost: p.oneTimeCost ?? null, profitGain: p.profitGain ?? null,
+          serviceLevel: p.serviceLevel ?? null,
+        })),
+      })),
+      best: run.best ? { description: run.best.description, slGainPoints: run.best.slGainPoints, serviceLevel: run.best.serviceLevel } : null,
+      tokens: run.tokens, seconds: run.seconds,
+    };
+  } catch (err) {
+    reply.code(502);
+    return { ok: false, error: err.message };
+  }
+});
+
+app.post('/api/advisor/chat', async (req, reply) => {
+  const saved = advisorRuns.get(req.sid);
+  if (!saved) { reply.code(400); return { ok: false, error: 'run the advisor on a scenario first' }; }
+  const { question, history = [] } = req.body ?? {};
+  try {
+    const r = await askAdvisor({ run: saved.run, question, history, provider: saved.provider, model: ADVISOR_CFG.model, logFile: CHAT_LOG });
+    return { ok: true, ...r };
+  } catch (err) {
+    reply.code(err.message === 'empty question' ? 400 : 502);
+    return { ok: false, error: err.message };
+  }
 });
 
 // Per-tick history export — CSV or JSON download of every simulation step

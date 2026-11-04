@@ -725,3 +725,7 @@ g[id^="elem-M"]:hover .machine-rect:not(.selected):not(.bottleneck) {
 .disruption-status { font-size: 12px; color: var(--text-dim); }
 .disruption-status.active { color: var(--down); font-weight: 600; }
 #btn-outage { background: var(--starved); color: #fff; }
+
+/* Team extension: link to the shift advisor page */
+.nav-advisor { color: #fff; background: var(--accent); padding: 6px 14px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 14px; margin-left: 16px; }
+.nav-advisor:hover { filter: brightness(1.1); }
