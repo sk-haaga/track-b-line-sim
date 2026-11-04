@@ -1,0 +1,829 @@
+{
+  "provider": "organiser",
+  "model": "gpt-4o",
+  "promptVersion": "v2",
+  "summary": {
+    "cases": 10,
+    "topCauseHit": 0.8,
+    "anyCauseHit": 0.9,
+    "falseCausesPerCase": 0.5,
+    "citationValid": 1,
+    "validProposals": 1,
+    "rootFix": 0.9,
+    "solved": 1,
+    "meanRegret": 2.4500000000000033,
+    "roundsPerCase": 1,
+    "tokensPerCase": 2078,
+    "secondsPerCase": 3.8609999999999998
+  },
+  "results": [
+    {
+      "case": "E01-start-peak",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "quality_scrap"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 43.75,
+      "oracleGain": 43.75,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 2029,
+      "seconds": 3.49,
+      "answer": {
+        "diagnosis": "Orders were late primarily due to the production line starting empty and the initial demand peak in the first few shifts. M3 is the bottleneck machine, operating at maximum capacity, which limits the line's output. High reject rates at M2 further reduce the number of good parts available for assembly.",
+        "rootCauses": [
+          {
+            "cause": "line starts empty and cannot meet initial demand peak",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F4",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          },
+          {
+            "cause": "M3 limits output due to high utilization",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F10",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "high reject rate at M2 reduces good parts",
+            "category": "quality_scrap",
+            "facts": [
+              "F3",
+              "F9"
+            ],
+            "scoredAs": [
+              "quality_scrap"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 43.75
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 10
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 7.250000000000001
+        },
+        {
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 0.9499999999999953
+        }
+      ]
+    },
+    {
+      "case": "E02-outage",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 21.84999999999999,
+      "oracleGain": 25,
+      "regret": 3.1500000000000092,
+      "rounds": 1,
+      "tokens": 2178,
+      "seconds": 5.22,
+      "answer": {
+        "diagnosis": "Orders were late primarily due to a supplier outage in shifts 11–12, which stopped the release of parts for 960 minutes. This caused a backlog that peaked at 28 units and delayed subsequent shifts. Additionally, the production line's capacity is slightly below demand, leading to persistent shortfalls. The busiest machine, M3, limits the line's output, and the line starts empty, which worsens delays early on.",
+        "rootCauses": [
+          {
+            "cause": "Supplier outage stopped part releases in shifts 11–12.",
+            "category": "outage",
+            "facts": [
+              "F6",
+              "F7",
+              "F9",
+              "F10",
+              "F11",
+              "F12"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          },
+          {
+            "cause": "Line capacity is below demand.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F8",
+              "F13"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "Line starts empty, worsening delays early on.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F7"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 21.84999999999999
+        },
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 10
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 16.600000000000005
+        },
+        {
+          "levers": {
+            "sourceInterval": 10
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 2.8000000000000025
+        }
+      ]
+    },
+    {
+      "case": "E03-slow-m3",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "quality_scrap"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 65.8,
+      "oracleGain": 65.8,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 2012,
+      "seconds": 3.4,
+      "answer": {
+        "diagnosis": "The production line struggles to meet demand due to M3 being the bottleneck, operating at full capacity and limiting overall output. The line starts empty, causing delays in the first few shifts. Additionally, the reject rate at M2 further reduces the effective output, exacerbating the backlog.",
+        "rootCauses": [
+          {
+            "cause": "M3 bottleneck limits output below demand",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F7",
+              "F10",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "Line starts empty, delaying early shifts",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          },
+          {
+            "cause": "Reject rate at M2 reduces effective output",
+            "category": "quality_scrap",
+            "facts": [
+              "F3",
+              "F7"
+            ],
+            "scoredAs": [
+              "quality_scrap"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 65.8
+        },
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 65.35000000000001
+        },
+        {
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 1.100000000000001
+        }
+      ]
+    },
+    {
+      "case": "E04-high-reject",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "bottleneck_capacity"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 55.65,
+      "oracleGain": 56.3,
+      "regret": 0.6499999999999986,
+      "rounds": 1,
+      "tokens": 2075,
+      "seconds": 4.16,
+      "answer": {
+        "diagnosis": "The production line is unable to meet demand due to a combination of high reject rates at M2 and insufficient capacity at M3. The high reject rate at M2 leads to significant scrap, reducing the number of good parts available for assembly. M3 is the bottleneck, operating at 88% utilization, which limits the overall output of the line. Starting with no finished-goods stock further exacerbates delays, especially in the early shifts.",
+        "rootCauses": [
+          {
+            "cause": "High reject rate at M2 reduces good parts available for assembly.",
+            "category": "quality_scrap",
+            "facts": [
+              "F1",
+              "F3",
+              "F6"
+            ],
+            "scoredAs": [
+              "quality_scrap"
+            ]
+          },
+          {
+            "cause": "M3 is the bottleneck and limits the line's output.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F7",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "No finished-goods stock at the start of the line causes delays in early shifts.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "rejectRate": {
+              "M2": 0.15
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 55.65
+        },
+        {
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 1.0000000000000009
+        },
+        {
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 43.4
+        }
+      ]
+    },
+    {
+      "case": "E05-slow-source",
+      "topCauseHit": false,
+      "anyCauseHit": true,
+      "falseCauses": [
+        "bottleneck_capacity"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 81.39999999999999,
+      "oracleGain": 81.8,
+      "regret": 0.4000000000000057,
+      "rounds": 1,
+      "tokens": 2022,
+      "seconds": 4.93,
+      "answer": {
+        "diagnosis": "Orders were late because the production line's output is below demand, leading to a persistent backlog. The main bottleneck is M3, which has the longest cycle time and is the busiest machine. Additionally, the source releases parts too slowly, further limiting the line's ability to meet demand.",
+        "rootCauses": [
+          {
+            "cause": "M3 limits the line's output due to its long cycle time and high utilization.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F7",
+              "F10",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "The source releases parts too slowly, reducing the line's throughput.",
+            "category": "supply_rate",
+            "facts": [
+              "F3",
+              "F7"
+            ],
+            "scoredAs": [
+              "supply_rate"
+            ]
+          },
+          {
+            "cause": "The line and finished-goods stock start empty, causing delays in the first few shifts.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 10
+            }
+          },
+          "errors": [],
+          "pass": false,
+          "slGainPoints": 0.10000000000000009
+        },
+        {
+          "levers": {
+            "sourceInterval": 12
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 81.39999999999999
+        },
+        {
+          "levers": {
+            "initialFinishedGoods": 30
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 44.400000000000006
+        }
+      ]
+    },
+    {
+      "case": "E06-m3-breakdowns",
+      "topCauseHit": false,
+      "anyCauseHit": false,
+      "falseCauses": [
+        "demand_peak"
+      ],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 58.9,
+      "oracleGain": 58.9,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 2178,
+      "seconds": 3.36,
+      "answer": {
+        "diagnosis": "Orders were late because the production line's capacity is below demand, and M3 frequently breaks down, further reducing output. The line starts empty, which causes delays in the first few shifts. M3 is the bottleneck, as it is the busiest machine and limits the line's output.",
+        "rootCauses": [
+          {
+            "cause": "M3 breakdowns reduce output and create delays.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F7",
+              "F10",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "The line starts empty, delaying early shifts.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          },
+          {
+            "cause": "Demand exceeds average output, creating a backlog.",
+            "category": "demand_peak",
+            "facts": [
+              "F4",
+              "F7"
+            ],
+            "scoredAs": [
+              "demand_peak"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 58.9
+        },
+        {
+          "levers": {
+            "initialFinishedGoods": 30
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 53.69999999999999
+        },
+        {
+          "levers": {
+            "sourceInterval": 10
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 8.699999999999996
+        }
+      ]
+    },
+    {
+      "case": "E07-m1-breakdowns",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": false,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 74.4,
+      "oracleGain": 74.55000000000001,
+      "regret": 0.15000000000000568,
+      "rounds": 1,
+      "tokens": 2148,
+      "seconds": 3.2,
+      "answer": {
+        "diagnosis": "Orders were late because the production line's output is below demand, primarily due to frequent breakdowns at M1 and the slow cycle time of M3. The line starts empty, which worsens delays early in the shifts. The backlog grows over time, further delaying subsequent orders.",
+        "rootCauses": [
+          {
+            "cause": "Frequent breakdowns at M1 reduce its availability and starve downstream machines.",
+            "category": "breakdowns",
+            "facts": [
+              "F8",
+              "F9",
+              "F10",
+              "F11"
+            ],
+            "scoredAs": [
+              "breakdowns"
+            ]
+          },
+          {
+            "cause": "M3's slow cycle time limits the line's output.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F3",
+              "F7",
+              "F12"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          },
+          {
+            "cause": "The line starts empty, causing delays in early shifts.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F6"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "cycleTime": {
+              "M3": 10
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 7.500000000000001
+        },
+        {
+          "levers": {
+            "initialFinishedGoods": 30
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 54.85
+        },
+        {
+          "levers": {
+            "parallelMachines": {
+              "S1": 1
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 74.4
+        }
+      ]
+    },
+    {
+      "case": "E08-healthy",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 0,
+      "slGain": 0,
+      "oracleGain": 0,
+      "regret": 0,
+      "rounds": 1,
+      "tokens": 1625,
+      "seconds": 1.74,
+      "answer": {
+        "diagnosis": "The production line is healthy, with a 100% service level over 20 shifts. No orders were late, and the line consistently produced more than the required demand. The finished-goods stock grew steadily, indicating no timing or capacity issues.",
+        "rootCauses": [
+          {
+            "cause": "no problem",
+            "category": "none",
+            "facts": [
+              "F1",
+              "F5",
+              "F6",
+              "F7"
+            ],
+            "scoredAs": [
+              "none"
+            ]
+          }
+        ]
+      },
+      "tried": []
+    },
+    {
+      "case": "E09-combined",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 60.95,
+      "oracleGain": 75.9,
+      "regret": 14.950000000000003,
+      "rounds": 1,
+      "tokens": 2348,
+      "seconds": 3.5,
+      "answer": {
+        "diagnosis": "Orders were late primarily due to high initial demand when the line and finished-goods stock started empty, compounded by a supplier outage in shifts 11–12. The bottleneck at M3 further limited the line's ability to recover from these disruptions. While the average output matches demand, timing issues caused delays and backlogs.",
+        "rootCauses": [
+          {
+            "cause": "Line and finished-goods stock started empty, leading to delays during high initial demand.",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F4",
+              "F7"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          },
+          {
+            "cause": "Supplier outage in shifts 11–12 reduced input parts, causing delays and backlog.",
+            "category": "outage",
+            "facts": [
+              "F6",
+              "F7"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          },
+          {
+            "cause": "M3 is the bottleneck, limiting the line's ability to recover from disruptions.",
+            "category": "bottleneck_capacity",
+            "facts": [
+              "F13",
+              "F8"
+            ],
+            "scoredAs": [
+              "bottleneck_capacity"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 60.95
+        },
+        {
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 37.4
+        },
+        {
+          "levers": {
+            "sourceInterval": 9
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 4.100000000000003
+        }
+      ]
+    },
+    {
+      "case": "E10-outage-in-quiet-period",
+      "topCauseHit": true,
+      "anyCauseHit": true,
+      "falseCauses": [],
+      "citationValid": 1,
+      "validProposals": 1,
+      "rootFix": true,
+      "solved": true,
+      "proposals": 3,
+      "slGain": 47.599999999999994,
+      "oracleGain": 52.800000000000004,
+      "regret": 5.20000000000001,
+      "rounds": 1,
+      "tokens": 2165,
+      "seconds": 5.61,
+      "answer": {
+        "diagnosis": "Orders were late due to two main issues: the line and finished-goods stock starting empty, and a supplier outage during shifts 11–12. The empty start caused severe delays in the first few shifts, creating a backlog that affected subsequent shifts. The supplier outage further disrupted production, leading to late orders during and after the outage period.",
+        "rootCauses": [
+          {
+            "cause": "line and stock start empty",
+            "category": "no_stock",
+            "facts": [
+              "F2",
+              "F4",
+              "F7"
+            ],
+            "scoredAs": [
+              "no_stock"
+            ]
+          },
+          {
+            "cause": "supplier outage",
+            "category": "outage",
+            "facts": [
+              "F6",
+              "F7",
+              "F9",
+              "F10",
+              "F11",
+              "F12"
+            ],
+            "scoredAs": [
+              "outage"
+            ]
+          }
+        ]
+      },
+      "tried": [
+        {
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 47.599999999999994
+        },
+        {
+          "levers": {
+            "sourceInterval": 9
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 2.450000000000002
+        },
+        {
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 10
+            }
+          },
+          "errors": [],
+          "pass": true,
+          "slGainPoints": 2.0000000000000018
+        }
+      ]
+    }
+  ]
+}
