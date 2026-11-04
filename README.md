@@ -81,11 +81,32 @@ Off by default, so the four reference scenarios are unchanged (`MAC-07`). The UI
 
 **Why:** the plant manager (and the demo) can trigger the plant's two disruptions and repeat a run exactly, without the browser console.
 
+### 10. AI shift advisor (`ADV-01` to `ADV-11`)
+
+**Idea: the LLM explains, the simulation decides.** `src/advisor/`:
+1. `summarise.js` turns one run (about 1,000 raw events) into about 10 **numbered facts** (KPIs, demand, shortfalls and backlog, outage, each machine's busy / blocked / starved / down time and breakdowns, the constraint).
+2. `prompt.js` asks the model for a plain-language diagnosis and at most 3 proposals, **citing fact IDs**, using only the allowed levers within their limits (`LEV-*`). The model never prices.
+3. `advisor.js` checks every answer **in code**: valid JSON, known levers within limits, and every cited fact ID exists (an invented fact is rejected).
+4. Every valid proposal is **verified by re-running the simulation**: the official check (seeds 1–2) and our strict check (seeds 1–10, profit). The cost model adds the one-time cost and profit change.
+5. If nothing is verified, the simulation results go back to the model, which revises (at most 3 rounds).
+6. Every round is logged in `results/advisor/advisor-log.jsonl`: model, prompt version, **tokens and seconds**, diagnosis, proposals and their checks. A Markdown report per scenario goes to `results/advisor/`.
+
+`src/advisor/llm.js` is model-agnostic: provider `organiser` (the hackathon endpoint; credentials from `.env`) or `mock` (a rule-based stand-in with the same interface, `mockAdvisor.js`). The mock runs offline, is used in the tests, and is the **baseline** the AI advisor is evaluated against.
+
+```bash
+cp .env.example .env          # then fill in CLIENT_ID, CLIENT_SECRET, LLM_BASE_URL from the API sheet
+npm run advise -- --scenario both                    # model from config/advisor.json
+npm run advise -- --scenario quarter-60 --model gpt-4o
+npm run advise -- --all --provider mock              # offline baseline for every scenario
+```
+
+**How validated:** `test/advisor.test.js` (fact sheet content and size, JSON parsing, rejection of invented facts and out-of-limit levers, the exact request to the endpoint with a fake server, the revise loop, token logging).
+
 ### How to run everything
 
 ```bash
 npm install
-npm test                 # all unit tests (109)
+npm test                 # all unit tests (116)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
 npm run scenarios        # results tables, 9 scenarios x 9 options, about 75 s, writes results/
@@ -94,7 +115,7 @@ npm start                # UI at http://localhost:3000
 
 ### Not done yet
 
-Costs and service level in the UI; production control (the line always runs flat out); supplier-side countermeasures; the AI shift advisor.
+Costs and service level in the UI; production control (the line always runs flat out); supplier-side countermeasures; the advisor evaluation (planted-fault test set, model comparison).
 
 ---
 
