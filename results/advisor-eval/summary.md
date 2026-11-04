@@ -7,6 +7,7 @@ Planted-fault test set: 10 cases (src/advisor/evalCases.js), each with a known c
 | mock (rules) | v1 | 40% | 80% | 0.8 | 100% | 100% | 70% | 100% | 5.4 | 1.0 | 0 | 0.0 |
 | gpt-4o | v1 | 50% | 90% | 0.7 | 100% | 100% | 80% | 90% | 4.6 | 1.2 | 2142 | 4.1 |
 | gpt-4o | v2 | 80% | 90% | 0.5 | 100% | 100% | 90% | 100% | 2.5 | 1.0 | 2078 | 3.9 |
+| gpt-4o | v3 | 90% | 100% | 0.0 | 100% | 100% | 90% | 100% | 2.6 | 1.0 | 2174 | 5.8 |
 
 ## Per case
 
@@ -19,6 +20,7 @@ Expected cause: demand_peak or no_stock; root-cause levers: initialFinishedGoods
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +38.5 | 1 |
 | gpt-4o | v1 | M3 is the bottleneck, limiting output to 36.7 parts per shift. (bottleneck_capacity) | yes | yes | yes | +38.5 | 1 |
 | gpt-4o | v2 | line starts empty and cannot meet initial demand peak (no_stock) | yes | yes | yes | +43.8 | 1 |
+| gpt-4o | v3 | line starts empty and demand peak in early shifts (no_stock) | yes | yes | yes | +38.5 | 1 |
 
 ### E02-outage: flat demand 34, reference supplier outage
 
@@ -29,6 +31,7 @@ Expected cause: outage; root-cause levers: initialFinishedGoods, bufferCapacity;
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +25.0 | 1 |
 | gpt-4o | v1 | Supplier outage caused no parts to be released in shifts 11–12, creating a backlog. (outage) | yes | yes | yes | +25.0 | 1 |
 | gpt-4o | v2 | Supplier outage stopped part releases in shifts 11–12. (outage) | yes | yes | yes | +21.8 | 1 |
+| gpt-4o | v3 | supplier outage in shifts 11–12 (outage) | yes | yes | yes | +25.0 | 1 |
 
 ### E03-slow-m3: planted: M3 assembly slowed from 13 to 15 min
 
@@ -39,6 +42,7 @@ Expected cause: bottleneck_capacity; root-cause levers: cycleTime, parallelMachi
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +65.4 | 1 |
 | gpt-4o | v1 | M3 cycle time is too slow, creating a bottleneck. (bottleneck_capacity) | yes | yes | yes | +65.8 | 1 |
 | gpt-4o | v2 | M3 bottleneck limits output below demand (bottleneck_capacity) | yes | yes | yes | +65.8 | 1 |
+| gpt-4o | v3 | M3 is too slow to meet demand (bottleneck_capacity) | yes | yes | yes | +65.8 | 1 |
 
 ### E04-high-reject: planted: M2 reject rate raised from 10% to 25%
 
@@ -49,6 +53,7 @@ Expected cause: quality_scrap; root-cause levers: rejectRate; oracle: +56.3 poin
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | no | no | yes | +56.3 | 1 |
 | gpt-4o | v1 | M3 is the bottleneck, limiting the line's output. (bottleneck_capacity) | yes | yes | yes | +55.6 | 1 |
 | gpt-4o | v2 | High reject rate at M2 reduces good parts available for assembly. (quality_scrap) | yes | yes | yes | +55.6 | 1 |
+| gpt-4o | v3 | Supply rate limits output below demand (supply_rate) | yes | yes | yes | +56.2 | 1 |
 
 ### E05-slow-source: planted: source releases a part every 14 min instead of 11
 
@@ -59,6 +64,7 @@ Expected cause: supply_rate; root-cause levers: sourceInterval; oracle: +81.8 po
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | no | no | yes | +59.3 | 1 |
 | gpt-4o | v1 | M3 has the longest cycle time and is the bottleneck, limiting the line's output. (bottleneck_capacity) | yes | yes | yes | +82.0 | 1 |
 | gpt-4o | v2 | M3 limits the line's output due to its long cycle time and high utilization. (bottleneck_capacity) | yes | yes | yes | +81.4 | 1 |
+| gpt-4o | v3 | source releases parts too slowly (supply_rate) | yes | yes | yes | +81.4 | 1 |
 
 ### E06-m3-breakdowns: flat demand 34, breakdowns with doubled repair times
 
@@ -69,6 +75,7 @@ Expected cause: breakdowns; root-cause levers: parallelMachines, cycleTime, init
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +57.5 | 1 |
 | gpt-4o | v1 | M3 is the bottleneck due to its long cycle time and frequent breakdowns. (breakdowns, bottleneck_capacity) | yes | yes | yes | +57.5 | 1 |
 | gpt-4o | v2 | M3 breakdowns reduce output and create delays. (bottleneck_capacity) | no | yes | yes | +58.9 | 1 |
+| gpt-4o | v3 | M3 breakdowns reduced capacity below demand. (breakdowns) | yes | yes | yes | +58.9 | 1 |
 
 ### E07-m1-breakdowns: flat demand 34, only M1 breaks down, repairs four times as long
 
@@ -79,6 +86,7 @@ Expected cause: breakdowns; root-cause levers: bufferCapacity, initialFinishedGo
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | no | yes | +70.7 | 1 |
 | gpt-4o | v1 | Frequent breakdowns at M1 reduce its availability and starve downstream machines. (breakdowns) | yes | no | yes | +70.7 | 1 |
 | gpt-4o | v2 | Frequent breakdowns at M1 reduce its availability and starve downstream machines. (breakdowns) | yes | no | yes | +74.4 | 1 |
+| gpt-4o | v3 | Frequent breakdowns at M1 reduced its availability and starved downstream machines. (breakdowns) | yes | no | yes | +74.4 | 1 |
 
 ### E08-healthy: flat demand 28, nothing planted: no problem to find
 
@@ -89,6 +97,7 @@ Expected cause: none; root-cause levers: none (nothing to fix); oracle: +0.0 poi
 | mock (rules) | v1 | no problem (none) | yes | yes | yes | – | 1 |
 | gpt-4o | v1 | M3 is the bottleneck, limiting the line's output. (bottleneck_capacity) | no | no | no | – | 3 |
 | gpt-4o | v2 | no problem (none) | yes | yes | yes | – | 1 |
+| gpt-4o | v3 | no problem (none) | yes | yes | yes | – | 1 |
 
 ### E09-combined: real demand, outage and breakdowns together
 
@@ -99,6 +108,7 @@ Expected cause: demand_peak or no_stock or outage or breakdowns; root-cause leve
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +61.0 | 1 |
 | gpt-4o | v1 | M3 is the bottleneck, limiting the line's output. (bottleneck_capacity) | yes | yes | yes | +46.4 | 1 |
 | gpt-4o | v2 | Line and finished-goods stock started empty, leading to delays during high initial demand. (no_stock) | yes | yes | yes | +61.0 | 1 |
+| gpt-4o | v3 | no initial finished-goods stock (no_stock) | yes | yes | yes | +61.0 | 1 |
 
 ### E10-outage-in-quiet-period: reference "both": the outage falls in low-demand shifts, the start matters more
 
@@ -109,3 +119,4 @@ Expected cause: demand_peak or no_stock; root-cause levers: initialFinishedGoods
 | mock (rules) | v1 | Large orders at the start hit an empty line and empty stock (demand_peak) | yes | yes | yes | +47.6 | 1 |
 | gpt-4o | v1 | High demand in early shifts exceeded production capacity. (demand_peak, bottleneck_capacity) | yes | yes | yes | +47.6 | 1 |
 | gpt-4o | v2 | line and stock start empty (no_stock) | yes | yes | yes | +47.6 | 1 |
+| gpt-4o | v3 | line and stock started empty (no_stock) | yes | yes | yes | +47.6 | 1 |
