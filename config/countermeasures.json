@@ -65,7 +65,12 @@
     "baseline": null,
     "supplier-outage": "m3-ct12-fg30",
     "demand-swing": "fg60",
-    "both": "fg60"
+    "both": "fg60",
+    "baseline-bd": "m3-ct12",
+    "supplier-outage-bd": "m3-ct12-fg30",
+    "demand-swing-bd": "fg60",
+    "both-bd": "fg60",
+    "quarter-60": "fg60"
   },
   "_recommended_note": "null = no countermeasure (both rows of the results table are identical).",
   "_recommended_status": "provisional, chosen by rule BIZ-04 (highest profit among the options that pass the strict check); to be confirmed by the business team."

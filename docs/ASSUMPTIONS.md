@@ -89,7 +89,7 @@ This file is the single table of all assumptions, as the General Brief requires:
 | TIME-01 | 1 tick = 1 minute; 1 shift = 480 ticks (8 hours) | – | Organiser | SIM, COST | Given |
 | TIME-02 | The plant runs one shift per working day | 240 shifts per year | Organiser: the rate card spreads investments over 8 years at 240 shifts per year | COST, BIZ | Given |
 | TIME-03 | No breaks and no planned downtime inside a shift | 480 working minutes per shift | Ours, invented: simplification, not modelled; named as a limit | SIM | Ours |
-| TIME-04 | Our own "warm start" scenarios first run 6 shifts that are not counted | 6 warm-up shifts | Ours, derived: in our runs output reaches full speed from shift 2, but the number of parts in the line only settles (~16) after shift 6. The four reference scenarios keep the cold start | SIM, EVAL | To confirm |
+| TIME-04 | Our own "warm start" scenarios first run 6 shifts that are not counted | 6 warm-up shifts | Ours, derived: in our runs output reaches full speed from shift 2, but the number of parts in the line only settles (~16) after shift 6. The four reference scenarios keep the cold start. Not implemented yet: the 60-shift quarter (SCN-02) dilutes the cold start instead | SIM, EVAL | To confirm |
 
 ## 2. Demand and orders
 
@@ -127,7 +127,10 @@ This file is the single table of all assumptions, as the General Brief requires:
 | MAC-07 | Breakdowns are switched off in the four reference scenarios and on in our own breakdown scenarios | – | Ours: keeps the reference results comparable between teams | SIM, EVAL | Ours |
 | MAC-08 | An extra parallel machine is identical to the original (cycle time, reject rate, failure chances) | – | Organiser code: a spawned machine copies the original | SIM | Given |
 
-Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be available about 93% of the time (see *Derived constants*).
+| MAC-09 | One random draw per finished part; the failure modes of a station share it, so at most one mode fires per part | – | Ours: simple, reproducible, and the probabilities in the CSV are small | SIM | Ours |
+| MAC-10 | A repair-time factor scales all repair times at once | Default 1 (sensitivity 0.5–1.5) | Ours: implements the MAC-03 sensitivity test | SIM | Ours |
+
+Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be available about 93% of the time (see *Derived constants*). Measured: 93.0% over 200 shifts (seed 1); test `test/breakdowns.test.js` checks 91.5–95% over seeds 1–3. With breakdowns the line makes about 34.3 instead of 36.8 good stands per shift.
 
 ## 5. Costs and accounting
 
@@ -145,6 +148,7 @@ Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be availab
 | COST-10 | Profit includes holding cost for finished stock. Cost per good unit is reported twice: without finished-stock holding (the organiser check, EUR 102.8) and with it | – | Ours: compare like with like, as the README asks; with holding, the baseline cost per unit is a few euros higher | COST, BIZ | Ours |
 | COST-11 | An extra machine's EUR 95,000 investment is amortised like every one-time cost (= the EUR 49.48 per shift depreciation, never both), and its station's hour rate is charged for every scheduled hour | EUR 769.48 per shift for an extra M3 | Organiser | COST | Given |
 | COST-12 | Making a machine slower, raising the reject rate or removing buffer slots earns no refund | EUR 0 | Ours: investments are not reversible | COST | Ours |
+| COST-13 | In the sensitivity columns, finished stock left at the end of a run is valued at EUR 45 instead of EUR 103 | EUR 45 | Ours, derived: one extra stand costs about 38 ÷ 0.9 (line yield) ≈ EUR 42 of material plus holding. Removes the profit a push line books by overproducing (see COST-04) | COST, BIZ | Ours |
 
 ## 6. Limits on the levers (advisor and countermeasure comparison)
 
@@ -195,6 +199,15 @@ Validation target for MAC-01 to MAC-03: with breakdowns on, M3 should be availab
 | BIZ-02 | Results of 20-shift periods can be added up; stock carried from one period to the next is ignored | – | Ours: simplification; checked with one 60-shift run. Because every period starts from an empty line and stock options get their starting stock in every period, the annual view is an upper bound | BIZ | Ours |
 | BIZ-03 | Investments are spread over 8 years | 1,920 shifts | Organiser | COST, BIZ | Given |
 | BIZ-04 | Decision rule: recommend the option with the highest profit among the options that pass the strict check (SIM-04), and report its service level. If the client sets a service-level target, recommend the cheapest option that meets it | – | Ours: the brief gives no target. `npm run scenarios` shows the best option by this rule; the chosen option per scenario is stored in `config/countermeasures.json` | BIZ | To confirm |
+| BIZ-05 | A more realistic annual view: 4 × the 60-shift quarter (SCN-02), with breakdowns and one outage per quarter; starting stock given once per quarter. Shown with end stock at EUR 103 and at EUR 45 (COST-13). BIZ-01 stays as an upper bound | 4 quarters per year | Ours, derived from TIME-02 and SUP-02 | BIZ | Ours |
+
+## 10. Own scenarios
+
+| ID | Assumption | Value | Source and reasoning | Used in | Status |
+|---|---|---|---|---|---|
+| SCN-01 | Each reference scenario is also run with machine breakdowns (`<id>-bd`); the four reference scenarios themselves stay unchanged | 20 shifts | Ours: brief asks for extra scenarios for own features | SIM, EVAL, BIZ | Ours |
+| SCN-02 | "quarter-60": the full 60-shift demand profile = one quarter (240 shifts per year), the reference outage in shift 11, breakdowns on | 60 shifts | Ours, derived from TIME-02 and SUP-02 (4 outages per year = 1 per quarter) | SIM, BIZ | Ours |
+| SCN-03 | The outage in quarter-60 falls in shift 11, the same position as in the reference scenarios | Ticks 4,800–5,760 | Ours, invented: keeps it comparable; outage timing is not known | SIM | Ours |
 
 ---
 
@@ -235,3 +248,4 @@ We test each value below one at a time (low / base / high) and show whether the 
 |---|---|---|
 | 2026-11-04 | First version | |
 | 2026-11-04 | LEV-02 generalised to every machine; added LEV-08, COST-11, COST-12, SIM-07; BIZ-02 and BIZ-04 made precise (scenario runner) | |
+| 2026-11-04 | Breakdowns implemented: MAC-09, MAC-10, measured availability; own scenarios SCN-01 to SCN-03; COST-13, BIZ-05; TIME-04 note | |

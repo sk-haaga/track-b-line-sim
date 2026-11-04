@@ -27,6 +27,10 @@ export function summarise(runs) {
     costPerGoodUnit: mean(runs.map((r) => r.costs.costPerGoodUnit)),
     costPerGoodUnitExFg: mean(runs.map((r) => r.costs.costPerGoodUnitExFg)),
     totalProfit: mean(runs.map((r) => r.costs.totalProfit)),
+    totalProfitEndStockAtMarginal: mean(runs.map((r) => r.costs.totalProfitEndStockAtMarginal ?? r.costs.totalProfit)),
+    finishedGoodsEnd: mean(runs.map((r) => r.kpis.finishedGoodsEnd ?? 0)),
+    failures: mean(runs.map((r) => r.kpis.failures ?? 0)),
+    availabilityM3: mean(runs.map((r) => r.kpis.machines?.M3?.oee?.availability ?? 1)),
     lostSales: mean(runs.map((r) => r.costs.lostSales)),
   };
 }

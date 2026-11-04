@@ -99,19 +99,26 @@ export async function runHeadless({
     }
     flush(hist.length ? hist[hist.length - 1].tick + 1 : 0);
   }
+  // Team extension: machine breakdowns (engine failure log), always reported, with mode and repair time.
+  for (const f of engine.getFailureLog?.() ?? []) {
+    events.push({ tick: f.tick, shift: Math.floor(f.tick / TICKS_PER_SHIFT) + 1, type: 'machine_failure', machine: f.machine, mode: f.mode, ticks: f.repairTicks });
+  }
   events.sort((a, b) => a.tick - b.tick);
 
   const total = shifts * TICKS_PER_SHIFT;
   const machines = {};
   for (const m of engine.machines) {
-    const busy = m.ticksProcessing, flowLoss = m.ticksBlocked + m.ticksStarved;
+    const busy = m.ticksProcessing, flowLoss = m.ticksBlocked + m.ticksStarved, down = m.ticksDown ?? 0;
     const quality = m.partsProcessed ? 1 - (m.id === 'M2' ? engine.scrapSink.partsReceived : 0) / m.partsProcessed : 1;
     machines[m.id] = {
       utilisation: +(busy / total).toFixed(3),
       blocked: +(m.ticksBlocked / total).toFixed(3),
       starved: +(m.ticksStarved / total).toFixed(3),
-      // OEE = availability x performance x quality (see the Track B README); availability is 1 without breakdowns
-      oee: { availability: 1, performance: +(busy / (busy + flowLoss || 1)).toFixed(3), quality: +quality.toFixed(3) },
+      down: +(down / total).toFixed(3),
+      failures: m.failures ?? 0,
+      // OEE = availability x performance x quality (see the Track B README). Team extension: availability = share of
+      // scheduled ticks the machine was not under repair (1 without breakdowns).
+      oee: { availability: +(1 - down / total).toFixed(3), performance: +(busy / (busy + flowLoss || 1)).toFixed(3), quality: +quality.toFixed(3) },
     };
     machines[m.id].oee.value = +(machines[m.id].oee.availability * machines[m.id].oee.performance * machines[m.id].oee.quality).toFixed(3);
   }
@@ -127,6 +134,7 @@ export async function runHeadless({
     backlogEnd: backlog,
     avgWip: +(perShift.reduce((a, r) => a + r.wip, 0) / shifts).toFixed(2),
     finishedGoodsEnd: stock,
+    failures: engine.machines.reduce((a, m) => a + (m.failures ?? 0), 0),
     machines,
   };
   return { perShift, kpis, events };

@@ -14,6 +14,7 @@ export const MachineState = {
   PROCESSING: 'PROCESSING',  // actively working on a part
   BLOCKED:    'BLOCKED',     // finished but downstream buffer is full
   STARVED:    'STARVED',     // no part in upstream buffer to work on
+  DOWN:       'DOWN',        // broken down, under repair (team extension: breakdowns)
 };
 
 // ─── Part ──────────────────────────────────────────────────────────────────
@@ -75,6 +76,12 @@ export class Machine {
     this.ticksBlocked    = 0;
     this.ticksStarved    = 0;
     this.ticksIdle       = 0;
+    this.ticksDown       = 0;      // ticks under repair (breakdowns)
+
+    // Breakdowns: repair countdown, number of failures, last failure mode
+    this.repairTicksLeft = 0;
+    this.failures        = 0;
+    this.lastFailureMode = null;
 
     // Parts processed by this machine (for per-machine throughput)
     this.partsProcessed  = 0;

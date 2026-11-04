@@ -98,11 +98,12 @@ export function calculateMetrics(state) {
     blocked: m.winBlocked    ?? m.ticksBlocked,
     starved: m.winStarved    ?? m.ticksStarved,
     idle:    m.winIdle       ?? m.ticksIdle,
+    down:    m.winDown       ?? m.ticksDown ?? 0,
   });
 
   const machineMetrics = machines.map(m => {
     const w = winTicks(m);
-    const totalTicks = w.proc + w.blocked + w.starved + w.idle;
+    const totalTicks = w.proc + w.blocked + w.starved + w.idle + w.down;
     const utilization  = totalTicks > 0 ? w.proc    / totalTicks : 0;
     const blockedRatio = totalTicks > 0 ? w.blocked / totalTicks : 0;
     const starvedRatio = totalTicks > 0 ? w.starved / totalTicks : 0;
@@ -147,7 +148,7 @@ export function calculateMetrics(state) {
   const stationAgg = new Map(); // stationId -> aggregate
   for (const mc of machines) {
     const w = winTicks(mc);
-    const totalTicks = w.proc + w.blocked + w.starved + w.idle;
+    const totalTicks = w.proc + w.blocked + w.starved + w.idle + w.down;
     const a = stationAgg.get(mc.stationId) ?? {
       stationId: mc.stationId, proc: 0, blocked: 0, starved: 0, total: 0,
       // Parallel machines in a station share one input and one output buffer,

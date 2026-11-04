@@ -55,20 +55,40 @@ Extended from the organisers' `machine_sim` starter. What we changed is listed u
 
 The recommended options in `config/countermeasures.json` are **provisional** (best by rule `BIZ-04`) until the business team confirms them.
 
+### 7. Machine breakdowns (`MAC-01` to `MAC-10`)
+
+**What:** a new machine state **DOWN**. When a machine finishes a part it fails with the probability of its failure modes from `data/failure_rates.csv` (TWF and HDF at M1, PWF and OSF at M3, RNF at every station; one draw per part from the machine's own random stream `failure:<id>`). It then stays DOWN for the mode's repair time, keeps the part, and finishes it after the repair. The modes live in `src/simulation/failureModes.js`; a test checks they still equal the CSV.
+
+Switch it on with `config.breakdowns = { enabled: true }` (optional `repairTimeFactor` for the sensitivity test), or in the UI from the browser console:
+```js
+fetch('/api/control', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ params: { breakdowns: { enabled: true } } }) })
+```
+Off by default, so the four reference scenarios are unchanged (`MAC-07`). The UI shows DOWN machines in purple and adds "Down" to the machine time split. `runHeadless` now reports OEE availability below 1, failures per machine, and `machine_failure` events (machine, mode, repair time) in the event log.
+
+**Why:** without breakdowns every machine is available 100% of the time, which no real plant has. Breakdowns come in bursts, which is what buffers and stock protect against.
+
+**How validated:** `test/breakdowns.test.js`. M3 is available **93.0%** of the time over 200 shifts, against the ~93% expected from the CSV; failures per part match the CSV; a machine is DOWN for exactly the repair time and keeps its part; the same seed gives the same failures; and breakdowns do **not** change which parts M2 rejects (separate random streams). The engine outage still equals the helper's outage with breakdowns on.
+
+### 8. Own scenarios and a more realistic annual view (`SCN-01` to `SCN-03`, `BIZ-05`, `COST-13`)
+
+**What:** `src/scenarios/own.js` adds five scenarios next to the four unchanged reference scenarios: each reference scenario with breakdowns (`baseline-bd`, `supplier-outage-bd`, `demand-swing-bd`, `both-bd`) and **`quarter-60`**: the full 60-shift demand profile (one quarter), one outage and breakdowns. `npm run scenarios` now runs all nine (about 75 seconds) and adds an **annual view from 4 quarters**, shown twice: with the end stock valued at EUR 103 (organiser rule) and at EUR 45 (what one extra stand costs to make).
+
+**Why:** the first annual view repeats a 20-shift run from an empty line with free stock twelve times a year, which overstates both the problem and the value of stock. And because the line always runs flat out, it ends every run with stock that the EUR 103 rule counts as profit; the EUR 45 column shows which options only look good because of that.
+
 ### How to run everything
 
 ```bash
 npm install
-npm test                 # all unit tests (98)
+npm test                 # all unit tests (109)
 npm run check            # organiser acceptance check of runHeadless, must print ALL PASSED
 npm run reference        # four reference scenarios, writes results/reference-check.md
-npm run scenarios        # results tables with costs and countermeasures, writes results/
+npm run scenarios        # results tables, 9 scenarios x 9 options, about 75 s, writes results/
 npm start                # UI at http://localhost:3000
 ```
 
 ### Not done yet
 
-UI controls for seed, outage and costs; machine breakdowns; supplier-side countermeasures; warm-start scenarios; the AI shift advisor.
+UI controls for seed, outage, breakdowns and costs (today only through the API or the browser console); production control (the line always runs flat out); supplier-side countermeasures; the AI shift advisor.
 
 ---
 

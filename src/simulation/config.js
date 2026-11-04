@@ -12,6 +12,10 @@ export const DEFAULT_CONFIG = {
   // same run. Seed 0 is valid. Assumption SIM-01.
   seed: 1,
 
+  // Machine breakdowns from data/failure_rates.csv (modes: null = defaults in
+  // failureModes.js). Off for the plant's reference scenarios (MAC-07).
+  breakdowns: { enabled: false, repairTimeFactor: 1, modes: null },
+
   // Source node: generates one part every `interval` ticks.
   // With the cycle times below, M3 Assembly is the bottleneck of the default
   // line: the feed into M3 (after the M2 rejects) runs about 6% above its

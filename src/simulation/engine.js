@@ -24,12 +24,18 @@
  *   - Supplier outage: config.source.outage = { startTick, endTick }. On the
  *     engine ticks startTick < n <= endTick the source is skipped: its counter
  *     does not advance and no part (and no material) is released.
+ *   - Machine breakdowns: config.breakdowns = { enabled, repairTimeFactor, modes }.
+ *     When a machine finishes a part it fails with the summed probability of its
+ *     failure modes (one draw from its own stream 'failure:<id>'). It is then
+ *     DOWN for the mode's repair time, keeps the part, and finishes it after the
+ *     repair (reject gate, push). Off by default (assumption MAC-07).
  */
 
 import EventEmitter from 'events';
 import { Part, Source, Buffer, Machine, Sink, ScrapSink, MachineState } from './entities.js';
 import { DEFAULT_CONFIG } from './config.js';
 import { createRandom, normaliseSeed } from './random.js';
+import { DEFAULT_FAILURE_MODES } from './failureModes.js';
 
 // Maximum machines allowed per station (original + 3 parallel).
 const MAX_MACHINES_PER_STATION = 4;
@@ -55,11 +61,33 @@ export function normaliseOutage(outage) {
   return { startTick: Math.trunc(startTick), endTick: Math.trunc(endTick) };
 }
 
+// Validates the breakdown setting. Accepts null/false (off), true (on with the
+// default modes) or { enabled, repairTimeFactor = 1, modes = null }.
+export function normaliseBreakdowns(b) {
+  if (b === null || b === undefined || b === false) return { enabled: false, repairTimeFactor: 1, modes: null };
+  if (b === true) return { enabled: true, repairTimeFactor: 1, modes: null };
+  if (typeof b !== 'object') throw new Error('breakdowns must be true, false, null or an object');
+  const repairTimeFactor = b.repairTimeFactor === undefined ? 1 : Number(b.repairTimeFactor);
+  if (!Number.isFinite(repairTimeFactor) || repairTimeFactor <= 0) throw new Error('breakdowns.repairTimeFactor must be > 0');
+  const modes = b.modes ?? null;
+  if (modes !== null) {
+    if (!Array.isArray(modes)) throw new Error('breakdowns.modes must be an array or null');
+    for (const m of modes) {
+      if (typeof m.mode !== 'string' || typeof m.station !== 'string'
+        || !(m.probabilityPerPart >= 0 && m.probabilityPerPart < 1) || !(m.repairTicks > 0)) {
+        throw new Error(`invalid failure mode ${JSON.stringify(m)}`);
+      }
+    }
+  }
+  return { enabled: b.enabled !== false, repairTimeFactor, modes };
+}
+
 export class SimulationEngine extends EventEmitter {
   constructor(config = DEFAULT_CONFIG) {
     super();
     this._config = JSON.parse(JSON.stringify(config)); // deep clone so mutations don't bleed
     this._config.source.outage = normaliseOutage(this._config.source.outage);
+    this._config.breakdowns = normaliseBreakdowns(this._config.breakdowns);
     this._reset();
 
     this._running     = false;
@@ -108,6 +136,7 @@ export class SimulationEngine extends EventEmitter {
     this.pause();
     this._nextPartId = 1;
     this._config = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+    this._config.breakdowns = normaliseBreakdowns(this._config.breakdowns);
     this._reset();
   }
 
@@ -120,6 +149,7 @@ export class SimulationEngine extends EventEmitter {
     this._nextPartId = 1;
     this._config = JSON.parse(JSON.stringify(config));
     this._config.source.outage = normaliseOutage(this._config.source.outage);
+    this._config.breakdowns = normaliseBreakdowns(this._config.breakdowns);
     this._reset();
   }
 
@@ -128,7 +158,7 @@ export class SimulationEngine extends EventEmitter {
   updateConfig(params) {
     // Changes that can shift which station is the constraint reset the
     // utilization window (see _lastFlowChangeTick); plain speed changes do not.
-    const flowChange = ['sourceInterval', 'cycleTime', 'rejectRate', 'bufferCapacity']
+    const flowChange = ['sourceInterval', 'cycleTime', 'rejectRate', 'bufferCapacity', 'breakdowns']
       .some(k => params[k] !== undefined);
 
     if (params.speed !== undefined) this.setSpeed(params.speed);
@@ -147,6 +177,16 @@ export class SimulationEngine extends EventEmitter {
       const outage = normaliseOutage(params.outage);
       this.source.outage = outage;
       this._config.source.outage = outage;
+    }
+
+    // Breakdowns: on/off, repair-time factor or modes; takes effect immediately.
+    if (params.breakdowns !== undefined) {
+      const current = this._config.breakdowns;
+      const next = typeof params.breakdowns === 'object' && params.breakdowns !== null
+        ? normaliseBreakdowns({ ...current, ...params.breakdowns })
+        : normaliseBreakdowns(params.breakdowns);
+      this._config.breakdowns = next;
+      this._breakdowns = this._resolveBreakdowns(next);
     }
 
     // Seed: stored now, takes effect at the next reset() so a running run is
@@ -275,6 +315,7 @@ export class SimulationEngine extends EventEmitter {
     return {
       tick:     this.tick,
       seed:     this._random.seed,
+      breakdowns: { enabled: this._config.breakdowns.enabled, repairTimeFactor: this._config.breakdowns.repairTimeFactor },
       ticksPerSecond: this._config.ticksPerSecond,
       running:  this._running,
       speed:    this._speed,
@@ -302,6 +343,10 @@ export class SimulationEngine extends EventEmitter {
         ticksBlocked:    m.ticksBlocked,
         ticksStarved:    m.ticksStarved,
         ticksIdle:       m.ticksIdle,
+        ticksDown:       m.ticksDown,
+        repairTicksLeft: m.repairTicksLeft,
+        failures:        m.failures,
+        lastFailureMode: m.lastFailureMode,
         // Recent-window counts (last UTIL_WINDOW_TICKS ticks) = current cumulative
         // minus the cumulative at the window baseline. Used by the collector for
         // utilization and bottleneck detection so the verdict tracks current flow.
@@ -309,6 +354,7 @@ export class SimulationEngine extends EventEmitter {
         winBlocked:    m.ticksBlocked    - (windowBase?.[`${m.id}_ticksBlocked`]    ?? 0),
         winStarved:    m.ticksStarved    - (windowBase?.[`${m.id}_ticksStarved`]    ?? 0),
         winIdle:       m.ticksIdle       - (windowBase?.[`${m.id}_ticksIdle`]       ?? 0),
+        winDown:       m.ticksDown       - (windowBase?.[`${m.id}_ticksDown`]       ?? 0),
         partsProcessed:  m.partsProcessed,
         currentPartId:   m.currentPart?.id ?? null,
       })),
@@ -356,10 +402,58 @@ export class SimulationEngine extends EventEmitter {
     this.sink      = new Sink();
     this.scrapSink = new ScrapSink();
 
+    // Breakdowns: per-station failure modes and the log of every failure.
+    this._breakdowns = this._resolveBreakdowns(cfg.breakdowns);
+    this._failureLog = [];
+
     this._reindex();
 
     // Store initial config values so reset always goes back to defaults
     this._initialConfig = JSON.parse(JSON.stringify(cfg));
+  }
+
+  // Failure modes grouped by station. 'M1' → the station of machine M1 (so a
+  // spawned M1b fails the same way); 'any' → every station (MAC-02).
+  _resolveBreakdowns(b) {
+    const cfg = b ?? normaliseBreakdowns(null);
+    const byStation = new Map();
+    if (!cfg.enabled) return { enabled: false, byStation };
+    const modes = cfg.modes ?? DEFAULT_FAILURE_MODES;
+    const stations = [...new Set(this._config.machines.map((m) => m.stationId))];
+    for (const st of stations) byStation.set(st, []);
+    for (const fm of modes) {
+      const targets = fm.station === 'any'
+        ? stations
+        : [this._config.machines.find((m) => m.id === fm.station)?.stationId].filter(Boolean);
+      for (const st of targets) {
+        byStation.get(st).push({
+          mode: fm.mode,
+          probabilityPerPart: fm.probabilityPerPart,
+          repairTicks: Math.max(1, Math.round(fm.repairTicks * cfg.repairTimeFactor)),
+        });
+      }
+    }
+    return { enabled: true, byStation };
+  }
+
+  // One draw per finished part from the machine's own stream. The modes split
+  // the unit interval, so at most one mode fires. Returns the mode or null.
+  _drawFailure(machine) {
+    if (!this._breakdowns.enabled) return null;
+    const modes = this._breakdowns.byStation.get(machine.stationId);
+    if (!modes || modes.length === 0) return null;
+    const u = this._random.stream(`failure:${machine.id}`)();
+    let acc = 0;
+    for (const fm of modes) {
+      acc += fm.probabilityPerPart;
+      if (u < acc) return fm;
+    }
+    return null;
+  }
+
+  // Failures recorded since the last reset: [{ tick, machine, mode, repairTicks }]
+  getFailureLog() {
+    return this._failureLog;
   }
 
   // Rebuild the buffer lookup and station ordering. Call whenever the set of
@@ -454,6 +548,7 @@ export class SimulationEngine extends EventEmitter {
         case MachineState.BLOCKED:    m.ticksBlocked++;    break;
         case MachineState.STARVED:    m.ticksStarved++;    break;
         case MachineState.IDLE:       m.ticksIdle++;       break;
+        case MachineState.DOWN:       m.ticksDown++;       break;
       }
     }
 
@@ -495,6 +590,7 @@ export class SimulationEngine extends EventEmitter {
       row[`${id}_ticksBlocked`]     = m.ticksBlocked;
       row[`${id}_ticksStarved`]     = m.ticksStarved;
       row[`${id}_ticksIdle`]        = m.ticksIdle;
+      row[`${id}_ticksDown`]        = m.ticksDown;
       row[`${id}_currentPartId`]    = m.currentPart?.id ?? '';
     }
 
@@ -513,6 +609,13 @@ export class SimulationEngine extends EventEmitter {
   // ── Private: advance one machine for this tick ────────────────────────────
 
   _advanceMachine(machine) {
+    if (machine.state === MachineState.DOWN) {
+      machine.repairTicksLeft--;
+      if (machine.repairTicksLeft > 0) return;  // still under repair
+      this._finishPart(machine);                // repaired: finish the part it holds
+      return;
+    }
+
     if (machine.state === MachineState.BLOCKED) {
       this._tryPushDownstream(machine);
       return;
@@ -525,6 +628,23 @@ export class SimulationEngine extends EventEmitter {
 
     machine.partsProcessed++;
 
+    // Breakdown: the machine fails as it finishes this part (MAC-01). It keeps
+    // the part and finishes it after the repair (MAC-04).
+    const failure = this._drawFailure(machine);
+    if (failure) {
+      machine.state           = MachineState.DOWN;
+      machine.repairTicksLeft = failure.repairTicks;
+      machine.failures++;
+      machine.lastFailureMode = failure.mode;
+      this._failureLog.push({ tick: this.tick, machine: machine.id, mode: failure.mode, repairTicks: failure.repairTicks });
+      return;
+    }
+
+    this._finishPart(machine);
+  }
+
+  // Reject gate, then push downstream (or to the sink).
+  _finishPart(machine) {
     // Quality gate: randomly reject parts based on rejectRate. Each machine has
     // its own seeded stream, so parallel gates and other random processes do
     // not shift each other's sequences.

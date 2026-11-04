@@ -30,9 +30,12 @@ export const REFERENCE_SCENARIOS = [
   { id: 'both',            demand: 'profile', outage: REFERENCE_OUTAGE, referenceServiceLevel: 0.48, tolerance: 0.05 },
 ];
 
-// The default line with the scenario's outage written into the engine config.
+// The default line with the scenario's outage (and, for our own scenarios, breakdowns) written into the engine config.
 export function configFor(scenario, base = DEFAULT_CONFIG) {
   const cfg = JSON.parse(JSON.stringify(base));
   cfg.source.outage = scenario.outage ? { ...scenario.outage } : null;
+  if (scenario.breakdowns) {
+    cfg.breakdowns = { ...(cfg.breakdowns ?? {}), enabled: true, ...(typeof scenario.breakdowns === 'object' ? scenario.breakdowns : {}) };
+  }
   return cfg;
 }

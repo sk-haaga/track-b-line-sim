@@ -7,3 +7,13 @@ demand-swing,without,none,1 2,36.75,0.5625,12.88,0.1022,107.90,102.87,19941.51,�
 demand-swing,with,Finished-goods stock 60,1 2,36.75,1.0000,12.88,0.1022,112.69,102.87,41085.51,verified; strict: yes
 both,without,none,1 2,33.63,0.4720,9.47,0.1060,110.94,108.34,13111.92,–
 both,with,Finished-goods stock 60,1 2,33.63,1.0000,9.47,0.1060,115.81,108.34,39586.92,verified; strict: yes
+baseline-bd (own),without,none,1 2,34.42,0.9490,13.38,0.1036,109.67,107.06,44661.10,–
+baseline-bd (own),with,M3 cycle time 13 -> 12 min,1 2,36.90,0.9855,10.73,0.1018,107.70,102.88,47989.60,verified; strict: yes
+supplier-outage-bd (own),without,none,1 2,31.65,0.4755,10.68,0.1072,114.88,112.68,9139.19,–
+supplier-outage-bd (own),with,M3 12 min + stock 30,1 2,33.42,0.9935,8.06,0.1047,114.25,109.07,44432.85,verified; strict: yes
+demand-swing-bd (own),without,none,1 2,34.42,0.4825,13.38,0.1036,110.61,107.06,13802.10,–
+demand-swing-bd (own),with,Finished-goods stock 60,1 2,34.42,0.9880,13.38,0.1036,115.04,107.06,39237.10,verified; strict: yes
+both-bd (own),without,none,1 2,31.65,0.2290,10.68,0.1072,114.75,112.68,-2694.30,–
+both-bd (own),with,Finished-goods stock 60,1 2,31.65,0.9880,10.68,0.1072,118.28,112.68,37858.19,verified; strict: yes
+quarter-60 (own),without,none,1 2,33.27,0.7325,13.57,0.0984,114.88,108.38,75439.82,–
+quarter-60 (own),with,Finished-goods stock 60,1 2,33.27,0.9960,13.57,0.0984,120.77,108.38,108141.82,verified; strict: yes

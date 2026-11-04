@@ -23,6 +23,8 @@
 
 export const AMORTISATION_SHIFTS = 1920;   // 8 years x 240 shifts per year (BIZ-03)
 export const FG_VALUE_PER_UNIT = 103;      // baseline cost per good unit 102.8, rounded (COST-04)
+export const MARGINAL_FG_VALUE = 45;       // sensitivity for COST-04: end stock valued at the cost of one extra unit
+                                           // (material 38 / 0.9 line yield ≈ 42, plus holding) instead of EUR 103
 
 // 'M3b' → 'M3': spawned parallel machines pay the hour rate of their station's original machine.
 export function rateKeyFor(machineId) {
@@ -34,9 +36,13 @@ export function rateKeyFor(machineId) {
 /**
  * computeCosts(result, opts) → cost breakdown and KPIs
  *   result  output of runHeadless
- *   opts    { rates, initialFinishedGoods = 0, oneTimeCosts = 0, fgValue = FG_VALUE_PER_UNIT }
+ *   opts    { rates, initialFinishedGoods = 0, oneTimeCosts = 0, fgValue = FG_VALUE_PER_UNIT, marginalFgValue }
+ *   Also returns totalProfitEndStockAtMarginal: the same profit with the end stock valued at marginalFgValue (COST-04
+ *   sensitivity), which removes the gain a push line books simply by overproducing.
  */
-export function computeCosts(result, { rates, initialFinishedGoods = 0, oneTimeCosts = 0, fgValue = FG_VALUE_PER_UNIT } = {}) {
+export function computeCosts(result, {
+  rates, initialFinishedGoods = 0, oneTimeCosts = 0, fgValue = FG_VALUE_PER_UNIT, marginalFgValue = MARGINAL_FG_VALUE,
+} = {}) {
   if (!rates) throw new Error('computeCosts needs rates (loadRateCard())');
   const { perShift, kpis } = result;
   const shifts = perShift.length;
@@ -80,6 +86,8 @@ export function computeCosts(result, { rates, initialFinishedGoods = 0, oneTimeC
     startStockValue: round2(startStockValue),
     endStockValue: round2(endStockValue),
     totalProfit: round2(totalProfit),
+    totalProfitEndStockAtMarginal: round2(totalProfit - endStockValue + kpis.finishedGoodsEnd * marginalFgValue),
+    finishedGoodsEnd: kpis.finishedGoodsEnd,
     costPerGoodUnitExFg: round2((machineCost + materialCost + holdingWip + amortised) / good),
     costPerGoodUnit: round2((machineCost + materialCost + holdingWip + holdingFg + amortised) / good),
     shipped,

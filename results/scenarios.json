@@ -42,7 +42,13 @@
       8,
       9,
       10
-    ]
+    ],
+    "annualFromQuarter": {
+      "scenario": "quarter-60",
+      "periodsPerYear": 4
+    },
+    "_annualFromQuarter_note": "More realistic annual view (BIZ-02): 4 x the 60-shift quarter scenario with breakdowns and one outage; starting stock is given once per quarter. Also shown with end stock valued at EUR 45 (COST-04 sensitivity).",
+    "marginalFgValuePerUnit": 45
   },
   "scenarios": {
     "baseline": {
@@ -60,6 +66,10 @@
           "costPerGoodUnit": 107.515,
           "costPerGoodUnitExFg": 102.86500000000001,
           "totalProfit": 48953.509999999995,
+          "totalProfitEndStockAtMarginal": 45763.509999999995,
+          "finishedGoodsEnd": 55,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 90
         },
         "strict": {
@@ -83,6 +93,10 @@
           "costPerGoodUnit": 107.378,
           "costPerGoodUnitExFg": 102.65799999999999,
           "totalProfit": 49105.114,
+          "totalProfitEndStockAtMarginal": 45886.114,
+          "finishedGoodsEnd": 55.5,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 36
         }
       },
@@ -110,6 +124,10 @@
             "costPerGoodUnit": 109.68,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 47447.509999999995,
+            "totalProfitEndStockAtMarginal": 43097.509999999995,
+            "finishedGoodsEnd": 75,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -133,6 +151,10 @@
             "costPerGoodUnit": 109.548,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 47542.714,
+            "totalProfitEndStockAtMarginal": 43163.714,
+            "finishedGoodsEnd": 75.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -159,6 +181,7 @@
             }
           },
           "profitGain": -1506,
+          "profitGainEndStockAtMarginal": -2666,
           "paybackShifts": null
         },
         "fg40": {
@@ -184,6 +207,10 @@
             "costPerGoodUnit": 111.86000000000001,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 45847.509999999995,
+            "totalProfitEndStockAtMarginal": 40337.509999999995,
+            "finishedGoodsEnd": 95,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -207,6 +234,10 @@
             "costPerGoodUnit": 111.726,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 45942.714,
+            "totalProfitEndStockAtMarginal": 40403.714,
+            "finishedGoodsEnd": 95.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -233,6 +264,7 @@
             }
           },
           "profitGain": -3106,
+          "profitGainEndStockAtMarginal": -5426,
           "paybackShifts": null
         },
         "fg60": {
@@ -258,6 +290,10 @@
             "costPerGoodUnit": 114.035,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 44247.509999999995,
+            "totalProfitEndStockAtMarginal": 37577.509999999995,
+            "finishedGoodsEnd": 115,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -281,6 +317,10 @@
             "costPerGoodUnit": 113.899,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 44342.714,
+            "totalProfitEndStockAtMarginal": 37643.714,
+            "finishedGoodsEnd": 115.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -307,6 +347,7 @@
             }
           },
           "profitGain": -4706,
+          "profitGainEndStockAtMarginal": -8186,
           "paybackShifts": null
         },
         "m3-ct12": {
@@ -342,6 +383,10 @@
             "costPerGoodUnit": 105.14,
             "costPerGoodUnitExFg": 98.715,
             "totalProfit": 50696.055,
+            "totalProfitEndStockAtMarginal": 45012.055,
+            "finishedGoodsEnd": 98,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -365,6 +410,10 @@
             "costPerGoodUnit": 105.00399999999999,
             "costPerGoodUnitExFg": 98.25000000000001,
             "totalProfit": 50799.205,
+            "totalProfitEndStockAtMarginal": 44889.005000000005,
+            "finishedGoodsEnd": 101.9,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -390,6 +439,7 @@
             }
           },
           "profitGain": 1742.5450000000055,
+          "profitGainEndStockAtMarginal": -751.4549999999945,
           "paybackShifts": 291.9644095384765
         },
         "m3-ct12-fg30": {
@@ -426,6 +476,10 @@
             "costPerGoodUnit": 108.225,
             "costPerGoodUnitExFg": 98.715,
             "totalProfit": 48296.055,
+            "totalProfitEndStockAtMarginal": 40872.055,
+            "finishedGoodsEnd": 128,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -449,6 +503,10 @@
             "costPerGoodUnit": 108.07399999999998,
             "costPerGoodUnitExFg": 98.25000000000001,
             "totalProfit": 48399.205,
+            "totalProfitEndStockAtMarginal": 40749.005000000005,
+            "finishedGoodsEnd": 131.9,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -475,6 +533,7 @@
             }
           },
           "profitGain": -657.4549999999945,
+          "profitGainEndStockAtMarginal": -4891.4549999999945,
           "paybackShifts": "not reached"
         },
         "reject-5": {
@@ -510,6 +569,10 @@
             "costPerGoodUnit": 105.885,
             "costPerGoodUnitExFg": 101.07,
             "totalProfit": 50236.065,
+            "totalProfitEndStockAtMarginal": 46988.065,
+            "finishedGoodsEnd": 56,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -533,6 +596,10 @@
             "costPerGoodUnit": 105.75800000000001,
             "costPerGoodUnitExFg": 100.951,
             "totalProfit": 50330.03300000001,
+            "totalProfitEndStockAtMarginal": 47082.03300000001,
+            "finishedGoodsEnd": 56,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -558,6 +625,7 @@
             }
           },
           "profitGain": 1282.5550000000076,
+          "profitGainEndStockAtMarginal": 1224.5550000000076,
           "paybackShifts": 470.8037895781675
         },
         "buf2-12": {
@@ -593,6 +661,10 @@
             "costPerGoodUnit": 108.07,
             "costPerGoodUnitExFg": 103.41999999999999,
             "totalProfit": 48543.8,
+            "totalProfitEndStockAtMarginal": 45353.8,
+            "finishedGoodsEnd": 55,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 90
           },
           "strict": {
@@ -616,6 +688,10 @@
             "costPerGoodUnit": 107.99799999999998,
             "costPerGoodUnitExFg": 103.28,
             "totalProfit": 48647.534999999996,
+            "totalProfitEndStockAtMarginal": 45428.534999999996,
+            "finishedGoodsEnd": 55.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 36
           },
           "check": {
@@ -642,6 +718,7 @@
             }
           },
           "profitGain": -409.70999999999185,
+          "profitGainEndStockAtMarginal": -409.70999999999185,
           "paybackShifts": "not reached"
         },
         "extra-m3": {
@@ -677,6 +754,10 @@
             "costPerGoodUnit": 123.83500000000001,
             "costPerGoodUnitExFg": 117.33500000000001,
             "totalProfit": 36057.6,
+            "totalProfitEndStockAtMarginal": 30112.6,
+            "finishedGoodsEnd": 102.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -700,6 +781,10 @@
             "costPerGoodUnit": 123.96099999999998,
             "costPerGoodUnitExFg": 117.08,
             "totalProfit": 35927.275,
+            "totalProfitEndStockAtMarginal": 29877.875,
+            "finishedGoodsEnd": 104.3,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -726,6 +811,7 @@
             }
           },
           "profitGain": -12895.909999999996,
+          "profitGainEndStockAtMarginal": -15650.909999999996,
           "paybackShifts": "not reached"
         }
       },
@@ -746,6 +832,10 @@
           "costPerGoodUnit": 111.12,
           "costPerGoodUnitExFg": 108.33500000000001,
           "totalProfit": 31021.42,
+          "totalProfitEndStockAtMarginal": 31021.42,
+          "finishedGoodsEnd": 0,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 15300
         },
         "strict": {
@@ -769,6 +859,10 @@
           "costPerGoodUnit": 110.727,
           "costPerGoodUnitExFg": 107.90299999999998,
           "totalProfit": 32084.551,
+          "totalProfitEndStockAtMarginal": 32084.551,
+          "finishedGoodsEnd": 0,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 14571
         }
       },
@@ -796,6 +890,10 @@
             "costPerGoodUnit": 112.66,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 43927.92,
+            "totalProfitEndStockAtMarginal": 43202.92,
+            "finishedGoodsEnd": 12.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 1935
           },
           "strict": {
@@ -819,6 +917,10 @@
             "costPerGoodUnit": 112.295,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 44335.251000000004,
+            "totalProfitEndStockAtMarginal": 43552.251000000004,
+            "finishedGoodsEnd": 13.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 1764
           },
           "check": {
@@ -839,6 +941,7 @@
             }
           },
           "profitGain": 12906.5,
+          "profitGainEndStockAtMarginal": 12181.5,
           "paybackShifts": null
         },
         "fg40": {
@@ -864,6 +967,10 @@
             "costPerGoodUnit": 114.91,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 44348.92,
+            "totalProfitEndStockAtMarginal": 42463.92,
+            "finishedGoodsEnd": 32.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -887,6 +994,10 @@
             "costPerGoodUnit": 114.556,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 44577.651,
+            "totalProfitEndStockAtMarginal": 42634.651,
+            "finishedGoodsEnd": 33.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -907,6 +1018,7 @@
             }
           },
           "profitGain": 13327.5,
+          "profitGainEndStockAtMarginal": 11442.5,
           "paybackShifts": null
         },
         "fg60": {
@@ -932,6 +1044,10 @@
             "costPerGoodUnit": 117.28999999999999,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 42748.92,
+            "totalProfitEndStockAtMarginal": 39703.92,
+            "finishedGoodsEnd": 52.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -955,6 +1071,10 @@
             "costPerGoodUnit": 116.93199999999999,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 42977.651,
+            "totalProfitEndStockAtMarginal": 39874.651,
+            "finishedGoodsEnd": 53.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -975,6 +1095,7 @@
             }
           },
           "profitGain": 11727.5,
+          "profitGainEndStockAtMarginal": 8682.5,
           "paybackShifts": null
         },
         "m3-ct12": {
@@ -1010,6 +1131,10 @@
             "costPerGoodUnit": 108.75999999999999,
             "costPerGoodUnitExFg": 105.25,
             "totalProfit": 42897.85,
+            "totalProfitEndStockAtMarginal": 41853.85,
+            "finishedGoodsEnd": 18,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 5445
           },
           "strict": {
@@ -1033,6 +1158,10 @@
             "costPerGoodUnit": 108.31499999999998,
             "costPerGoodUnitExFg": 104.526,
             "totalProfit": 44688.795,
+            "totalProfitEndStockAtMarginal": 43348.994999999995,
+            "finishedGoodsEnd": 23.1,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 3942
           },
           "check": {
@@ -1053,6 +1182,7 @@
             }
           },
           "profitGain": 11876.43,
+          "profitGainEndStockAtMarginal": 10832.43,
           "paybackShifts": 49.22499349819878
         },
         "m3-ct12-fg30": {
@@ -1089,6 +1219,10 @@
             "costPerGoodUnit": 111.85,
             "costPerGoodUnitExFg": 105.25,
             "totalProfit": 46184.85,
+            "totalProfitEndStockAtMarginal": 43400.85,
+            "finishedGoodsEnd": 48,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -1112,6 +1246,10 @@
             "costPerGoodUnit": 111.479,
             "costPerGoodUnitExFg": 104.526,
             "totalProfit": 46405.994999999995,
+            "totalProfitEndStockAtMarginal": 43326.19499999999,
+            "finishedGoodsEnd": 53.1,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -1132,6 +1270,7 @@
             }
           },
           "profitGain": 15163.43,
+          "profitGainEndStockAtMarginal": 12379.43,
           "paybackShifts": 38.76988329618963
         },
         "reject-5": {
@@ -1167,6 +1306,10 @@
             "costPerGoodUnit": 109.24000000000001,
             "costPerGoodUnitExFg": 106.355,
             "totalProfit": 35935.240000000005,
+            "totalProfitEndStockAtMarginal": 35935.240000000005,
+            "finishedGoodsEnd": 0,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 11970
           },
           "strict": {
@@ -1190,6 +1333,10 @@
             "costPerGoodUnit": 109.077,
             "costPerGoodUnitExFg": 106.201,
             "totalProfit": 35499.609,
+            "totalProfitEndStockAtMarginal": 35499.609,
+            "finishedGoodsEnd": 0,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 12465
           },
           "check": {
@@ -1210,6 +1357,7 @@
             }
           },
           "profitGain": 4913.820000000007,
+          "profitGainEndStockAtMarginal": 4913.820000000007,
           "paybackShifts": 150.08010525618027
         },
         "buf2-12": {
@@ -1245,6 +1393,10 @@
             "costPerGoodUnit": 110.945,
             "costPerGoodUnitExFg": 108.135,
             "totalProfit": 35838.655,
+            "totalProfitEndStockAtMarginal": 35838.655,
+            "finishedGoodsEnd": 0,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 10980
           },
           "strict": {
@@ -1268,6 +1420,10 @@
             "costPerGoodUnit": 110.602,
             "costPerGoodUnitExFg": 107.753,
             "totalProfit": 37174.402,
+            "totalProfitEndStockAtMarginal": 37157.002,
+            "finishedGoodsEnd": 0.3,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 9945
           },
           "check": {
@@ -1288,6 +1444,7 @@
             }
           },
           "profitGain": 4817.235000000001,
+          "profitGainEndStockAtMarginal": 4817.235000000001,
           "paybackShifts": 3.7293255514740156
         },
         "extra-m3": {
@@ -1323,6 +1480,10 @@
             "costPerGoodUnit": 129.905,
             "costPerGoodUnitExFg": 126.34,
             "totalProfit": 28298.83,
+            "totalProfitEndStockAtMarginal": 27109.83,
+            "finishedGoodsEnd": 20.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 5220
           },
           "strict": {
@@ -1346,6 +1507,10 @@
             "costPerGoodUnit": 129.444,
             "costPerGoodUnitExFg": 125.547,
             "totalProfit": 30054.979,
+            "totalProfitEndStockAtMarginal": 28604.979,
+            "finishedGoodsEnd": 25,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 3672
           },
           "check": {
@@ -1368,6 +1533,7 @@
             }
           },
           "profitGain": -2722.5899999999965,
+          "profitGainEndStockAtMarginal": -3911.5899999999965,
           "paybackShifts": "not reached"
         }
       },
@@ -1388,6 +1554,10 @@
           "costPerGoodUnit": 107.9,
           "costPerGoodUnitExFg": 102.86500000000001,
           "totalProfit": 19941.510000000002,
+          "totalProfitEndStockAtMarginal": 13619.509999999998,
+          "finishedGoodsEnd": 109,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 24660
         },
         "strict": {
@@ -1411,6 +1581,10 @@
           "costPerGoodUnit": 107.73000000000002,
           "costPerGoodUnitExFg": 102.65799999999999,
           "totalProfit": 20314.714,
+          "totalProfitEndStockAtMarginal": 13963.713999999998,
+          "finishedGoodsEnd": 109.5,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 24408
         }
       },
@@ -1438,6 +1612,10 @@
             "costPerGoodUnit": 109.16499999999999,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 29854.510000000002,
+            "totalProfitEndStockAtMarginal": 22372.510000000002,
+            "finishedGoodsEnd": 129,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 13815
           },
           "strict": {
@@ -1461,6 +1639,10 @@
             "costPerGoodUnit": 108.999,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 30496.114,
+            "totalProfitEndStockAtMarginal": 22985.113999999998,
+            "finishedGoodsEnd": 129.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 13293
           },
           "check": {
@@ -1481,6 +1663,7 @@
             }
           },
           "profitGain": 9913,
+          "profitGainEndStockAtMarginal": 8753.000000000004,
           "paybackShifts": null
         },
         "fg40": {
@@ -1506,6 +1689,10 @@
             "costPerGoodUnit": 110.685,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 39630.509999999995,
+            "totalProfitEndStockAtMarginal": 30988.510000000002,
+            "finishedGoodsEnd": 149,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 2925
           },
           "strict": {
@@ -1529,6 +1716,10 @@
             "costPerGoodUnit": 110.53,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 40054.714,
+            "totalProfitEndStockAtMarginal": 31383.714,
+            "finishedGoodsEnd": 149.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 2610
           },
           "check": {
@@ -1549,6 +1740,7 @@
             }
           },
           "profitGain": 19688.999999999993,
+          "profitGainEndStockAtMarginal": 17369.000000000004,
           "paybackShifts": null
         },
         "fg60": {
@@ -1574,6 +1766,10 @@
             "costPerGoodUnit": 112.685,
             "costPerGoodUnitExFg": 102.86500000000001,
             "totalProfit": 41085.509999999995,
+            "totalProfitEndStockAtMarginal": 31283.510000000002,
+            "finishedGoodsEnd": 169,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -1597,6 +1793,10 @@
             "costPerGoodUnit": 112.548,
             "costPerGoodUnitExFg": 102.65799999999999,
             "totalProfit": 41180.714,
+            "totalProfitEndStockAtMarginal": 31349.714,
+            "finishedGoodsEnd": 169.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -1617,6 +1817,7 @@
             }
           },
           "profitGain": 21143.999999999993,
+          "profitGainEndStockAtMarginal": 17664.000000000004,
           "paybackShifts": null
         },
         "m3-ct12": {
@@ -1652,6 +1853,10 @@
             "costPerGoodUnit": 105.13499999999999,
             "costPerGoodUnitExFg": 98.715,
             "totalProfit": 25617.055,
+            "totalProfitEndStockAtMarginal": 16801.055,
+            "finishedGoodsEnd": 152,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 20925
           },
           "strict": {
@@ -1675,6 +1880,10 @@
             "costPerGoodUnit": 104.90500000000002,
             "costPerGoodUnitExFg": 98.25000000000001,
             "totalProfit": 26855.405,
+            "totalProfitEndStockAtMarginal": 17813.205,
+            "finishedGoodsEnd": 155.9,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 19863
           },
           "check": {
@@ -1695,6 +1904,7 @@
             }
           },
           "profitGain": 5675.544999999998,
+          "profitGainEndStockAtMarginal": 3181.545000000002,
           "paybackShifts": 100.19964779823802
         },
         "m3-ct12-fg30": {
@@ -1731,6 +1941,10 @@
             "costPerGoodUnit": 107.185,
             "costPerGoodUnitExFg": 98.715,
             "totalProfit": 40763.055,
+            "totalProfitEndStockAtMarginal": 30207.055,
+            "finishedGoodsEnd": 182,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 4185
           },
           "strict": {
@@ -1754,6 +1968,10 @@
             "costPerGoodUnit": 107.00100000000002,
             "costPerGoodUnitExFg": 98.25000000000001,
             "totalProfit": 41543.005000000005,
+            "totalProfitEndStockAtMarginal": 30760.804999999993,
+            "finishedGoodsEnd": 185.9,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 3537
           },
           "check": {
@@ -1774,6 +1992,7 @@
             }
           },
           "profitGain": 20821.545,
+          "profitGainEndStockAtMarginal": 16587.545000000002,
           "paybackShifts": 28.390211149829582
         },
         "reject-5": {
@@ -1809,6 +2028,10 @@
             "costPerGoodUnit": 106.195,
             "costPerGoodUnitExFg": 101.07,
             "totalProfit": 21728.065000000002,
+            "totalProfitEndStockAtMarginal": 15348.064999999999,
+            "finishedGoodsEnd": 110,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 24120
           },
           "strict": {
@@ -1832,6 +2055,10 @@
             "costPerGoodUnit": 106.07300000000001,
             "costPerGoodUnitExFg": 100.951,
             "totalProfit": 21792.633,
+            "totalProfitEndStockAtMarginal": 15412.632999999998,
+            "finishedGoodsEnd": 110,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 24147
           },
           "check": {
@@ -1857,6 +2084,7 @@
             }
           },
           "profitGain": 1786.5550000000003,
+          "profitGainEndStockAtMarginal": 1728.5550000000003,
           "paybackShifts": 363.104635408905
         },
         "buf2-12": {
@@ -1892,6 +2120,10 @@
             "costPerGoodUnit": 108.46000000000001,
             "costPerGoodUnitExFg": 103.41999999999999,
             "totalProfit": 19531.8,
+            "totalProfitEndStockAtMarginal": 13209.8,
+            "finishedGoodsEnd": 109,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 24660
           },
           "strict": {
@@ -1915,6 +2147,10 @@
             "costPerGoodUnit": 108.353,
             "costPerGoodUnitExFg": 103.28,
             "totalProfit": 19857.135,
+            "totalProfitEndStockAtMarginal": 13506.135,
+            "finishedGoodsEnd": 109.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 24408
           },
           "check": {
@@ -1941,6 +2177,7 @@
             }
           },
           "profitGain": -409.71000000000276,
+          "profitGainEndStockAtMarginal": -409.7099999999991,
           "paybackShifts": "not reached"
         },
         "extra-m3": {
@@ -1976,6 +2213,10 @@
             "costPerGoodUnit": 123.805,
             "costPerGoodUnitExFg": 117.33500000000001,
             "totalProfit": 11356.6,
+            "totalProfitEndStockAtMarginal": 2279.6000000000004,
+            "finishedGoodsEnd": 156.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 20565
           },
           "strict": {
@@ -1999,6 +2240,10 @@
             "costPerGoodUnit": 123.80999999999999,
             "costPerGoodUnitExFg": 117.08,
             "totalProfit": 12816.675,
+            "totalProfitEndStockAtMarginal": 3635.275,
+            "finishedGoodsEnd": 158.3,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 19071
           },
           "check": {
@@ -2021,6 +2266,7 @@
             }
           },
           "profitGain": -8584.910000000002,
+          "profitGainEndStockAtMarginal": -11339.909999999998,
           "paybackShifts": "not reached"
         }
       },
@@ -2041,6 +2287,10 @@
           "costPerGoodUnit": 110.945,
           "costPerGoodUnitExFg": 108.33500000000001,
           "totalProfit": 13111.92,
+          "totalProfitEndStockAtMarginal": 10414.92,
+          "finishedGoodsEnd": 46.5,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 29745
         },
         "strict": {
@@ -2064,6 +2314,10 @@
           "costPerGoodUnit": 110.542,
           "costPerGoodUnitExFg": 107.90299999999998,
           "totalProfit": 13828.251,
+          "totalProfitEndStockAtMarginal": 11073.251,
+          "finishedGoodsEnd": 47.5,
+          "failures": 0,
+          "availabilityM3": 1,
           "lostSales": 29295
         }
       },
@@ -2091,6 +2345,10 @@
             "costPerGoodUnit": 111.975,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 28214.92,
+            "totalProfitEndStockAtMarginal": 24357.92,
+            "finishedGoodsEnd": 66.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 13950
           },
           "strict": {
@@ -2114,6 +2372,10 @@
             "costPerGoodUnit": 111.58999999999999,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 28980.651,
+            "totalProfitEndStockAtMarginal": 25065.651,
+            "finishedGoodsEnd": 67.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 13437
           },
           "check": {
@@ -2134,6 +2396,7 @@
             }
           },
           "profitGain": 15102.999999999998,
+          "profitGainEndStockAtMarginal": 13942.999999999998,
           "paybackShifts": null
         },
         "fg40": {
@@ -2159,6 +2422,10 @@
             "costPerGoodUnit": 113.625,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 38131.92,
+            "totalProfitEndStockAtMarginal": 33114.92,
+            "finishedGoodsEnd": 86.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 2925
           },
           "strict": {
@@ -2182,6 +2449,10 @@
             "costPerGoodUnit": 113.249,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 38689.651,
+            "totalProfitEndStockAtMarginal": 33614.651,
+            "finishedGoodsEnd": 87.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 2610
           },
           "check": {
@@ -2202,6 +2473,7 @@
             }
           },
           "profitGain": 25020,
+          "profitGainEndStockAtMarginal": 22700,
           "paybackShifts": null
         },
         "fg60": {
@@ -2227,6 +2499,10 @@
             "costPerGoodUnit": 115.81,
             "costPerGoodUnitExFg": 108.33500000000001,
             "totalProfit": 39586.92,
+            "totalProfitEndStockAtMarginal": 33409.92,
+            "finishedGoodsEnd": 106.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "strict": {
@@ -2250,6 +2526,10 @@
             "costPerGoodUnit": 115.45199999999997,
             "costPerGoodUnitExFg": 107.90299999999998,
             "totalProfit": 39815.651,
+            "totalProfitEndStockAtMarginal": 33580.651,
+            "finishedGoodsEnd": 107.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 0
           },
           "check": {
@@ -2270,6 +2550,7 @@
             }
           },
           "profitGain": 26475,
+          "profitGainEndStockAtMarginal": 22995,
           "paybackShifts": null
         },
         "m3-ct12": {
@@ -2305,6 +2586,10 @@
             "costPerGoodUnit": 108.51,
             "costPerGoodUnitExFg": 105.25,
             "totalProfit": 21766.85,
+            "totalProfitEndStockAtMarginal": 17590.85,
+            "finishedGoodsEnd": 72,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 22590
           },
           "strict": {
@@ -2328,6 +2613,10 @@
             "costPerGoodUnit": 108.022,
             "costPerGoodUnitExFg": 104.526,
             "totalProfit": 23762.394999999997,
+            "totalProfitEndStockAtMarginal": 19290.594999999998,
+            "finishedGoodsEnd": 77.1,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 20916
           },
           "check": {
@@ -2348,6 +2637,7 @@
             }
           },
           "profitGain": 8654.929999999998,
+          "profitGainEndStockAtMarginal": 7175.9299999999985,
           "paybackShifts": 66.90880218747179
         },
         "m3-ct12-fg30": {
@@ -2384,6 +2674,10 @@
             "costPerGoodUnit": 110.695,
             "costPerGoodUnitExFg": 105.25,
             "totalProfit": 38651.85,
+            "totalProfitEndStockAtMarginal": 32735.85,
+            "finishedGoodsEnd": 102,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 4185
           },
           "strict": {
@@ -2407,6 +2701,10 @@
             "costPerGoodUnit": 110.28599999999999,
             "costPerGoodUnitExFg": 104.526,
             "totalProfit": 39549.795,
+            "totalProfitEndStockAtMarginal": 33337.994999999995,
+            "finishedGoodsEnd": 107.1,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 3537
           },
           "check": {
@@ -2427,6 +2725,7 @@
             }
           },
           "profitGain": 25539.93,
+          "profitGainEndStockAtMarginal": 22320.93,
           "paybackShifts": 23.208650018586262
         },
         "reject-5": {
@@ -2462,6 +2761,10 @@
             "costPerGoodUnit": 109.08000000000001,
             "costPerGoodUnitExFg": 106.355,
             "totalProfit": 16098.24,
+            "totalProfitEndStockAtMarginal": 13140.24,
+            "finishedGoodsEnd": 51,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 27990
           },
           "strict": {
@@ -2485,6 +2788,10 @@
             "costPerGoodUnit": 108.90800000000002,
             "costPerGoodUnitExFg": 106.201,
             "totalProfit": 16001.509,
+            "totalProfitEndStockAtMarginal": 13084.109,
+            "finishedGoodsEnd": 50.3,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 28206
           },
           "check": {
@@ -2507,6 +2814,7 @@
             }
           },
           "profitGain": 2986.3199999999997,
+          "profitGainEndStockAtMarginal": 2725.3199999999997,
           "paybackShifts": 235.08760931573835
         },
         "buf2-12": {
@@ -2542,6 +2850,10 @@
             "costPerGoodUnit": 110.875,
             "costPerGoodUnitExFg": 108.135,
             "totalProfit": 14962.654999999999,
+            "totalProfitEndStockAtMarginal": 11946.654999999999,
+            "finishedGoodsEnd": 52,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 27900
           },
           "strict": {
@@ -2565,6 +2877,10 @@
             "costPerGoodUnit": 110.53,
             "costPerGoodUnitExFg": 107.753,
             "totalProfit": 15826.601999999999,
+            "totalProfitEndStockAtMarginal": 12735.202,
+            "finishedGoodsEnd": 53.3,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 27261
           },
           "check": {
@@ -2585,6 +2901,7 @@
             }
           },
           "profitGain": 1850.7349999999988,
+          "profitGainEndStockAtMarginal": 1531.7349999999988,
           "paybackShifts": 9.676847068184145
         },
         "extra-m3": {
@@ -2620,6 +2937,10 @@
             "costPerGoodUnit": 129.635,
             "costPerGoodUnitExFg": 126.34,
             "totalProfit": 7451.83,
+            "totalProfitEndStockAtMarginal": 3130.8300000000004,
+            "finishedGoodsEnd": 74.5,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 22095
           },
           "strict": {
@@ -2643,6 +2964,10 @@
             "costPerGoodUnit": 129.10099999999997,
             "costPerGoodUnitExFg": 125.547,
             "totalProfit": 9839.579,
+            "totalProfitEndStockAtMarginal": 5257.579000000001,
+            "finishedGoodsEnd": 79,
+            "failures": 0,
+            "availabilityM3": 1,
             "lostSales": 19971
           },
           "check": {
@@ -2665,6 +2990,3657 @@
             }
           },
           "profitGain": -5660.09,
+          "profitGainEndStockAtMarginal": -7284.09,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "fg60"
+    },
+    "baseline-bd": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.9490000000000001,
+          "goodPerShift": 34.425,
+          "scrapRate": 0.10360688543063085,
+          "avgWip": 13.379999999999999,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 109.67,
+          "costPerGoodUnitExFg": 107.06,
+          "totalProfit": 44661.104999999996,
+          "totalProfitEndStockAtMarginal": 44168.104999999996,
+          "finishedGoodsEnd": 8.5,
+          "failures": 35,
+          "availabilityM3": 0.9390000000000001,
+          "lostSales": 3105
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.884,
+          "goodPerShift": 34.45,
+          "scrapRate": 0.09844937862596527,
+          "avgWip": 14.062000000000001,
+          "backlogEnd": 2.9,
+          "costPerGoodUnit": 109.33899999999998,
+          "costPerGoodUnitExFg": 106.73800000000001,
+          "totalProfit": 40682.98599999999,
+          "totalProfitEndStockAtMarginal": 39992.78599999999,
+          "finishedGoodsEnd": 11.9,
+          "failures": 29.5,
+          "availabilityM3": 0.9372,
+          "lostSales": 7101
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.795,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 46304.104999999996,
+            "totalProfitEndStockAtMarginal": 44651.104999999996,
+            "finishedGoodsEnd": 28.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9982,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0.2,
+            "costPerGoodUnit": 111.21700000000001,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 46583.886,
+            "totalProfitEndStockAtMarginal": 44890.286,
+            "finishedGoodsEnd": 29.2,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 108
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.099999999999993,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 11.419999999999996,
+              "profitGain": 5900.900000000009,
+              "reasons": []
+            }
+          },
+          "profitGain": 1643,
+          "profitGainEndStockAtMarginal": 483,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.11500000000001,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 44704.104999999996,
+            "totalProfitEndStockAtMarginal": 41891.104999999996,
+            "finishedGoodsEnd": 48.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.53400000000002,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 45111.286,
+            "totalProfitEndStockAtMarginal": 42269.286,
+            "finishedGoodsEnd": 49,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.099999999999993,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 11.6,
+              "profitGain": 4428.30000000001,
+              "reasons": []
+            }
+          },
+          "profitGain": 43,
+          "profitGainEndStockAtMarginal": -2277,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 116.445,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 43104.104999999996,
+            "totalProfitEndStockAtMarginal": 39131.104999999996,
+            "finishedGoodsEnd": 68.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.859,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 43511.286,
+            "totalProfitEndStockAtMarginal": 39509.286,
+            "finishedGoodsEnd": 69,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.099999999999993,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 11.6,
+              "profitGain": 2828.30000000001,
+              "reasons": []
+            }
+          },
+          "profitGain": -1557,
+          "profitGainEndStockAtMarginal": -5037,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9855,
+            "goodPerShift": 36.9,
+            "scrapRate": 0.10181093714081377,
+            "avgWip": 10.725000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.69999999999999,
+            "costPerGoodUnitExFg": 102.88,
+            "totalProfit": 47989.604999999996,
+            "totalProfitEndStockAtMarginal": 44625.604999999996,
+            "finishedGoodsEnd": 58,
+            "failures": 36.5,
+            "availabilityM3": 0.9335,
+            "lostSales": 900
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9797,
+            "goodPerShift": 37.025,
+            "scrapRate": 0.09883453102700648,
+            "avgWip": 11.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.19500000000001,
+            "costPerGoodUnitExFg": 102.41900000000001,
+            "totalProfit": 48010.55699999999,
+            "totalProfitEndStockAtMarginal": 44501.55699999999,
+            "finishedGoodsEnd": 60.5,
+            "failures": 31.7,
+            "availabilityM3": 0.9330999999999999,
+            "lostSales": 1251
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 3.6499999999999977,
+              "goodChange": 0.07189542483660136,
+              "scrapChange": -0.017334256138985486,
+              "wipChange": -0.19843049327354242,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 9.57,
+              "profitGain": 7327.571000000004,
+              "reasons": []
+            }
+          },
+          "profitGain": 3328.5,
+          "profitGainEndStockAtMarginal": 457.5,
+          "paybackShifts": 164.78989288656962
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 36.9,
+            "scrapRate": 0.10181093714081377,
+            "avgWip": 10.725000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.9,
+            "costPerGoodUnitExFg": 102.88,
+            "totalProfit": 46529.604999999996,
+            "totalProfitEndStockAtMarginal": 41425.604999999996,
+            "finishedGoodsEnd": 88,
+            "failures": 36.5,
+            "availabilityM3": 0.9335,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 37.025,
+            "scrapRate": 0.09883453102700648,
+            "avgWip": 11.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.362,
+            "costPerGoodUnitExFg": 102.41900000000001,
+            "totalProfit": 46917.15699999999,
+            "totalProfitEndStockAtMarginal": 41668.157,
+            "finishedGoodsEnd": 90.5,
+            "failures": 31.7,
+            "availabilityM3": 0.9330999999999999,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.099999999999993,
+              "goodChange": 0.07189542483660136,
+              "scrapChange": -0.017334256138985486,
+              "wipChange": -0.19843049327354242,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 11.6,
+              "profitGain": 6234.171000000002,
+              "reasons": []
+            }
+          },
+          "profitGain": 1868.5,
+          "profitGainEndStockAtMarginal": -2742.5,
+          "paybackShifts": 275.1031636863824
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9550000000000001,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.05232457281637609,
+            "avgWip": 14.49,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.205,
+            "costPerGoodUnitExFg": 105.35,
+            "totalProfit": 46029.825,
+            "totalProfitEndStockAtMarginal": 45507.825,
+            "finishedGoodsEnd": 9,
+            "failures": 35,
+            "availabilityM3": 0.9359999999999999,
+            "lostSales": 2745
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8917999999999999,
+            "goodPerShift": 34.465,
+            "scrapRate": 0.04709605368348617,
+            "avgWip": 14.841,
+            "backlogEnd": 2.7,
+            "costPerGoodUnit": 107.774,
+            "costPerGoodUnitExFg": 105.126,
+            "totalProfit": 42249.399,
+            "totalProfitEndStockAtMarginal": 41553.399,
+            "finishedGoodsEnd": 12,
+            "failures": 29,
+            "availabilityM3": 0.9366,
+            "lostSales": 6624
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0.6000000000000005,
+              "goodChange": 0.0007262164124910875,
+              "scrapChange": -0.4949701209635378,
+              "wipChange": 0.08295964125560548,
+              "reasons": [
+                "service level +0.6 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.7799999999999918,
+              "profitGain": 1566.4130000000077,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.8 points"
+              ]
+            }
+          },
+          "profitGain": 1368.7200000000012,
+          "profitGainEndStockAtMarginal": 1339.7200000000012,
+          "paybackShifts": 448.08220814912147
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9490000000000001,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10337633381111641,
+            "avgWip": 18.28,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.39,
+            "costPerGoodUnitExFg": 107.775,
+            "totalProfit": 44169.615,
+            "totalProfitEndStockAtMarginal": 43676.615,
+            "finishedGoodsEnd": 8.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 3105
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.884,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09862276612634704,
+            "avgWip": 19.269,
+            "backlogEnd": 2.9,
+            "costPerGoodUnit": 110.093,
+            "costPerGoodUnitExFg": 107.49100000000001,
+            "totalProfit": 40165.301,
+            "totalProfitEndStockAtMarginal": 39475.101,
+            "finishedGoodsEnd": 11.9,
+            "failures": 29.7,
+            "availabilityM3": 0.9372,
+            "lostSales": 7101
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0,
+              "goodChange": 0,
+              "scrapChange": -0.0022252538386437573,
+              "wipChange": 0.36621823617339333,
+              "reasons": [
+                "service level +0.0 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0,
+              "profitGain": -517.6849999999904,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.0 points",
+                "seeds 1–10: profit -518 EUR"
+              ]
+            }
+          },
+          "profitGain": -491.48999999999796,
+          "profitGainEndStockAtMarginal": -491.48999999999796,
+          "paybackShifts": "not reached"
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.125,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 2.26,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.805,
+            "costPerGoodUnitExFg": 117.36500000000001,
+            "totalProfit": 36080.354999999996,
+            "totalProfitEndStockAtMarginal": 30135.355,
+            "finishedGoodsEnd": 102.5,
+            "failures": 38,
+            "availabilityM3": 0.966,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 39.209999999999994,
+            "scrapRate": 0.09853421912896762,
+            "avgWip": 2.223,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.94200000000001,
+            "costPerGoodUnitExFg": 117.109,
+            "totalProfit": 35943.868,
+            "totalProfitEndStockAtMarginal": 29900.268,
+            "finishedGoodsEnd": 104.2,
+            "failures": 32.9,
+            "availabilityM3": 0.9619,
+            "lostSales": 0
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 5.099999999999993,
+              "goodChange": 0.13652868554829348,
+              "scrapChange": -0.031492585843319834,
+              "wipChange": -0.8310911808669657,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 11.6,
+              "profitGain": -4739.117999999988,
+              "reasons": [
+                "seeds 1–10: profit -4739 EUR"
+              ]
+            }
+          },
+          "profitGain": -8580.75,
+          "profitGainEndStockAtMarginal": -14032.749999999996,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "m3-ct12"
+    },
+    "supplier-outage-bd": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.47550000000000003,
+          "goodPerShift": 31.65,
+          "scrapRate": 0.10721447633777616,
+          "avgWip": 10.68,
+          "backlogEnd": 47,
+          "costPerGoodUnit": 114.88,
+          "costPerGoodUnitExFg": 112.67500000000001,
+          "totalProfit": 9139.195,
+          "totalProfitEndStockAtMarginal": 9139.195,
+          "finishedGoodsEnd": 0,
+          "failures": 33,
+          "availabilityM3": 0.9430000000000001,
+          "lostSales": 32085
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.4514,
+          "goodPerShift": 31.630000000000003,
+          "scrapRate": 0.09922314755026593,
+          "avgWip": 11.719,
+          "backlogEnd": 47.4,
+          "costPerGoodUnit": 114.54999999999998,
+          "costPerGoodUnitExFg": 112.38,
+          "totalProfit": 7850.535999999998,
+          "totalProfitEndStockAtMarginal": 7850.535999999998,
+          "finishedGoodsEnd": 0,
+          "failures": 27.6,
+          "availabilityM3": 0.9417,
+          "lostSales": 33570
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.6539999999999999,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 27,
+            "costPerGoodUnit": 116.08000000000001,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 20852.195,
+            "totalProfitEndStockAtMarginal": 20852.195,
+            "finishedGoodsEnd": 0,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 21150
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6365999999999999,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 27.4,
+            "costPerGoodUnit": 115.65299999999999,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 20029.736,
+            "totalProfitEndStockAtMarginal": 20029.736,
+            "finishedGoodsEnd": 0,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 22230
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 17.849999999999987,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 18.519999999999992,
+              "profitGain": 12179.200000000003,
+              "reasons": []
+            }
+          },
+          "profitGain": 11713,
+          "profitGainEndStockAtMarginal": 11713,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9095,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 7.5,
+            "costPerGoodUnit": 117.61500000000001,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 36996.695,
+            "totalProfitEndStockAtMarginal": 36967.695,
+            "finishedGoodsEnd": 0.5,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 5535
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8666,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 8.3,
+            "costPerGoodUnit": 117.174,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 34604.236000000004,
+            "totalProfitEndStockAtMarginal": 34552.03600000001,
+            "finishedGoodsEnd": 0.9,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 8163
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 43.39999999999999,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 41.52,
+              "profitGain": 26753.700000000004,
+              "reasons": []
+            }
+          },
+          "profitGain": 27857.5,
+          "profitGainEndStockAtMarginal": 27828.5,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 1,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 119.8,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 41725.195,
+            "totalProfitEndStockAtMarginal": 40971.195,
+            "finishedGoodsEnd": 13,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 0
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9841000000000001,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 1.6,
+            "costPerGoodUnit": 119.232,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 41006.336,
+            "totalProfitEndStockAtMarginal": 40182.736000000004,
+            "finishedGoodsEnd": 14.2,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 972
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 52.449999999999996,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 53.27,
+              "profitGain": 33155.8,
+              "reasons": []
+            }
+          },
+          "profitGain": 32586,
+          "profitGainEndStockAtMarginal": 31832,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.6970000000000001,
+            "goodPerShift": 33.425,
+            "scrapRate": 0.10467432595200593,
+            "avgWip": 8.065,
+            "backlogEnd": 11.5,
+            "costPerGoodUnit": 111.81,
+            "costPerGoodUnitExFg": 109.07,
+            "totalProfit": 27048.355,
+            "totalProfitEndStockAtMarginal": 27048.355,
+            "finishedGoodsEnd": 0,
+            "failures": 33.5,
+            "availabilityM3": 0.9415,
+            "lostSales": 18540
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7236,
+            "goodPerShift": 33.62,
+            "scrapRate": 0.09791997364409662,
+            "avgWip": 9.463,
+            "backlogEnd": 9.7,
+            "costPerGoodUnit": 111.173,
+            "costPerGoodUnitExFg": 108.41099999999999,
+            "totalProfit": 29223.536,
+            "totalProfitEndStockAtMarginal": 29101.735999999997,
+            "finishedGoodsEnd": 2.1,
+            "failures": 28.7,
+            "availabilityM3": 0.9385,
+            "lostSales": 16911
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 22.150000000000002,
+              "goodChange": 0.05608214849921007,
+              "scrapChange": -0.023692233292895586,
+              "wipChange": -0.24485018726591762,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 27.22,
+              "profitGain": 21373,
+              "reasons": []
+            }
+          },
+          "profitGain": 17909.16,
+          "profitGainEndStockAtMarginal": 17909.16,
+          "paybackShifts": 32.92784521278522
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9935,
+            "goodPerShift": 33.425,
+            "scrapRate": 0.10467432595200593,
+            "avgWip": 8.065,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.25,
+            "costPerGoodUnitExFg": 109.07,
+            "totalProfit": 44432.854999999996,
+            "totalProfitEndStockAtMarginal": 43359.854999999996,
+            "finishedGoodsEnd": 18.5,
+            "failures": 33.5,
+            "availabilityM3": 0.9415,
+            "lostSales": 405
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9756,
+            "goodPerShift": 33.62,
+            "scrapRate": 0.09791997364409662,
+            "avgWip": 9.463,
+            "backlogEnd": 0.6,
+            "costPerGoodUnit": 113.71099999999998,
+            "costPerGoodUnitExFg": 108.41099999999999,
+            "totalProfit": 43629.236,
+            "totalProfitEndStockAtMarginal": 42295.236,
+            "finishedGoodsEnd": 23,
+            "failures": 28.7,
+            "availabilityM3": 0.9385,
+            "lostSales": 1494
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 51.800000000000004,
+              "goodChange": 0.05608214849921007,
+              "scrapChange": -0.023692233292895586,
+              "wipChange": -0.24485018726591762,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 52.42,
+              "profitGain": 35778.7,
+              "reasons": []
+            }
+          },
+          "profitGain": 35293.659999999996,
+          "profitGainEndStockAtMarginal": 34220.659999999996,
+          "paybackShifts": 16.851016790353132
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.491,
+            "goodPerShift": 31.849999999999998,
+            "scrapRate": 0.05420177588290587,
+            "avgWip": 12.254999999999999,
+            "backlogEnd": 43,
+            "costPerGoodUnit": 112.925,
+            "costPerGoodUnitExFg": 110.595,
+            "totalProfit": 11589.875,
+            "totalProfitEndStockAtMarginal": 11589.875,
+            "finishedGoodsEnd": 0,
+            "failures": 32.5,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 31140
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.4593,
+            "goodPerShift": 31.75,
+            "scrapRate": 0.04813449640979301,
+            "avgWip": 12.719,
+            "backlogEnd": 45,
+            "costPerGoodUnit": 112.793,
+            "costPerGoodUnitExFg": 110.598,
+            "totalProfit": 9608.662,
+            "totalProfitEndStockAtMarginal": 9608.662,
+            "finishedGoodsEnd": 0,
+            "failures": 26.7,
+            "availabilityM3": 0.9417,
+            "lostSales": 33084
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 1.5499999999999958,
+              "goodChange": 0.006319115323854639,
+              "scrapChange": -0.4944546880764057,
+              "wipChange": 0.1474719101123595,
+              "reasons": [
+                "service level +1.5 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.7899999999999963,
+              "profitGain": 1758.126000000002,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.8 points"
+              ]
+            }
+          },
+          "profitGain": 2450.6800000000003,
+          "profitGainEndStockAtMarginal": 2450.6800000000003,
+          "paybackShifts": 279.00358519606976
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.489,
+            "goodPerShift": 31.924999999999997,
+            "scrapRate": 0.10675293462491023,
+            "avgWip": 13.629999999999999,
+            "backlogEnd": 41.5,
+            "costPerGoodUnit": 114.89,
+            "costPerGoodUnitExFg": 112.685,
+            "totalProfit": 10302.36,
+            "totalProfitEndStockAtMarginal": 10302.36,
+            "finishedGoodsEnd": 0,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 31275
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.4667,
+            "goodPerShift": 31.96,
+            "scrapRate": 0.0982558793914438,
+            "avgWip": 15.269,
+            "backlogEnd": 40.8,
+            "costPerGoodUnit": 114.46899999999998,
+            "costPerGoodUnitExFg": 112.299,
+            "totalProfit": 9261.317,
+            "totalProfitEndStockAtMarginal": 9261.317,
+            "finishedGoodsEnd": 0,
+            "failures": 27.7,
+            "availabilityM3": 0.9417,
+            "lostSales": 32643
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 1.3499999999999956,
+              "goodChange": 0.008688783570300113,
+              "scrapChange": -0.00430484509770728,
+              "wipChange": 0.27621722846441943,
+              "reasons": [
+                "service level +1.3 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 1.529999999999998,
+              "profitGain": 1410.7810000000009,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +1.5 points"
+              ]
+            }
+          },
+          "profitGain": 1163.1650000000009,
+          "profitGainEndStockAtMarginal": 1163.1650000000009,
+          "paybackShifts": 15.351288655397672
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.911,
+            "goodPerShift": 35,
+            "scrapRate": 0.10515891069803718,
+            "avgWip": 2.0549999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.96,
+            "costPerGoodUnitExFg": 126.43,
+            "totalProfit": 28045.85,
+            "totalProfitEndStockAtMarginal": 26885.85,
+            "finishedGoodsEnd": 20,
+            "failures": 36.5,
+            "availabilityM3": 0.968,
+            "lostSales": 5445
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9368000000000001,
+            "goodPerShift": 35.205,
+            "scrapRate": 0.09940436513331934,
+            "avgWip": 1.998,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.586,
+            "costPerGoodUnitExFg": 125.715,
+            "totalProfit": 29781.28,
+            "totalProfitEndStockAtMarginal": 28383.48,
+            "finishedGoodsEnd": 24.1,
+            "failures": 30.1,
+            "availabilityM3": 0.9656999999999998,
+            "lostSales": 3870
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 43.55,
+              "goodChange": 0.10584518167456561,
+              "scrapChange": -0.019172463551125115,
+              "wipChange": -0.8075842696629214,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 48.540000000000006,
+              "profitGain": 21930.744,
+              "reasons": []
+            }
+          },
+          "profitGain": 18906.655,
+          "profitGainEndStockAtMarginal": 17746.655,
+          "paybackShifts": 95.49543829181111
+        }
+      },
+      "bestByRule": "m3-ct12-fg30"
+    },
+    "demand-swing-bd": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.48250000000000004,
+          "goodPerShift": 34.425,
+          "scrapRate": 0.10360688543063085,
+          "avgWip": 13.379999999999999,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 110.61,
+          "costPerGoodUnitExFg": 107.06,
+          "totalProfit": 13802.105,
+          "totalProfitEndStockAtMarginal": 10177.105,
+          "finishedGoodsEnd": 62.5,
+          "failures": 35,
+          "availabilityM3": 0.9390000000000001,
+          "lostSales": 29160
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.47850000000000004,
+          "goodPerShift": 34.45,
+          "scrapRate": 0.09844937862596527,
+          "avgWip": 14.062000000000001,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 110.19199999999998,
+          "costPerGoodUnitExFg": 106.73800000000001,
+          "totalProfit": 13875.086000000001,
+          "totalProfitEndStockAtMarginal": 10221.086000000001,
+          "finishedGoodsEnd": 63,
+          "failures": 29.5,
+          "availabilityM3": 0.9372,
+          "lostSales": 29385
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.6419999999999999,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.785,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 21996.105,
+            "totalProfitEndStockAtMarginal": 17211.105,
+            "finishedGoodsEnd": 82.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 20160
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6244000000000001,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.34,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 21309.486,
+            "totalProfitEndStockAtMarginal": 16495.486,
+            "finishedGoodsEnd": 83,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 21159
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 15.949999999999987,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 14.590000000000003,
+              "profitGain": 7434.4,
+              "reasons": []
+            }
+          },
+          "profitGain": 8194,
+          "profitGainEndStockAtMarginal": 7034,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8545,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.205,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 32988.105,
+            "totalProfitEndStockAtMarginal": 27043.105,
+            "finishedGoodsEnd": 102.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 8190
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8232999999999999,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.74600000000001,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 31545.685999999994,
+            "totalProfitEndStockAtMarginal": 25571.685999999994,
+            "finishedGoodsEnd": 103,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 9954
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 37.2,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 34.47999999999999,
+              "profitGain": 17670.59999999999,
+              "reasons": []
+            }
+          },
+          "profitGain": 19186.000000000004,
+          "profitGainEndStockAtMarginal": 16866,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.988,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10360688543063085,
+            "avgWip": 13.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.04,
+            "costPerGoodUnitExFg": 107.06,
+            "totalProfit": 39237.104999999996,
+            "totalProfitEndStockAtMarginal": 32132.105,
+            "finishedGoodsEnd": 122.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 675
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9695999999999998,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09844937862596527,
+            "avgWip": 14.062000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.52199999999998,
+            "costPerGoodUnitExFg": 106.73800000000001,
+            "totalProfit": 38563.286,
+            "totalProfitEndStockAtMarginal": 31429.285999999993,
+            "finishedGoodsEnd": 123,
+            "failures": 29.5,
+            "availabilityM3": 0.9372,
+            "lostSales": 1710
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 50.55,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 49.10999999999998,
+              "profitGain": 24688.199999999997,
+              "reasons": []
+            }
+          },
+          "profitGain": 25434.999999999996,
+          "profitGainEndStockAtMarginal": 21955,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.5495,
+            "goodPerShift": 36.9,
+            "scrapRate": 0.10181093714081377,
+            "avgWip": 10.725000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.11500000000001,
+            "costPerGoodUnitExFg": 102.88,
+            "totalProfit": 19045.605,
+            "totalProfitEndStockAtMarginal": 12549.605,
+            "finishedGoodsEnd": 112,
+            "failures": 36.5,
+            "availabilityM3": 0.9335,
+            "lostSales": 25380
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.5581,
+            "goodPerShift": 37.025,
+            "scrapRate": 0.09883453102700648,
+            "avgWip": 11.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 107.63500000000002,
+            "costPerGoodUnitExFg": 102.41900000000001,
+            "totalProfit": 19878.557000000004,
+            "totalProfitEndStockAtMarginal": 13237.557,
+            "finishedGoodsEnd": 114.5,
+            "failures": 31.7,
+            "availabilityM3": 0.9330999999999999,
+            "lostSales": 24903
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 6.699999999999995,
+              "goodChange": 0.07189542483660136,
+              "scrapChange": -0.017334256138985486,
+              "wipChange": -0.19843049327354242,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 7.960000000000001,
+              "profitGain": 6003.471000000003,
+              "reasons": []
+            }
+          },
+          "profitGain": 5243.5,
+          "profitGainEndStockAtMarginal": 2372.5,
+          "paybackShifts": 107.9913606911447
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8395,
+            "goodPerShift": 36.9,
+            "scrapRate": 0.10181093714081377,
+            "avgWip": 10.725000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.095,
+            "costPerGoodUnitExFg": 102.88,
+            "totalProfit": 33920.604999999996,
+            "totalProfitEndStockAtMarginal": 25684.605,
+            "finishedGoodsEnd": 142,
+            "failures": 36.5,
+            "availabilityM3": 0.9335,
+            "lostSales": 9045
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8272,
+            "goodPerShift": 37.025,
+            "scrapRate": 0.09883453102700648,
+            "avgWip": 11.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.60999999999999,
+            "costPerGoodUnitExFg": 102.41900000000001,
+            "totalProfit": 33579.957,
+            "totalProfitEndStockAtMarginal": 25198.957000000002,
+            "finishedGoodsEnd": 144.5,
+            "failures": 31.7,
+            "availabilityM3": 0.9330999999999999,
+            "lostSales": 9738
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 35.699999999999996,
+              "goodChange": 0.07189542483660136,
+              "scrapChange": -0.017334256138985486,
+              "wipChange": -0.19843049327354242,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 34.870000000000005,
+              "profitGain": 19704.871,
+              "reasons": []
+            }
+          },
+          "profitGain": 20118.499999999996,
+          "profitGainEndStockAtMarginal": 15507.5,
+          "paybackShifts": 29.367138172385104
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.501,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.05232457281637609,
+            "avgWip": 14.49,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 109.015,
+            "costPerGoodUnitExFg": 105.35,
+            "totalProfit": 15935.824999999999,
+            "totalProfitEndStockAtMarginal": 12281.825,
+            "finishedGoodsEnd": 63,
+            "failures": 35,
+            "availabilityM3": 0.9359999999999999,
+            "lostSales": 28125
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.48410000000000003,
+            "goodPerShift": 34.465,
+            "scrapRate": 0.04709605368348617,
+            "avgWip": 14.841,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 108.61099999999999,
+            "costPerGoodUnitExFg": 105.126,
+            "totalProfit": 15276.899000000001,
+            "totalProfitEndStockAtMarginal": 11605.499,
+            "finishedGoodsEnd": 63.3,
+            "failures": 29,
+            "availabilityM3": 0.9366,
+            "lostSales": 29070
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 1.849999999999996,
+              "goodChange": 0.0007262164124910875,
+              "scrapChange": -0.4949701209635378,
+              "wipChange": 0.08295964125560548,
+              "reasons": [
+                "service level +1.8 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.5599999999999994,
+              "profitGain": 1401.813,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.6 points"
+              ]
+            }
+          },
+          "profitGain": 2133.7199999999993,
+          "profitGainEndStockAtMarginal": 2104.720000000001,
+          "paybackShifts": 313.6779259615536
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.48250000000000004,
+            "goodPerShift": 34.425,
+            "scrapRate": 0.10337633381111641,
+            "avgWip": 18.28,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.33,
+            "costPerGoodUnitExFg": 107.775,
+            "totalProfit": 13310.615,
+            "totalProfitEndStockAtMarginal": 9685.615,
+            "finishedGoodsEnd": 62.5,
+            "failures": 35,
+            "availabilityM3": 0.9390000000000001,
+            "lostSales": 29160
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.47850000000000004,
+            "goodPerShift": 34.45,
+            "scrapRate": 0.09862276612634704,
+            "avgWip": 19.269,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 110.946,
+            "costPerGoodUnitExFg": 107.49100000000001,
+            "totalProfit": 13357.401000000002,
+            "totalProfitEndStockAtMarginal": 9703.401000000002,
+            "finishedGoodsEnd": 63,
+            "failures": 29.7,
+            "availabilityM3": 0.9372,
+            "lostSales": 29385
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 0,
+              "goodChange": 0,
+              "scrapChange": -0.0022252538386437573,
+              "wipChange": 0.36621823617339333,
+              "reasons": [
+                "service level +0.0 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0,
+              "profitGain": -517.6849999999995,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.0 points",
+                "seeds 1–10: profit -518 EUR"
+              ]
+            }
+          },
+          "profitGain": -491.4899999999998,
+          "profitGainEndStockAtMarginal": -491.4899999999998,
+          "paybackShifts": "not reached"
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.633,
+            "goodPerShift": 39.125,
+            "scrapRate": 0.1003440366972477,
+            "avgWip": 2.26,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.795,
+            "costPerGoodUnitExFg": 117.36500000000001,
+            "totalProfit": 11230.355,
+            "totalProfitEndStockAtMarginal": 2153.355,
+            "finishedGoodsEnd": 156.5,
+            "failures": 38,
+            "availabilityM3": 0.966,
+            "lostSales": 20700
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.6585000000000001,
+            "goodPerShift": 39.209999999999994,
+            "scrapRate": 0.09853421912896762,
+            "avgWip": 2.223,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 123.806,
+            "costPerGoodUnitExFg": 117.109,
+            "totalProfit": 12651.867999999999,
+            "totalProfitEndStockAtMarginal": 3476.268,
+            "finishedGoodsEnd": 158.2,
+            "failures": 32.9,
+            "availabilityM3": 0.9619,
+            "lostSales": 19242
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 15.049999999999997,
+              "goodChange": 0.13652868554829348,
+              "scrapChange": -0.031492585843319834,
+              "wipChange": -0.8310911808669657,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 18.000000000000004,
+              "profitGain": -1223.2180000000026,
+              "reasons": [
+                "seeds 1–10: profit -1223 EUR"
+              ]
+            }
+          },
+          "profitGain": -2571.75,
+          "profitGainEndStockAtMarginal": -8023.75,
+          "paybackShifts": "not reached"
+        }
+      },
+      "bestByRule": "fg60"
+    },
+    "both-bd": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.22899999999999998,
+          "goodPerShift": 31.65,
+          "scrapRate": 0.10721447633777616,
+          "avgWip": 10.68,
+          "backlogEnd": 0.5,
+          "costPerGoodUnit": 114.75,
+          "costPerGoodUnitExFg": 112.67500000000001,
+          "totalProfit": -2694.305,
+          "totalProfitEndStockAtMarginal": -3129.305,
+          "finishedGoodsEnd": 7.5,
+          "failures": 33,
+          "availabilityM3": 0.9430000000000001,
+          "lostSales": 43425
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.21599999999999997,
+          "goodPerShift": 31.630000000000003,
+          "scrapRate": 0.09922314755026593,
+          "avgWip": 11.719,
+          "backlogEnd": 2.7,
+          "costPerGoodUnit": 114.43700000000001,
+          "costPerGoodUnitExFg": 112.38,
+          "totalProfit": -3395.1639999999998,
+          "totalProfitEndStockAtMarginal": -3934.5639999999994,
+          "finishedGoodsEnd": 9.3,
+          "failures": 27.6,
+          "availabilityM3": 0.9417,
+          "lostSales": 44172
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.529,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.22999999999999,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 13915.195,
+            "totalProfitEndStockAtMarginal": 12349.195,
+            "finishedGoodsEnd": 27,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 26550
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.48729999999999996,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 0.2,
+            "costPerGoodUnit": 114.87099999999998,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 11802.536000000002,
+            "totalProfitEndStockAtMarginal": 10248.135999999999,
+            "finishedGoodsEnd": 26.8,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 28890
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 30.000000000000004,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 27.13,
+              "profitGain": 15197.7,
+              "reasons": []
+            }
+          },
+          "profitGain": 16609.5,
+          "profitGainEndStockAtMarginal": 15478.5,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8385,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 116.345,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 30669.195,
+            "totalProfitEndStockAtMarginal": 27943.195,
+            "finishedGoodsEnd": 47,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 9090
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7922,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.91000000000001,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 28348.336,
+            "totalProfitEndStockAtMarginal": 25645.536,
+            "finishedGoodsEnd": 46.6,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 11700
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 60.95,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 57.620000000000005,
+              "profitGain": 31743.5,
+              "reasons": []
+            }
+          },
+          "profitGain": 33363.5,
+          "profitGainEndStockAtMarginal": 31072.5,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.988,
+            "goodPerShift": 31.65,
+            "scrapRate": 0.10721447633777616,
+            "avgWip": 10.68,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 118.275,
+            "costPerGoodUnitExFg": 112.67500000000001,
+            "totalProfit": 37858.195,
+            "totalProfitEndStockAtMarginal": 33972.195,
+            "finishedGoodsEnd": 67,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 675
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9687999999999999,
+            "goodPerShift": 31.630000000000003,
+            "scrapRate": 0.09922314755026593,
+            "avgWip": 11.719,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 117.721,
+            "costPerGoodUnitExFg": 112.38,
+            "totalProfit": 37143.336,
+            "totalProfitEndStockAtMarginal": 33280.53600000001,
+            "finishedGoodsEnd": 66.6,
+            "failures": 27.6,
+            "availabilityM3": 0.9417,
+            "lostSales": 1755
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 75.9,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 75.27999999999999,
+              "profitGain": 40538.5,
+              "reasons": []
+            }
+          },
+          "profitGain": 40552.5,
+          "profitGainEndStockAtMarginal": 37101.5,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.4365,
+            "goodPerShift": 33.425,
+            "scrapRate": 0.10467432595200593,
+            "avgWip": 8.065,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.625,
+            "costPerGoodUnitExFg": 109.07,
+            "totalProfit": 10712.855,
+            "totalProfitEndStockAtMarginal": 8247.855,
+            "finishedGoodsEnd": 42.5,
+            "failures": 33.5,
+            "availabilityM3": 0.9415,
+            "lostSales": 31725
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.44989999999999997,
+            "goodPerShift": 33.62,
+            "scrapRate": 0.09791997364409662,
+            "avgWip": 9.463,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 111.069,
+            "costPerGoodUnitExFg": 108.41099999999999,
+            "totalProfit": 11806.436000000002,
+            "totalProfitEndStockAtMarginal": 9115.236,
+            "finishedGoodsEnd": 46.4,
+            "failures": 28.7,
+            "availabilityM3": 0.9385,
+            "lostSales": 30987
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 20.75,
+              "goodChange": 0.05608214849921007,
+              "scrapChange": -0.023692233292895586,
+              "wipChange": -0.24485018726591762,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 23.39,
+              "profitGain": 15201.600000000002,
+              "reasons": []
+            }
+          },
+          "profitGain": 13407.16,
+          "profitGainEndStockAtMarginal": 11377.16,
+          "paybackShifts": 43.7328621846314
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.839,
+            "goodPerShift": 33.425,
+            "scrapRate": 0.10467432595200593,
+            "avgWip": 8.065,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.34,
+            "costPerGoodUnitExFg": 109.07,
+            "totalProfit": 32199.854999999996,
+            "totalProfitEndStockAtMarginal": 27994.855,
+            "finishedGoodsEnd": 72.5,
+            "failures": 33.5,
+            "availabilityM3": 0.9415,
+            "lostSales": 9090
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8221,
+            "goodPerShift": 33.62,
+            "scrapRate": 0.09791997364409662,
+            "avgWip": 9.463,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.806,
+            "costPerGoodUnitExFg": 108.41099999999999,
+            "totalProfit": 31595.435999999998,
+            "totalProfitEndStockAtMarginal": 27164.235999999997,
+            "finishedGoodsEnd": 76.4,
+            "failures": 28.7,
+            "availabilityM3": 0.9385,
+            "lostSales": 10026
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 61,
+              "goodChange": 0.05608214849921007,
+              "scrapChange": -0.023692233292895586,
+              "wipChange": -0.24485018726591762,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 60.61000000000001,
+              "profitGain": 34990.6,
+              "reasons": []
+            }
+          },
+          "profitGain": 34894.159999999996,
+          "profitGainEndStockAtMarginal": 31124.16,
+          "paybackShifts": 17.042230078059095
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.272,
+            "goodPerShift": 31.849999999999998,
+            "scrapRate": 0.05420177588290587,
+            "avgWip": 12.254999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 112.71000000000001,
+            "costPerGoodUnitExFg": 110.595,
+            "totalProfit": 1027.875,
+            "totalProfitEndStockAtMarginal": 389.875,
+            "finishedGoodsEnd": 11,
+            "failures": 32.5,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 40995
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.2343,
+            "goodPerShift": 31.75,
+            "scrapRate": 0.04813449640979301,
+            "avgWip": 12.719,
+            "backlogEnd": 2.4,
+            "costPerGoodUnit": 112.68199999999999,
+            "costPerGoodUnitExFg": 110.598,
+            "totalProfit": -1250.538,
+            "totalProfitEndStockAtMarginal": -1911.7379999999998,
+            "finishedGoodsEnd": 11.4,
+            "failures": 26.7,
+            "availabilityM3": 0.9417,
+            "lostSales": 43137
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 4.300000000000004,
+              "goodChange": 0.006319115323854639,
+              "scrapChange": -0.4944546880764057,
+              "wipChange": 0.1474719101123595,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 1.8300000000000038,
+              "profitGain": 2144.6259999999997,
+              "reasons": [
+                "seeds 1–10: service level +1.8 points"
+              ]
+            }
+          },
+          "profitGain": 3722.18,
+          "profitGainEndStockAtMarginal": 3519.18,
+          "paybackShifts": 193.29056242721404
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.269,
+            "goodPerShift": 31.924999999999997,
+            "scrapRate": 0.10675293462491023,
+            "avgWip": 13.629999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 114.805,
+            "costPerGoodUnitExFg": 112.685,
+            "totalProfit": -506.1400000000001,
+            "totalProfitEndStockAtMarginal": -1231.14,
+            "finishedGoodsEnd": 12.5,
+            "failures": 33,
+            "availabilityM3": 0.9430000000000001,
+            "lostSales": 41175
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.2557,
+            "goodPerShift": 31.96,
+            "scrapRate": 0.0982558793914438,
+            "avgWip": 15.269,
+            "backlogEnd": 1.5,
+            "costPerGoodUnit": 114.41400000000002,
+            "costPerGoodUnitExFg": 112.299,
+            "totalProfit": -1121.7829999999997,
+            "totalProfitEndStockAtMarginal": -1974.3829999999998,
+            "finishedGoodsEnd": 14.7,
+            "failures": 27.7,
+            "availabilityM3": 0.9417,
+            "lostSales": 41931
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 4.0000000000000036,
+              "goodChange": 0.008688783570300113,
+              "scrapChange": -0.00430484509770728,
+              "wipChange": 0.27621722846441943,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 3.9700000000000015,
+              "profitGain": 2273.3810000000003,
+              "reasons": []
+            }
+          },
+          "profitGain": 2188.165,
+          "profitGainEndStockAtMarginal": 1898.1649999999997,
+          "paybackShifts": 8.190977183578001
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.603,
+            "goodPerShift": 35,
+            "scrapRate": 0.10515891069803718,
+            "avgWip": 2.0549999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.70499999999998,
+            "costPerGoodUnitExFg": 126.43,
+            "totalProfit": 7143.85,
+            "totalProfitEndStockAtMarginal": 2851.85,
+            "finishedGoodsEnd": 74,
+            "failures": 36.5,
+            "availabilityM3": 0.968,
+            "lostSales": 22365
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.641,
+            "goodPerShift": 35.205,
+            "scrapRate": 0.09940436513331934,
+            "avgWip": 1.998,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 129.248,
+            "costPerGoodUnitExFg": 125.715,
+            "totalProfit": 9506.679999999998,
+            "totalProfitEndStockAtMarginal": 4976.88,
+            "finishedGoodsEnd": 78.1,
+            "failures": 30.1,
+            "availabilityM3": 0.9656999999999998,
+            "lostSales": 20223
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 37.4,
+              "goodChange": 0.10584518167456561,
+              "scrapChange": -0.019172463551125115,
+              "wipChange": -0.8075842696629214,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 42.50000000000001,
+              "profitGain": 12901.843999999997,
+              "reasons": []
+            }
+          },
+          "profitGain": 9838.155,
+          "profitGainEndStockAtMarginal": 5981.155,
+          "paybackShifts": 175.47524159785291
+        }
+      },
+      "bestByRule": "fg60"
+    },
+    "quarter-60": {
+      "baseline": {
+        "official": {
+          "seeds": [
+            1,
+            2
+          ],
+          "serviceLevel": 0.7324999999999999,
+          "goodPerShift": 33.269999999999996,
+          "scrapRate": 0.09839871516055065,
+          "avgWip": 13.575,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 114.88,
+          "costPerGoodUnitExFg": 108.38499999999999,
+          "totalProfit": 75439.825,
+          "totalProfitEndStockAtMarginal": 68363.825,
+          "finishedGoodsEnd": 122,
+          "failures": 96.5,
+          "availabilityM3": 0.9295,
+          "lostSales": 45135
+        },
+        "strict": {
+          "seeds": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "serviceLevel": 0.7312000000000001,
+          "goodPerShift": 33.461999999999996,
+          "scrapRate": 0.09783416400691494,
+          "avgWip": 13.833000000000002,
+          "backlogEnd": 0,
+          "costPerGoodUnit": 114.65500000000002,
+          "costPerGoodUnitExFg": 107.968,
+          "totalProfit": 75568.25099999999,
+          "totalProfitEndStockAtMarginal": 67813.65099999998,
+          "finishedGoodsEnd": 133.7,
+          "failures": 89,
+          "availabilityM3": 0.9347,
+          "lostSales": 45324
+        }
+      },
+      "options": {
+        "fg20": {
+          "label": "Finished-goods stock 20",
+          "levers": {
+            "initialFinishedGoods": 20
+          },
+          "description": "FG stock 20",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8425,
+            "goodPerShift": 33.269999999999996,
+            "scrapRate": 0.09839871516055065,
+            "avgWip": 13.575,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 116.595,
+            "costPerGoodUnitExFg": 108.38499999999999,
+            "totalProfit": 90598.825,
+            "totalProfitEndStockAtMarginal": 82362.825,
+            "finishedGoodsEnd": 142,
+            "failures": 96.5,
+            "availabilityM3": 0.9295,
+            "lostSales": 26550
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8285,
+            "goodPerShift": 33.461999999999996,
+            "scrapRate": 0.09783416400691494,
+            "avgWip": 13.833000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 116.35499999999999,
+            "costPerGoodUnitExFg": 107.968,
+            "totalProfit": 88539.651,
+            "totalProfitEndStockAtMarginal": 79625.05099999999,
+            "finishedGoodsEnd": 153.7,
+            "failures": 89,
+            "availabilityM3": 0.9347,
+            "lostSales": 28935
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 11.00000000000001,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 9.729999999999993,
+              "profitGain": 12971.400000000009,
+              "reasons": []
+            }
+          },
+          "profitGain": 15159,
+          "profitGainEndStockAtMarginal": 13999,
+          "paybackShifts": null
+        },
+        "fg40": {
+          "label": "Finished-goods stock 40",
+          "levers": {
+            "initialFinishedGoods": 40
+          },
+          "description": "FG stock 40",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.946,
+            "goodPerShift": 33.269999999999996,
+            "scrapRate": 0.09839871516055065,
+            "avgWip": 13.575,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 118.55,
+            "costPerGoodUnitExFg": 108.38499999999999,
+            "totalProfit": 104152.825,
+            "totalProfitEndStockAtMarginal": 94756.825,
+            "finishedGoodsEnd": 162,
+            "failures": 96.5,
+            "availabilityM3": 0.9295,
+            "lostSales": 9090
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9306000000000001,
+            "goodPerShift": 33.461999999999996,
+            "scrapRate": 0.09783416400691494,
+            "avgWip": 13.833000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 118.276,
+            "costPerGoodUnitExFg": 107.968,
+            "totalProfit": 101917.851,
+            "totalProfitEndStockAtMarginal": 91843.251,
+            "finishedGoodsEnd": 173.7,
+            "failures": 89,
+            "availabilityM3": 0.9347,
+            "lostSales": 11700
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 21.35,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 19.94,
+              "profitGain": 26349.600000000006,
+              "reasons": []
+            }
+          },
+          "profitGain": 28713,
+          "profitGainEndStockAtMarginal": 26393,
+          "paybackShifts": null
+        },
+        "fg60": {
+          "label": "Finished-goods stock 60",
+          "levers": {
+            "initialFinishedGoods": 60
+          },
+          "description": "FG stock 60",
+          "pricing": {
+            "items": [],
+            "total": 0
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.996,
+            "goodPerShift": 33.269999999999996,
+            "scrapRate": 0.09839871516055065,
+            "avgWip": 13.575,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 120.77,
+            "costPerGoodUnitExFg": 108.38499999999999,
+            "totalProfit": 108141.825,
+            "totalProfitEndStockAtMarginal": 97585.825,
+            "finishedGoodsEnd": 182,
+            "failures": 96.5,
+            "availabilityM3": 0.9295,
+            "lostSales": 675
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9896,
+            "goodPerShift": 33.461999999999996,
+            "scrapRate": 0.09783416400691494,
+            "avgWip": 13.833000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 120.444,
+            "costPerGoodUnitExFg": 107.968,
+            "totalProfit": 107512.851,
+            "totalProfitEndStockAtMarginal": 96278.251,
+            "finishedGoodsEnd": 193.7,
+            "failures": 89,
+            "availabilityM3": 0.9347,
+            "lostSales": 1755
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 26.35000000000001,
+              "goodChange": 0,
+              "scrapChange": 0,
+              "wipChange": 0,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 25.839999999999996,
+              "profitGain": 31944.600000000006,
+              "reasons": []
+            }
+          },
+          "profitGain": 32702,
+          "profitGainEndStockAtMarginal": 29222,
+          "paybackShifts": null
+        },
+        "m3-ct12": {
+          "label": "M3 cycle time 13 -> 12 min",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            }
+          },
+          "description": "M3 cycle 13→12 min",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.812,
+            "goodPerShift": 35.545,
+            "scrapRate": 0.09885756065386295,
+            "avgWip": 11.655000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 117.14,
+            "costPerGoodUnitExFg": 104.45500000000001,
+            "totalProfit": 82411.08,
+            "totalProfitEndStockAtMarginal": 67418.08,
+            "finishedGoodsEnd": 258.5,
+            "failures": 105.5,
+            "availabilityM3": 0.9235,
+            "lostSales": 31725
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8161999999999999,
+            "goodPerShift": 35.885999999999996,
+            "scrapRate": 0.09763862344053799,
+            "avgWip": 11.808,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 117.05700000000002,
+            "costPerGoodUnitExFg": 103.78500000000001,
+            "totalProfit": 83037.73199999999,
+            "totalProfitEndStockAtMarginal": 66849.932,
+            "finishedGoodsEnd": 279.1,
+            "failures": 95.5,
+            "availabilityM3": 0.93,
+            "lostSales": 30987
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 7.950000000000013,
+              "goodChange": 0.06837992185151806,
+              "scrapChange": 0.004663124844299292,
+              "wipChange": -0.14143646408839766,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 8.499999999999986,
+              "profitGain": 7469.481,
+              "reasons": []
+            }
+          },
+          "profitGain": 6971.255000000005,
+          "profitGainEndStockAtMarginal": -945.7449999999953,
+          "paybackShifts": 227.5958731810505
+        },
+        "m3-ct12-fg30": {
+          "label": "M3 12 min + stock 30",
+          "levers": {
+            "cycleTime": {
+              "M3": 12
+            },
+            "initialFinishedGoods": 30
+          },
+          "description": "M3 cycle 13→12 min, FG stock 30",
+          "pricing": {
+            "items": [
+              {
+                "item": "cycle_time_reduction_investment",
+                "quantity": 1,
+                "unitPrice": 30000,
+                "total": 30000,
+                "note": "M3 13→12 ticks"
+              }
+            ],
+            "total": 30000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.9465,
+            "goodPerShift": 35.545,
+            "scrapRate": 0.09885756065386295,
+            "avgWip": 11.655000000000001,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 119.93,
+            "costPerGoodUnitExFg": 104.45500000000001,
+            "totalProfit": 99098.08,
+            "totalProfitEndStockAtMarginal": 82365.08,
+            "finishedGoodsEnd": 288.5,
+            "failures": 105.5,
+            "availabilityM3": 0.9235,
+            "lostSales": 9090
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.9405000000000001,
+            "goodPerShift": 35.885999999999996,
+            "scrapRate": 0.09763862344053799,
+            "avgWip": 11.808,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 119.829,
+            "costPerGoodUnitExFg": 103.78500000000001,
+            "totalProfit": 98026.73199999999,
+            "totalProfitEndStockAtMarginal": 80098.932,
+            "finishedGoodsEnd": 309.1,
+            "failures": 95.5,
+            "availabilityM3": 0.93,
+            "lostSales": 10026
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 21.40000000000001,
+              "goodChange": 0.06837992185151806,
+              "scrapChange": 0.004663124844299292,
+              "wipChange": -0.14143646408839766,
+              "reasons": []
+            },
+            "strict": {
+              "pass": true,
+              "slGainPoints": 20.930000000000003,
+              "profitGain": 22458.481,
+              "reasons": []
+            }
+          },
+          "profitGain": 23658.255000000005,
+          "profitGainEndStockAtMarginal": 14001.255000000005,
+          "paybackShifts": 73.18336029936872
+        },
+        "reject-5": {
+          "label": "M2 reject rate 10% -> 5%",
+          "levers": {
+            "rejectRate": {
+              "M2": 0.05
+            }
+          },
+          "description": "M2 reject 10→5%",
+          "pricing": {
+            "items": [
+              {
+                "item": "reject_rate_reduction_investment",
+                "quantity": 5,
+                "unitPrice": 8000,
+                "total": 40000,
+                "note": "M2 10→5%"
+              }
+            ],
+            "total": 40000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.749,
+            "goodPerShift": 33.325,
+            "scrapRate": 0.05042609911526766,
+            "avgWip": 14.379999999999999,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.595,
+            "costPerGoodUnitExFg": 106.805,
+            "totalProfit": 80790.29500000001,
+            "totalProfitEndStockAtMarginal": 73511.29500000001,
+            "finishedGoodsEnd": 125.5,
+            "failures": 97,
+            "availabilityM3": 0.9295,
+            "lostSales": 42300
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7376999999999999,
+            "goodPerShift": 33.496,
+            "scrapRate": 0.04883480355019418,
+            "avgWip": 14.511,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 113.28,
+            "costPerGoodUnitExFg": 106.404,
+            "totalProfit": 79400.57,
+            "totalProfitEndStockAtMarginal": 71529.97,
+            "finishedGoodsEnd": 135.7,
+            "failures": 87.1,
+            "availabilityM3": 0.9345000000000001,
+            "lostSales": 44226
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 1.650000000000007,
+              "goodChange": 0.0016531409678390992,
+              "scrapChange": -0.48753295169565236,
+              "wipChange": 0.0593001841620626,
+              "reasons": [
+                "service level +1.7 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 0.6499999999999839,
+              "profitGain": 3832.3190000000177,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +0.6 points"
+              ]
+            }
+          },
+          "profitGain": 5350.470000000016,
+          "profitGainEndStockAtMarginal": 5147.470000000016,
+          "paybackShifts": 363.6104701634875
+        },
+        "buf2-12": {
+          "label": "Buffer before M3 6 -> 12 slots",
+          "levers": {
+            "bufferCapacity": {
+              "BUF2": 12
+            }
+          },
+          "description": "BUF2 6→12 slots",
+          "pricing": {
+            "items": [
+              {
+                "item": "extra_buffer_slot",
+                "quantity": 6,
+                "unitPrice": 150,
+                "total": 900,
+                "note": "BUF2 6→12 slots"
+              }
+            ],
+            "total": 900
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.7495,
+            "goodPerShift": 33.325,
+            "scrapRate": 0.09941364918150436,
+            "avgWip": 18.555,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.71000000000001,
+            "costPerGoodUnitExFg": 108.805,
+            "totalProfit": 76661.38,
+            "totalProfitEndStockAtMarginal": 69382.38,
+            "finishedGoodsEnd": 125.5,
+            "failures": 97.5,
+            "availabilityM3": 0.929,
+            "lostSales": 42210
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.7474000000000001,
+            "goodPerShift": 33.551,
+            "scrapRate": 0.09801855098587678,
+            "avgWip": 19.002000000000002,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 115.498,
+            "costPerGoodUnitExFg": 108.33599999999998,
+            "totalProfit": 76509.128,
+            "totalProfitEndStockAtMarginal": 68447.128,
+            "finishedGoodsEnd": 139,
+            "failures": 89.5,
+            "availabilityM3": 0.9343,
+            "lostSales": 42624
+          },
+          "check": {
+            "official": {
+              "pass": false,
+              "evidence": "not verified",
+              "slGainPoints": 1.7000000000000126,
+              "goodChange": 0.0016531409678390992,
+              "scrapChange": 0.010314504811345408,
+              "wipChange": 0.3668508287292818,
+              "reasons": [
+                "service level +1.7 points (needs +2)"
+              ]
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 1.6199999999999992,
+              "profitGain": 940.8770000000077,
+              "reasons": [
+                "official check failed",
+                "seeds 1–10: service level +1.6 points"
+              ]
+            }
+          },
+          "profitGain": 1221.5550000000076,
+          "profitGainEndStockAtMarginal": 1018.5550000000076,
+          "paybackShifts": 43.2110620318799
+        },
+        "extra-m3": {
+          "label": "Extra machine at M3",
+          "levers": {
+            "parallelMachines": {
+              "S3": 1
+            }
+          },
+          "description": "+1 machine at S3",
+          "pricing": {
+            "items": [
+              {
+                "item": "parallel_machine_investment",
+                "quantity": 1,
+                "unitPrice": 95000,
+                "total": 95000,
+                "note": "+1 machine at S3"
+              }
+            ],
+            "total": 95000
+          },
+          "official": {
+            "seeds": [
+              1,
+              2
+            ],
+            "serviceLevel": 0.8674999999999999,
+            "goodPerShift": 37.96,
+            "scrapRate": 0.09903147207804489,
+            "avgWip": 2.1799999999999997,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 137.685,
+            "costPerGoodUnitExFg": 119.52000000000001,
+            "totalProfit": 42942.85,
+            "totalProfitEndStockAtMarginal": 19539.85,
+            "finishedGoodsEnd": 403.5,
+            "failures": 107.5,
+            "availabilityM3": 0.959,
+            "lostSales": 22365
+          },
+          "strict": {
+            "seeds": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ],
+            "serviceLevel": 0.8800999999999999,
+            "goodPerShift": 37.99400000000001,
+            "scrapRate": 0.0976016240774154,
+            "avgWip": 2.152,
+            "backlogEnd": 0,
+            "costPerGoodUnit": 137.892,
+            "costPerGoodUnitExFg": 119.397,
+            "totalProfit": 44533.496999999996,
+            "totalProfitEndStockAtMarginal": 21008.697000000004,
+            "finishedGoodsEnd": 405.6,
+            "failures": 97.9,
+            "availabilityM3": 0.9612999999999999,
+            "lostSales": 20223
+          },
+          "check": {
+            "official": {
+              "pass": true,
+              "evidence": "verified",
+              "slGainPoints": 13.5,
+              "goodChange": 0.14096783889389858,
+              "scrapChange": 0.00643054044416946,
+              "wipChange": -0.8394106813996317,
+              "reasons": []
+            },
+            "strict": {
+              "pass": false,
+              "slGainPoints": 14.889999999999981,
+              "profitGain": -31034.753999999994,
+              "reasons": [
+                "seeds 1–10: profit -31035 EUR"
+              ]
+            }
+          },
+          "profitGain": -32496.975,
+          "profitGainEndStockAtMarginal": -48823.975,
           "paybackShifts": "not reached"
         }
       },
@@ -2711,6 +6687,64 @@
       "oneTime": 95000,
       "annualProfitGain": -91319.64000000001,
       "paybackYears": "not reached"
+    }
+  },
+  "annualFromQuarter": {
+    "fg20": {
+      "oneTime": 0,
+      "annualProfitGain": 60636,
+      "paybackYears": null,
+      "annualProfitGainEndStockAtMarginal": 55996,
+      "paybackYearsEndStockAtMarginal": null
+    },
+    "fg40": {
+      "oneTime": 0,
+      "annualProfitGain": 114852,
+      "paybackYears": null,
+      "annualProfitGainEndStockAtMarginal": 105572,
+      "paybackYearsEndStockAtMarginal": null
+    },
+    "fg60": {
+      "oneTime": 0,
+      "annualProfitGain": 130808,
+      "paybackYears": null,
+      "annualProfitGainEndStockAtMarginal": 116888,
+      "paybackYearsEndStockAtMarginal": null
+    },
+    "m3-ct12": {
+      "oneTime": 30000,
+      "annualProfitGain": 27885.02000000002,
+      "paybackYears": 0.948316138254377,
+      "annualProfitGainEndStockAtMarginal": -3782.9799999999814,
+      "paybackYearsEndStockAtMarginal": "not reached"
+    },
+    "m3-ct12-fg30": {
+      "oneTime": 30000,
+      "annualProfitGain": 94633.02000000002,
+      "paybackYears": 0.30493066791403634,
+      "annualProfitGainEndStockAtMarginal": 56005.02000000002,
+      "paybackYearsEndStockAtMarginal": 0.5020498696176487
+    },
+    "reject-5": {
+      "oneTime": 40000,
+      "annualProfitGain": 21401.880000000063,
+      "paybackYears": 1.5150436256811979,
+      "annualProfitGainEndStockAtMarginal": 20589.880000000063,
+      "paybackYearsEndStockAtMarginal": 1.563117920052767
+    },
+    "buf2-12": {
+      "oneTime": 900,
+      "annualProfitGain": 4886.22000000003,
+      "paybackYears": 0.18004609179949957,
+      "annualProfitGainEndStockAtMarginal": 4074.2200000000303,
+      "paybackYearsEndStockAtMarginal": 0.21496541445331752
+    },
+    "extra-m3": {
+      "oneTime": 95000,
+      "annualProfitGain": -129987.9,
+      "paybackYears": "not reached",
+      "annualProfitGainEndStockAtMarginal": -195295.9,
+      "paybackYearsEndStockAtMarginal": "not reached"
     }
   }
 }

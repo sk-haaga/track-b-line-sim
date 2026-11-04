@@ -230,6 +230,7 @@ const STATE_DESCRIPTION = {
   IDLE:       'Idle',
   STARVED:    'Starved',
   BLOCKED:    'Blocked',
+  DOWN:       'Down – under repair',
 };
 
 // ── State ────────────────────────────────────────────────────────────────────
@@ -563,17 +564,17 @@ function updateMachine(m, mMetrics) {
   arcEl.setAttribute('stroke-dashoffset', offset.toFixed(2));
 
   // Arc colour by state
-  const arcColours = { PROCESSING: '#22c55e', IDLE: '#2e3347', STARVED: '#f59e0b', BLOCKED: '#ef4444' };
+  const arcColours = { PROCESSING: '#22c55e', IDLE: '#2e3347', STARVED: '#f59e0b', BLOCKED: '#ef4444', DOWN: '#a855f7' };
   arcEl.setAttribute('stroke', arcColours[m.state] ?? '#2e3347');
 
   // State badge
   if (badgeEl) {
     badgeEl.textContent = m.state;
-    const textColours = { PROCESSING: '#86efac', IDLE: '#94a3b8', STARVED: '#fde68a', BLOCKED: '#fca5a5' };
+    const textColours = { PROCESSING: '#86efac', IDLE: '#94a3b8', STARVED: '#fde68a', BLOCKED: '#fca5a5', DOWN: '#e9d5ff' };
     badgeEl.setAttribute('fill', textColours[m.state] ?? '#94a3b8');
   }
   if (badgeBg) {
-    const bgColours = { PROCESSING: '#166534', IDLE: '#1e293b', STARVED: '#713f12', BLOCKED: '#7f1d1d' };
+    const bgColours = { PROCESSING: '#166534', IDLE: '#1e293b', STARVED: '#713f12', BLOCKED: '#7f1d1d', DOWN: '#581c87' };
     badgeBg.setAttribute('fill', bgColours[m.state] ?? '#1e293b');
   }
 
@@ -588,7 +589,7 @@ function updateMachine(m, mMetrics) {
     if (isBottleneck) stateClass = 'machine-rect bottleneck';
     if (isSelected)   stateClass += ' selected';
     rectEl.setAttribute('class', stateClass);
-    const strokeColours = { PROCESSING: '#22c55e', IDLE: '#2e3347', STARVED: '#f59e0b', BLOCKED: '#ef4444' };
+    const strokeColours = { PROCESSING: '#22c55e', IDLE: '#2e3347', STARVED: '#f59e0b', BLOCKED: '#ef4444', DOWN: '#a855f7' };
     const baseStroke   = isBottleneck ? '#f97316' : (strokeColours[m.state] ?? '#2e3347');
     rectEl.setAttribute('stroke', isSelected ? '#818cf8' : baseStroke);
   }
@@ -677,7 +678,7 @@ function updateMachineDetail() {
   if (fill) {
     const ratio = m.cycleTime > 0 ? Math.max(0, Math.min(1, elapsed / m.cycleTime)) : 0;
     fill.style.width = (ratio * 100).toFixed(1) + '%';
-    const fillColours = { PROCESSING: '#22c55e', IDLE: '#64748b', STARVED: '#f59e0b', BLOCKED: '#ef4444' };
+    const fillColours = { PROCESSING: '#22c55e', IDLE: '#64748b', STARVED: '#f59e0b', BLOCKED: '#ef4444', DOWN: '#a855f7' };
     fill.style.background = fillColours[m.state] ?? '#64748b';
   }
 
@@ -696,13 +697,15 @@ function updateMachineDetail() {
   }
 
   // Time breakdown stacked bar
-  const total = m.ticksProcessing + m.ticksBlocked + m.ticksStarved + m.ticksIdle;
+  const down  = m.ticksDown ?? 0;
+  const total = m.ticksProcessing + m.ticksBlocked + m.ticksStarved + m.ticksIdle + down;
   setTextContent('md-total-ticks', `${total} ticks`);
   const segs = {
     processing: total > 0 ? m.ticksProcessing / total : 0,
     blocked:    total > 0 ? m.ticksBlocked    / total : 0,
     starved:    total > 0 ? m.ticksStarved    / total : 0,
     idle:       total > 0 ? m.ticksIdle       / total : 0,
+    down:       total > 0 ? down              / total : 0,
   };
   const stack = document.getElementById('md-stack');
   if (stack) {
@@ -710,11 +713,13 @@ function updateMachineDetail() {
     stack.children[1].style.width = (segs.blocked    * 100).toFixed(2) + '%';
     stack.children[2].style.width = (segs.starved    * 100).toFixed(2) + '%';
     stack.children[3].style.width = (segs.idle       * 100).toFixed(2) + '%';
+    if (stack.children[4]) stack.children[4].style.width = (segs.down * 100).toFixed(2) + '%';
   }
   setTextContent('md-pct-processing', (segs.processing * 100).toFixed(0) + '%');
   setTextContent('md-pct-blocked',    (segs.blocked    * 100).toFixed(0) + '%');
   setTextContent('md-pct-starved',    (segs.starved    * 100).toFixed(0) + '%');
   setTextContent('md-pct-idle',       (segs.idle       * 100).toFixed(0) + '%');
+  setTextContent('md-pct-down',       (segs.down       * 100).toFixed(0) + '%');
 }
 
 function setConnectorBlocked(id, blocked) {

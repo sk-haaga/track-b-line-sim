@@ -16,6 +16,7 @@
   --idle:       #64748b;
   --starved:    #f59e0b;
   --blocked:    #ef4444;
+  --down:       #a855f7;
   --bottleneck: #f97316;
 }
 
@@ -290,6 +291,7 @@ tr:hover td { background: var(--surface2); }
 .state-IDLE       { background: #1e293b; color: #94a3b8; }
 .state-STARVED    { background: #713f12; color: #fde68a; }
 .state-BLOCKED    { background: #7f1d1d; color: #fca5a5; }
+.state-DOWN       { background: #581c87; color: #e9d5ff; }
 
 .bottleneck-badge {
   display: inline-block;
@@ -415,6 +417,7 @@ th .info-icon::after {
 .machine-rect.IDLE       { stroke: #2e3347; }
 .machine-rect.STARVED    { stroke: #f59e0b; }
 .machine-rect.BLOCKED    { stroke: #ef4444; }
+.machine-rect.DOWN       { stroke: #a855f7; }
 .machine-rect.bottleneck { stroke: #f97316; animation: machine-bottleneck 1.2s ease-in-out infinite; }
 .machine-rect.selected   { stroke: #818cf8; stroke-width: 2.5; filter: drop-shadow(0 0 6px rgba(129,140,248,0.55)); }
 
@@ -602,6 +605,7 @@ g[id^="elem-M"]:hover .machine-rect:not(.selected):not(.bottleneck) {
 .md-seg-blocked    { background: var(--blocked); }
 .md-seg-starved    { background: var(--starved); }
 .md-seg-idle       { background: var(--idle); }
+.md-seg-down       { background: var(--down); }
 
 .md-legend {
   display: grid;
@@ -623,6 +627,7 @@ g[id^="elem-M"]:hover .machine-rect:not(.selected):not(.bottleneck) {
 .dot-blocked    { background: var(--blocked); }
 .dot-starved    { background: var(--starved); }
 .dot-idle       { background: var(--idle); }
+.dot-down       { background: var(--down); }
 
 @media (max-width: 720px) {
   #machine-detail {

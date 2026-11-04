@@ -3,8 +3,31 @@
   "fgValuePerUnit": 103,
   "periodShifts": 20,
   "shiftsPerYear": 240,
-  "annualMix": { "both": 4, "demand-swing": 8 },
+  "annualMix": {
+    "both": 4,
+    "demand-swing": 8
+  },
   "_annualMix_note": "BIZ-01: a year is 12 periods of 20 shifts; 4 periods with a supplier outage behave like 'both', the other 8 like 'demand-swing' (SUP-02: 4 outages per year).",
-  "officialSeeds": [1, 2],
-  "strictSeeds": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  "officialSeeds": [
+    1,
+    2
+  ],
+  "strictSeeds": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "annualFromQuarter": {
+    "scenario": "quarter-60",
+    "periodsPerYear": 4
+  },
+  "_annualFromQuarter_note": "More realistic annual view (BIZ-02): 4 x the 60-shift quarter scenario with breakdowns and one outage; starting stock is given once per quarter. Also shown with end stock valued at EUR 45 (COST-04 sensitivity).",
+  "marginalFgValuePerUnit": 45
 }

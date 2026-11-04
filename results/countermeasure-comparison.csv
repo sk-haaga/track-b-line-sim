@@ -31,3 +31,43 @@ both,m3-ct12-fg30,M3 12 min + stock 30,30000,0.9255,45.35,34.90,0.1051,2.51,110.
 both,reject-5,M2 reject rate 10% -> 5%,40000,0.5030,3.10,33.85,0.0532,11.88,109.08,16098.24,2986.32,235.1,verified,no
 both,buf2-12,Buffer before M3 6 -> 12 slots,900,0.5050,3.30,33.90,0.1046,10.54,110.88,14962.65,1850.73,9.7,verified,yes
 both,extra-m3,Extra machine at M3,95000,0.6075,13.55,35.02,0.1051,1.67,129.63,7451.83,-5660.09,not reached,verified,no
+baseline-bd,fg20,Finished-goods stock 20,0,1.0000,5.10,34.42,0.1036,13.38,111.80,46304.10,1643.00,,verified,yes
+baseline-bd,fg40,Finished-goods stock 40,0,1.0000,5.10,34.42,0.1036,13.38,114.12,44704.10,43.00,,verified,yes
+baseline-bd,fg60,Finished-goods stock 60,0,1.0000,5.10,34.42,0.1036,13.38,116.44,43104.10,-1557.00,,verified,yes
+baseline-bd,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.9855,3.65,36.90,0.1018,10.73,107.70,47989.60,3328.50,164.8,verified,yes
+baseline-bd,m3-ct12-fg30,M3 12 min + stock 30,30000,1.0000,5.10,36.90,0.1018,10.73,110.90,46529.60,1868.50,275.1,verified,yes
+baseline-bd,reject-5,M2 reject rate 10% -> 5%,40000,0.9550,0.60,34.45,0.0523,14.49,108.20,46029.82,1368.72,448.1,not verified,no
+baseline-bd,buf2-12,Buffer before M3 6 -> 12 slots,900,0.9490,0.00,34.42,0.1034,18.28,110.39,44169.61,-491.49,not reached,not verified,no
+baseline-bd,extra-m3,Extra machine at M3,95000,1.0000,5.10,39.13,0.1003,2.26,123.81,36080.35,-8580.75,not reached,verified,no
+supplier-outage-bd,fg20,Finished-goods stock 20,0,0.6540,17.85,31.65,0.1072,10.68,116.08,20852.19,11713.00,,verified,yes
+supplier-outage-bd,fg40,Finished-goods stock 40,0,0.9095,43.40,31.65,0.1072,10.68,117.62,36996.69,27857.50,,verified,yes
+supplier-outage-bd,fg60,Finished-goods stock 60,0,1.0000,52.45,31.65,0.1072,10.68,119.80,41725.19,32586.00,,verified,yes
+supplier-outage-bd,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.6970,22.15,33.42,0.1047,8.06,111.81,27048.35,17909.16,32.9,verified,yes
+supplier-outage-bd,m3-ct12-fg30,M3 12 min + stock 30,30000,0.9935,51.80,33.42,0.1047,8.06,114.25,44432.85,35293.66,16.9,verified,yes
+supplier-outage-bd,reject-5,M2 reject rate 10% -> 5%,40000,0.4910,1.55,31.85,0.0542,12.25,112.92,11589.88,2450.68,279.0,not verified,no
+supplier-outage-bd,buf2-12,Buffer before M3 6 -> 12 slots,900,0.4890,1.35,31.92,0.1068,13.63,114.89,10302.36,1163.17,15.4,not verified,no
+supplier-outage-bd,extra-m3,Extra machine at M3,95000,0.9110,43.55,35.00,0.1052,2.05,129.96,28045.85,18906.65,95.5,verified,yes
+demand-swing-bd,fg20,Finished-goods stock 20,0,0.6420,15.95,34.42,0.1036,13.38,111.78,21996.10,8194.00,,verified,yes
+demand-swing-bd,fg40,Finished-goods stock 40,0,0.8545,37.20,34.42,0.1036,13.38,113.20,32988.11,19186.00,,verified,yes
+demand-swing-bd,fg60,Finished-goods stock 60,0,0.9880,50.55,34.42,0.1036,13.38,115.04,39237.10,25435.00,,verified,yes
+demand-swing-bd,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.5495,6.70,36.90,0.1018,10.73,108.12,19045.60,5243.50,108.0,verified,yes
+demand-swing-bd,m3-ct12-fg30,M3 12 min + stock 30,30000,0.8395,35.70,36.90,0.1018,10.73,110.09,33920.60,20118.50,29.4,verified,yes
+demand-swing-bd,reject-5,M2 reject rate 10% -> 5%,40000,0.5010,1.85,34.45,0.0523,14.49,109.02,15935.82,2133.72,313.7,not verified,no
+demand-swing-bd,buf2-12,Buffer before M3 6 -> 12 slots,900,0.4825,0.00,34.42,0.1034,18.28,111.33,13310.61,-491.49,not reached,not verified,no
+demand-swing-bd,extra-m3,Extra machine at M3,95000,0.6330,15.05,39.13,0.1003,2.26,123.80,11230.35,-2571.75,not reached,verified,no
+both-bd,fg20,Finished-goods stock 20,0,0.5290,30.00,31.65,0.1072,10.68,115.23,13915.19,16609.50,,verified,yes
+both-bd,fg40,Finished-goods stock 40,0,0.8385,60.95,31.65,0.1072,10.68,116.34,30669.19,33363.50,,verified,yes
+both-bd,fg60,Finished-goods stock 60,0,0.9880,75.90,31.65,0.1072,10.68,118.28,37858.19,40552.50,,verified,yes
+both-bd,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.4365,20.75,33.42,0.1047,8.06,111.63,10712.85,13407.16,43.7,verified,yes
+both-bd,m3-ct12-fg30,M3 12 min + stock 30,30000,0.8390,61.00,33.42,0.1047,8.06,113.34,32199.85,34894.16,17.0,verified,yes
+both-bd,reject-5,M2 reject rate 10% -> 5%,40000,0.2720,4.30,31.85,0.0542,12.25,112.71,1027.88,3722.18,193.3,verified,no
+both-bd,buf2-12,Buffer before M3 6 -> 12 slots,900,0.2690,4.00,31.92,0.1068,13.63,114.81,-506.14,2188.16,8.2,verified,yes
+both-bd,extra-m3,Extra machine at M3,95000,0.6030,37.40,35.00,0.1052,2.05,129.70,7143.85,9838.16,175.5,verified,yes
+quarter-60,fg20,Finished-goods stock 20,0,0.8425,11.00,33.27,0.0984,13.57,116.59,90598.82,15159.00,,verified,yes
+quarter-60,fg40,Finished-goods stock 40,0,0.9460,21.35,33.27,0.0984,13.57,118.55,104152.82,28713.00,,verified,yes
+quarter-60,fg60,Finished-goods stock 60,0,0.9960,26.35,33.27,0.0984,13.57,120.77,108141.82,32702.00,,verified,yes
+quarter-60,m3-ct12,M3 cycle time 13 -> 12 min,30000,0.8120,7.95,35.55,0.0989,11.66,117.14,82411.08,6971.26,227.6,verified,yes
+quarter-60,m3-ct12-fg30,M3 12 min + stock 30,30000,0.9465,21.40,35.55,0.0989,11.66,119.93,99098.08,23658.26,73.2,verified,yes
+quarter-60,reject-5,M2 reject rate 10% -> 5%,40000,0.7490,1.65,33.33,0.0504,14.38,113.59,80790.30,5350.47,363.6,not verified,no
+quarter-60,buf2-12,Buffer before M3 6 -> 12 slots,900,0.7495,1.70,33.33,0.0994,18.55,115.71,76661.38,1221.56,43.2,not verified,no
+quarter-60,extra-m3,Extra machine at M3,95000,0.8675,13.50,37.96,0.0990,2.18,137.69,42942.85,-32496.97,not reached,verified,no
