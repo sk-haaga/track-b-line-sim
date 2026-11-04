@@ -3,7 +3,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { summariseRun, ranges } from '../src/advisor/summarise.js';
 import { parseAnswer, checkAnswer, runAdvisor } from '../src/advisor/advisor.js';
-import { chat } from '../src/advisor/llm.js';
+import { chat, foldSystemMessages } from '../src/advisor/llm.js';
 import { runScenario } from '../src/scenarios/run.js';
 import { REFERENCE_SCENARIOS } from '../src/scenarios/reference.js';
 import { loadRateCard } from '../src/economics/rateCard.js';
@@ -98,4 +98,13 @@ test('a model that invents facts is rejected, gets the results back and can revi
   assert.match(calls[1].body.messages.at(-1).content, /None of them was verified/);
   assert.equal(r.best.levers.initialFinishedGoods, 60);
   assert.equal(r.tokens, 2400, 'tokens of both calls are logged');
+});
+
+test('system instructions are folded into the first user message (endpoint accepts only user/assistant)', async () => {
+  const folded = foldSystemMessages([{ role: 'system', content: 'RULES' }, { role: 'user', content: 'FACTS' }, { role: 'assistant', content: 'A' }]);
+  assert.deepEqual(folded.map((m) => m.role), ['user', 'assistant']);
+  assert.match(folded[0].content, /^RULES[\s\S]*FACTS$/);
+  const { calls, fetchImpl } = fakeEndpoint(['{}']);
+  await chat({ provider: 'organiser', messages: [{ role: 'system', content: 'S' }, { role: 'user', content: 'U' }], env: ENV, fetchImpl });
+  assert.ok(calls[0].body.messages.every((m) => m.role === 'user' || m.role === 'assistant'));
 });
